@@ -1,13 +1,13 @@
 //
-//  Campus_GuidebookUITestsLaunchTests.swift
-//  Campus-GuidebookUITests
+//  Campus_Guidebook_iosUITestsLaunchTests.swift
+//  Campus-Guidebook-iosUITests
 //
-//  Created by isaak wheeler on 4/17/22.
+//  Created by Student Account on 4/26/22.
 //
 
 import XCTest
 
-class Campus_GuidebookUITestsLaunchTests: XCTestCase {
+class Campus_Guidebook_iosUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

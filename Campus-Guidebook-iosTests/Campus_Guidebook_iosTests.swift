@@ -1,14 +1,14 @@
 //
-//  Campus_GuidebookTests.swift
-//  Campus-GuidebookTests
+//  Campus_Guidebook_iosTests.swift
+//  Campus-Guidebook-iosTests
 //
-//  Created by isaak wheeler on 4/17/22.
+//  Created by Student Account on 4/26/22.
 //
 
 import XCTest
-@testable import Campus_Guidebook
+@testable import Campus_Guidebook_ios
 
-class Campus_GuidebookTests: XCTestCase {
+class Campus_Guidebook_iosTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
