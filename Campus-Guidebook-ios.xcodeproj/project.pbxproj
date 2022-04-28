@@ -78,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F234115281B1F4000476D93 /* Etc */ = {
+			isa = PBXGroup;
+			children = (
+				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
+				3F3F50B9281896E20000F1DD /* LaunchScreen.storyboard */,
+			);
+			path = Etc;
+			sourceTree = "<group>";
+		};
 		3F3F509F281896E00000F1DD = {
 			isa = PBXGroup;
 			children = (
@@ -101,13 +110,12 @@
 		3F3F50AA281896E00000F1DD /* Campus-Guidebook-ios */ = {
 			isa = PBXGroup;
 			children = (
-				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
-				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
+				3F3F50BC281896E20000F1DD /* Info.plist */,
+				3F234115281B1F4000476D93 /* Etc */,
 				3F3F50AF281896E00000F1DD /* ViewController.swift */,
+				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
 				3F3F50B1281896E00000F1DD /* Main.storyboard */,
 				3F3F50B7281896E20000F1DD /* Assets.xcassets */,
-				3F3F50B9281896E20000F1DD /* LaunchScreen.storyboard */,
-				3F3F50BC281896E20000F1DD /* Info.plist */,
 				3F3F50B4281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld */,
 			);
 			path = "Campus-Guidebook-ios";
