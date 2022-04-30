@@ -20,6 +20,11 @@
 		3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */; };
 		3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */; };
 		3F3F50E5281B45750000F1DD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50E4281B45750000F1DD /* .gitignore */; };
+		DA1CFB20281D99DB0060B255 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB1F281D99DB0060B255 /* Club.swift */; };
+		DA1CFB22281D99E90060B255 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB21281D99E90060B255 /* Event.swift */; };
+		DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB23281D99FA0060B255 /* Sustainability.swift */; };
+		DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */; };
+		DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB28281D9A5A0060B255 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,11 @@
 		3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3F3F50E4281B45750000F1DD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DA1CFB1F281D99DB0060B255 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
+		DA1CFB21281D99E90060B255 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		DA1CFB23281D99FA0060B255 /* Sustainability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sustainability.swift; sourceTree = "<group>"; };
+		DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		DA1CFB28281D9A5A0060B255 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +117,7 @@
 		3F3F50AA281896E00000F1DD /* Campus-Guidebook-ios */ = {
 			isa = PBXGroup;
 			children = (
+				DA1CFB1E281D99AE0060B255 /* model */,
 				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
 				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
 				3F3F50AF281896E00000F1DD /* ViewController.swift */,
@@ -137,6 +148,26 @@
 				3F3F50D1281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift */,
 			);
 			path = "Campus-Guidebook-iosUITests";
+			sourceTree = "<group>";
+		};
+		DA1CFB1E281D99AE0060B255 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DA1CFB25281D9A1E0060B255 /* helper */,
+				DA1CFB1F281D99DB0060B255 /* Club.swift */,
+				DA1CFB21281D99E90060B255 /* Event.swift */,
+				DA1CFB23281D99FA0060B255 /* Sustainability.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		DA1CFB25281D9A1E0060B255 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */,
+				DA1CFB28281D9A5A0060B255 /* SampleData.swift */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,10 +302,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1CFB22281D99E90060B255 /* Event.swift in Sources */,
 				3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */,
 				3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */,
 				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,
+				DA1CFB20281D99DB0060B255 /* Club.swift in Sources */,
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
+				DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */,
+				DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */,
+				DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */,
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
 				3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */,
 			);
