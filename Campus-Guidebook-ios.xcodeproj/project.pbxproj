@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AB281896E00000F1DD /* AppDelegate.swift */; };
 		3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AD281896E00000F1DD /* SceneDelegate.swift */; };
-		3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AF281896E00000F1DD /* ViewController.swift */; };
+		3F3F50B0281896E00000F1DD /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AF281896E00000F1DD /* CardsViewController.swift */; };
 		3F3F50B3281896E00000F1DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50B1281896E00000F1DD /* Main.storyboard */; };
 		3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50B4281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld */; };
 		3F3F50B8281896E20000F1DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50B7281896E20000F1DD /* Assets.xcassets */; };
@@ -17,6 +17,7 @@
 		3F3F50C6281896E20000F1DD /* Campus_Guidebook_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50C5281896E20000F1DD /* Campus_Guidebook_iosTests.swift */; };
 		3F3F50D0281896E20000F1DD /* Campus_Guidebook_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50CF281896E20000F1DD /* Campus_Guidebook_iosUITests.swift */; };
 		3F3F50D2281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50D1281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift */; };
+		3FDDF17D281DA24000391629 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDDF17C281DA24000391629 /* CardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,7 @@
 		3F3F50A8281896E00000F1DD /* Campus-Guidebook-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Campus-Guidebook-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3F50AB281896E00000F1DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F3F50AD281896E00000F1DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3F3F50AF281896E00000F1DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F3F50AF281896E00000F1DD /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		3F3F50B2281896E00000F1DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F3F50B5281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Campus_Guidebook_ios.xcdatamodel; sourceTree = "<group>"; };
 		3F3F50B7281896E20000F1DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		3F3F50CB281896E20000F1DD /* Campus-Guidebook-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Campus-Guidebook-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3F50CF281896E20000F1DD /* Campus_Guidebook_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus_Guidebook_iosUITests.swift; sourceTree = "<group>"; };
 		3F3F50D1281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus_Guidebook_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3FDDF17C281DA24000391629 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,15 +80,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F234115281B1F4000476D93 /* Etc */ = {
-			isa = PBXGroup;
-			children = (
-				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
-				3F3F50B9281896E20000F1DD /* LaunchScreen.storyboard */,
-			);
-			path = Etc;
-			sourceTree = "<group>";
-		};
 		3F3F509F281896E00000F1DD = {
 			isa = PBXGroup;
 			children = (
@@ -111,11 +104,13 @@
 			isa = PBXGroup;
 			children = (
 				3F3F50BC281896E20000F1DD /* Info.plist */,
-				3F234115281B1F4000476D93 /* Etc */,
-				3F3F50AF281896E00000F1DD /* ViewController.swift */,
-				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
 				3F3F50B1281896E00000F1DD /* Main.storyboard */,
+				3F3F50AF281896E00000F1DD /* CardsViewController.swift */,
 				3F3F50B7281896E20000F1DD /* Assets.xcassets */,
+				3FDDF17C281DA24000391629 /* CardCell.swift */,
+				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
+				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
+				3F3F50B9281896E20000F1DD /* LaunchScreen.storyboard */,
 				3F3F50B4281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld */,
 			);
 			path = "Campus-Guidebook-ios";
@@ -269,8 +264,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FDDF17D281DA24000391629 /* CardCell.swift in Sources */,
 				3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */,
-				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,
+				3F3F50B0281896E00000F1DD /* CardsViewController.swift in Sources */,
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
 			);
@@ -378,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -432,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -456,6 +452,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -483,6 +480,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
