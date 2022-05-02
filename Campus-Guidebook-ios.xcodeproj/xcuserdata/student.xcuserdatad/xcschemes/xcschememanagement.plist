@@ -14,12 +14,27 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Campus-Guidebook-iosTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>Campus-Guidebook-iosUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3F3F50A7281896E00000F1DD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F3F50C0281896E20000F1DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
