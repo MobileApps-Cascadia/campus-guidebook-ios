@@ -18,7 +18,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
      UIImage(named: "engineers_club")!,
      UIImage(named: "japanese_culture_club")!]
     let clubTitles: [String] = ["Clubs at Cascadia", "DnD Club", "Engineers Club", "Japanese Culture Club"]
-    let clubDescriptions: [String] = ["test", "test", "test", "test"]
+    let clubDescriptions: [String] = ["club", "club", "club", "club"]
     
     let eventDescriptions: [String] = ["event", "event", "event", "event"]
     let sustainabilityDescriptions: [String] = ["sustainabaility", "sustainabaility", "sustainabaility", "sustainabaility"]
