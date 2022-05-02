@@ -20,6 +20,8 @@
 		3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */; };
 		3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */; };
 		3F3F50E5281B45750000F1DD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50E4281B45750000F1DD /* .gitignore */; };
+		3F3F5111281FD8D50000F1DD /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F510F281FD8D50000F1DD /* CardsViewController.swift */; };
+		3F3F5112281FD8D50000F1DD /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F5110281FD8D50000F1DD /* CardCell.swift */; };
 		DA1CFB20281D99DB0060B255 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB1F281D99DB0060B255 /* Club.swift */; };
 		DA1CFB22281D99E90060B255 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB21281D99E90060B255 /* Event.swift */; };
 		DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB23281D99FA0060B255 /* Sustainability.swift */; };
@@ -62,6 +64,8 @@
 		3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3F3F50E4281B45750000F1DD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3F3F510F281FD8D50000F1DD /* CardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		3F3F5110281FD8D50000F1DD /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		DA1CFB1F281D99DB0060B255 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		DA1CFB21281D99E90060B255 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		DA1CFB23281D99FA0060B255 /* Sustainability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sustainability.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 				DA1CFB1E281D99AE0060B255 /* model */,
 				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
 				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
+				3F3F5110281FD8D50000F1DD /* CardCell.swift */,
+				3F3F510F281FD8D50000F1DD /* CardsViewController.swift */,
 				3F3F50AF281896E00000F1DD /* ViewController.swift */,
 				3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */,
 				3F3F50B1281896E00000F1DD /* Main.storyboard */,
@@ -310,8 +316,10 @@
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
 				DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */,
 				DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */,
+				3F3F5111281FD8D50000F1DD /* CardsViewController.swift in Sources */,
 				DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */,
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
+				3F3F5112281FD8D50000F1DD /* CardCell.swift in Sources */,
 				3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
