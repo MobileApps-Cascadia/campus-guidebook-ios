@@ -1,25 +1,13 @@
 //
-//  Club.swift
+//  GenaricDBMethods.swift
 //  Campus-Guidebook-ios
 //
-//  Created by isaak wheeler on 4/30/22.
+//  Created by isaak wheeler on 5/6/22.
 //
 
 import Foundation
 import SQLite3
-import GenaricDBMethods
-
-class Club: Codable {
-    let TableName: String = "Club"//track the table in which the dao is refering to for genaric queries
-    let Tablecolumns: String = "Name, Discription"//track values in columns in the table for queries
-    var Name: String
-    var Description: String
-    var db = DataBaseHelper()// get the database
-    
-    init(name: String?, description: String?){ //optional values the have a default of blank
-        Name = name ?? ""
-        Description = description ?? ""
-    }
+class GenaricDBMethods: Codable {
     
     func addLine(){
         let ValueString: String = "\(Name), \(Description)"
@@ -41,5 +29,4 @@ class Club: Codable {
           // 5
           sqlite3_finalize(insertStatement)
         }
-    }
-
+}
