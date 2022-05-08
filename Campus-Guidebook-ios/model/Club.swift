@@ -21,7 +21,7 @@ class Club: Codable {
         Description = description ?? ""
     }
     
-    func addLine(){
+    func addRow(){
         let ValueString: String = "\(Name), \(Description)"
         
         let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (\(ValueString));"
@@ -41,5 +41,25 @@ class Club: Codable {
           // 5
           sqlite3_finalize(insertStatement)
         }
+    func removeRowByID(Search: String, id: Int){
+        let ValueString: String = "\(Name), \(Description)"
+        
+        let insertStatementString = "DELETE FROM \(TableName) WHERE id LIKE '\(id)';"
+        
+        var insertStatement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
+              SQLITE_OK {
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+              print("\nSuccessfully Deleted.")
+            } else {
+              print("\nCould not Delete. id = \() may not exist")
+            }
+          } else {
+            print("Delete statement is not prepared.")
+          }
+          // 5
+          sqlite3_finalize(insertStatement)
+    }
     }
 

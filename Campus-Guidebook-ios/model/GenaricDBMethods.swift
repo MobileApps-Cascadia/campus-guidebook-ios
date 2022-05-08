@@ -9,7 +9,7 @@ import Foundation
 import SQLite3
 class GenaricDBMethods: Codable {
     
-    func addLine(){
+    func addRow(){
         let ValueString: String = "\(Name), \(Description)"
         
         let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (\(ValueString));"
