@@ -12,9 +12,8 @@ import SQLite3
 class Club: Encodable{
     var TableName: String = "Club"//track the table in which the dao is refering to for genaric queries
     var Tablecolumns: String = "Name, Discription"//track values in columns in the table for queries
-    var Name: String
-    var Description: String
-    var db = DataBaseHelper()// get the database
+    var Name: String = ""
+    var Description: String = ""
     
     init(name: String?, description: String?){ //optional values the have a default of blank
         Name = name ?? ""
@@ -121,5 +120,6 @@ class Club: Encodable{
       // 7
       sqlite3_finalize(queryStatement)
     }
+    
     }
 
