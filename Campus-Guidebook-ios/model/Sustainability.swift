@@ -7,7 +7,10 @@
 
 import Foundation
 class Sustainability: Codable{
+    
     var id: Int
     var Name: String
     var Description: String
+    
+    
 }

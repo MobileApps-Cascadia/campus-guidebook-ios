@@ -11,10 +11,10 @@ class DatabaseCalls{
     var db = DataBaseHelper()// get the database
     
     
-    func addRow(obj: <This needs to accept Club, Event, And Sustainability objects>, param: String){
-        let ValueString: String = "\(obj.Name), \(obj.Description)"
+    func addRow(){
+        let ValueString: String = "\(Name), \(Description)"
         
-        let insertStatementString = "INSERT INTO \(obj.TableName) (\(obj.Tablecolumns)) VALUES (\(ValueString));"
+        let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (\(ValueString));"
         
         var insertStatement: OpaquePointer?
         
