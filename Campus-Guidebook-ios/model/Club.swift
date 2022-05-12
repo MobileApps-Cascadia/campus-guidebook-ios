@@ -25,14 +25,14 @@ class Club: Codable{
         Description = description ?? ""
     }
         
-    func addRow(db: DataBaseHelper){  
+    func addRow(db: DataBaseHelper){
             let ValueString: String = "\(Name), \(Description)"
             
             let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (\(ValueString));"
             
             var insertStatement: OpaquePointer?
             
-            if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) ==
+        if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
                   SQLITE_OK {
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
                   print("\nSuccessfully inserted row.")

@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SQLite3
+import Foundation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     //______________________________//
-    let dbase = DataBaseHelper()
-    var mClub = Club(name: "TestName", description: "Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.")
+    let dbase: DataBaseHelper = DataBaseHelper()
+    var mClub: Club = Club(name: "TestName", description: "Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.")
     var add = mClub.addRow(db: dbase)
     //______________________________//
     
