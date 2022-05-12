@@ -13,7 +13,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //______________________________//
     let dbase: DataBaseHelper = DataBaseHelper()
     var mClub: Club = Club(name: "TestName", description: "Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.")
-    var add = mClub.addRow(db: dbase)
+    
     //______________________________//
     
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]
@@ -23,6 +23,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        mClub.addRow(db: dbase)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

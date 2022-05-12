@@ -13,6 +13,7 @@ class DataBaseHelper {
     
     var db: OpaquePointer? // db refrance
     var path: String = "AppDatabase.sqlite"// db path
+    var ClubDB: OpaquePointer?
     
     init(){
         self.db = CreateDB()
@@ -38,17 +39,18 @@ class DataBaseHelper {
         let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT);" //create the Clubs table
         let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT, Time TEXT, Date TEXT);" //create the Event table
         let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT);" //create the Sustainability table
-        initTable(table: CreateClubTable, name: "Club")
-        initTable(table: CreateEventsTable, name: "Event")
-        initTable(table: CreateSustainabilityTable, name: "Sustainability")
+        ClubDB = initTable(table: CreateClubTable, name: "Club")
+        //initTable(table: CreateEventsTable, name: "Event")
+        //initTable(table: CreateSustainabilityTable, name: "Sustainability")
         
     }
-    func initTable(table: String, name: String){
+    func initTable(table: String, name: String) -> OpaquePointer{
         var statement: OpaquePointer? = nil
         
         if sqlite3_prepare_v2(self.db, table, -1, &statement, nil) == SQLITE_OK{
             if sqlite3_step(statement) == SQLITE_DONE{
                 print("\(name) table has been created successfuly")
+                return statement!
             }else{
                 print("\(name) table creation fail")
             }

@@ -26,21 +26,28 @@ class Club: Codable{
     }
         
     func addRow(db: DataBaseHelper){
-            let ValueString: String = "\(Name), \(Description)"
             
-            let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (\(ValueString));"
-            
+            let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (?, ?);"
+        
             var insertStatement: OpaquePointer?
-            
-        if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
+          
+            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
                   SQLITE_OK {
+                
+                let name: NSString = Name as NSString
+                let description: NSString = Description as NSString
+                
+                sqlite3_bind_text(insertStatement, 2, description.utf8String, -1, nil)
+                
+                sqlite3_bind_text(insertStatement, 1, name.utf8String, -1, nil)
+                
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
                   print("\nSuccessfully inserted row.")
                 } else {
                   print("\nCould not insert row.")
                 }
               } else {
-                print("\nINSERT statement is not prepared.")
+                print("\nINSERT statement is not prepared. \(SQLITE_ERROR)")
               }
               
               sqlite3_finalize(insertStatement)
