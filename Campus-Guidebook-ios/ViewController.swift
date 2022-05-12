@@ -9,8 +9,9 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     //______________________________//
-    let db = DataBaseHelper()
+    let dbase = DataBaseHelper()
     var mClub = Club(name: "TestName", description: "Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.Test bunch of text.")
+    var add = mClub.addRow(db: dbase)
     //______________________________//
     
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]

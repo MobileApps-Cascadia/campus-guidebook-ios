@@ -32,7 +32,7 @@ class Club: Codable{
             
             var insertStatement: OpaquePointer?
             
-            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
+            if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) ==
                   SQLITE_OK {
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
                   print("\nSuccessfully inserted row.")
@@ -72,7 +72,7 @@ class Club: Codable{
     
             var queryStatement: OpaquePointer?
     
-            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
+            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &queryStatement, nil) ==
                   SQLITE_OK {
                 if sqlite3_step(queryStatement) == SQLITE_ROW {
     
