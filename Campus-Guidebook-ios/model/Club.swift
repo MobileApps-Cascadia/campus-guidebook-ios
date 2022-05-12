@@ -25,7 +25,7 @@ class Club: Codable{
         Description = description ?? ""
     }
         
-    func addRow(db: DataBaseHelper){
+    func addRow(db: DataBaseHelper){ 
             let ValueString: String = "\(Name), \(Description)"
             
             let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (\(ValueString));"
