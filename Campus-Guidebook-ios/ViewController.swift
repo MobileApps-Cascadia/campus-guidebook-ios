@@ -24,6 +24,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         mClub.addRow(db: self.dbase.GetOpenDB())
+        mClub.getRow(db: self.dbase.GetOpenDB(), Search: "foo")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

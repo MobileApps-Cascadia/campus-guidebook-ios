@@ -70,36 +70,32 @@ class Club: Codable{
               
               sqlite3_finalize(insertStatement)
         }
-        func getRow (db: DataBaseHelper, Search: String){
+        func getRow (db: OpaquePointer, Search: String){
             
-    
-            let insertStatementString = "Select * FROM \(TableName) WHERE Name LIKE '\(Search)';"
-    
-            var queryStatement: OpaquePointer?
-    
-            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &queryStatement, nil) ==
-                  SQLITE_OK {
-                if sqlite3_step(queryStatement) == SQLITE_ROW {
-    
-                  let id = sqlite3_column_int(queryStatement, 0)
-    
-                  guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
-                    print("Query result is nil")
-                    return
-                  }
-                  let name = String(cString: queryResultCol1)
-                  print("Query Result:")
-                  print("\(id) | \(name)")
-              } else {
-                  print("Query returned no results.")
-              }
-              } else {
-                  
-                  let errorMessage = String(cString: sqlite3_errmsg(db.db))
-                print("Query is not prepared \(errorMessage)")
-              }
-              
-              sqlite3_finalize(queryStatement)
+            var statement: OpaquePointer?
+            if sqlite3_prepare_v2(db, "select id, name, description from Club where name = '\(Search)'", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing select: \(errmsg)")
+            }
+
+            while sqlite3_step(statement) == SQLITE_ROW {
+                let id = sqlite3_column_int64(statement, 0)
+                print("id = \(id); ", terminator: "")
+
+                if let cString = sqlite3_column_text(statement, 1) {
+                    let name = String(cString: cString)
+                    print("name = \(name)")
+                } else {
+                    print("name not found")
+                }
+            }
+
+            if sqlite3_finalize(statement) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error finalizing prepared statement: \(errmsg)")
+            }
+
+            statement = nil
         }
 //    func query(db: DataBaseHelper, Search: String) {
 //          var queryStatement: OpaquePointer?
