@@ -57,6 +57,11 @@ class DataBaseHelper {
         }else{
             print("\(name) table prep fail \(SQLITE_ERROR)")
         }
+        return statement!
+    }
+    func GetOpenDB() -> OpaquePointer{
+        return self.db!
+        
     }
 }
 

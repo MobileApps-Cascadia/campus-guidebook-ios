@@ -14,6 +14,8 @@ class Club: Codable{
     var Tablecolumns: String = "Name, Discription"//track values in columns in the table for queries
     var Name: String = ""
     var Description: String = ""
+    internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
+    internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
     
     
     private enum CodingKeys: String, CodingKey {
@@ -25,32 +27,28 @@ class Club: Codable{
         Description = description ?? ""
     }
         
-    func addRow(db: DataBaseHelper){
-            
-            let insertStatementString = "INSERT INTO \(TableName) (\(Tablecolumns)) VALUES (?, ?);"
-        
-            var insertStatement: OpaquePointer?
-          
-            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
-                  SQLITE_OK {
-                
-                let name: NSString = Name as NSString
-                let description: NSString = Description as NSString
-                
-                sqlite3_bind_text(insertStatement, 2, description.utf8String, -1, nil)
-                
-                sqlite3_bind_text(insertStatement, 1, name.utf8String, -1, nil)
-                
-                if sqlite3_step(insertStatement) == SQLITE_DONE {
-                  print("\nSuccessfully inserted row.")
-                } else {
-                  print("\nCould not insert row.")
-                }
-              } else {
-                print("\nINSERT statement is not prepared. \(SQLITE_ERROR)")
-              }
-              
-              sqlite3_finalize(insertStatement)
+    func addRow(db: OpaquePointer){
+        var statement: OpaquePointer?
+
+        if sqlite3_prepare_v2(db, "insert into Club (name, description) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insert: \(errmsg)")
+        }
+
+        if sqlite3_bind_text(statement, 1, "foo", -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure binding foo: \(errmsg)")
+        }
+        if sqlite3_bind_text(statement, 2, "bar", -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure binding foo: \(errmsg)")
+        }
+
+        if sqlite3_step(statement) != SQLITE_DONE {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure inserting foo: \(errmsg)")
+        }
+        statement = nil
             }
         func removeRowByID(db: DataBaseHelper, Search: String, id: Int){
             
