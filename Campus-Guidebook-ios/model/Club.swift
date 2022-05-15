@@ -11,9 +11,9 @@ import SQLite3
 
 class Club: Codable{
     var TableName: String = "Club"//track the table in which the dao is refering to for genaric queries
-    var Tablecolumns: String = "Name, Discription"//track values in columns in the table for queries
-    var Name: String = ""
-    var Description: String = ""
+    var Tablecolumns: String = "name, description"//track values in columns in the table for queries
+    var Name: String
+    var Description: String
     internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
     internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
     
@@ -29,17 +29,18 @@ class Club: Codable{
         
     func addRow(db: OpaquePointer){
         var statement: OpaquePointer?
+        //var t: String =
 
-        if sqlite3_prepare_v2(db, "insert into Club (name, description) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+        if sqlite3_prepare_v2(db, "insert into \(TableName) (\(Tablecolumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error preparing insert: \(errmsg)")
         }
 
-        if sqlite3_bind_text(statement, 1, "foo", -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(statement, 1, Name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding foo: \(errmsg)")
         }
-        if sqlite3_bind_text(statement, 2, "bar", -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(statement, 2, Description, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding foo: \(errmsg)")
         }
@@ -50,14 +51,14 @@ class Club: Codable{
         }
         statement = nil
             }
-        func removeRowByID(db: DataBaseHelper, Search: String, id: Int){
+        func removeRowByID(db: OpaquePointer, id: Int){
             
             
             let insertStatementString = "DELETE FROM \(TableName) WHERE id LIKE '\(id)';"
             
             var insertStatement: OpaquePointer?
             
-            if sqlite3_prepare_v2(db.db, insertStatementString, -1, &insertStatement, nil) ==
+            if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) ==
                   SQLITE_OK {
                 if sqlite3_step(insertStatement) == SQLITE_DONE {
                   print("\nSuccessfully Deleted.")
@@ -70,7 +71,10 @@ class Club: Codable{
               
               sqlite3_finalize(insertStatement)
         }
-        func getRow (db: OpaquePointer, Search: String){
+    func getRow (db: OpaquePointer, Search: String) -> Array<Any>{
+        
+        var ClubArray: [Any] = []
+        var SubArray: [Any] = []
             
             var statement: OpaquePointer?
             if sqlite3_prepare_v2(db, "select id, name, description from Club where name = '\(Search)'", -1, &statement, nil) != SQLITE_OK {
@@ -85,6 +89,19 @@ class Club: Codable{
                 if let cString = sqlite3_column_text(statement, 1) {
                     let name = String(cString: cString)
                     print("name = \(name)")
+                    if let cString = sqlite3_column_text(statement, 2) {
+                        let description = String(cString: cString)
+                        print("description = \(description)")
+                        
+                        SubArray.append(id)
+                        SubArray.append(name)
+                        SubArray.append(description)
+                        ClubArray.append(SubArray)
+                        SubArray = []
+                    } else {
+                        print("description not found")
+                    }
+
                 } else {
                     print("name not found")
                 }
@@ -94,41 +111,10 @@ class Club: Codable{
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error finalizing prepared statement: \(errmsg)")
             }
-
+        
             statement = nil
+            return ClubArray
         }
-//    func query(db: DataBaseHelper, Search: String) {
-//          var queryStatement: OpaquePointer?
-//          let insertStatementString = "SELECT * FROM \(TableName) WHERE Name MATCH '\(Search)';"
-//
-//          if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) ==
-//              SQLITE_OK {
-//
-//            if sqlite3_step(queryStatement) == SQLITE_ROW {
-//
-//              let id = sqlite3_column_int(queryStatement, 0)
-//
-//              guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
-//                print("Query result is nil")
-//                return
-//              }
-//              let name = String(cString: queryResultCol1)
-//
-//              print("\nQuery Result:")
-//              print("\(id) | \(name)")
-//          } else {
-//              print("\nQuery returned no results.")
-//          }
-//          } else {
-//
-//            let errorMessage = String(cString: sqlite3_errmsg(db))
-//            print("\nQuery is not prepared \(errorMessage)")
-//          }
-//
-//          sqlite3_finalize(queryStatement)
-//        }
-//
-//    }
 
     }
 
