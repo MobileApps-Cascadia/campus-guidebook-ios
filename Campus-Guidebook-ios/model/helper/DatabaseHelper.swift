@@ -13,6 +13,7 @@ class DataBaseHelper {
     
     var db: OpaquePointer? // db refrance
     var path: String = "AppDatabase.sqlite"// db path
+    var ClubDB: OpaquePointer?
     
     init(){
         self.db = CreateDB()
@@ -49,12 +50,18 @@ class DataBaseHelper {
         if sqlite3_prepare_v2(self.db, table, -1, &statement, nil) == SQLITE_OK{
             if sqlite3_step(statement) == SQLITE_DONE{
                 print("\(name) table has been created successfuly")
+                
             }else{
                 print("\(name) table creation fail")
             }
         }else{
             print("\(name) table prep fail \(SQLITE_ERROR)")
         }
+        
+    }
+    func GetOpenDB() -> OpaquePointer{ //this method will return the activated database connection to use in objects
+        return self.db!
+        
     }
 }
 

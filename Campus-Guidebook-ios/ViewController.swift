@@ -6,17 +6,60 @@
 //
 
 import UIKit
+import SQLite3
+import Foundation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    //______________________________//
+    let dbase: DataBaseHelper = DataBaseHelper()
     
-    let db = DataBaseHelper()
+    
+    
+    //______________________________//
+    
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]
     
     let mainNavigationCardImages = [UIImage(named: "calendar-icon"), UIImage(named: "sustainability_practices_logo"), UIImage(named: "clubs_logo"), UIImage(named: "college_students"), UIImage(named: "library"), UIImage(named: "cascadia_mascot"), UIImage(named: "food_truck"), UIImage(named: "cascadia_walkway")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let conn: OpaquePointer = dbase.GetOpenDB()
+        //__________Club_Tests___________//
+        print("This is the start of the Club demo tests.")
+        var mClub: Club = Club(name: "Club TestName", description: "Test description")
         // Do any additional setup after loading the view.
+        mClub.addRow(db: conn) //after you made a new club object, you can call its addrow method and it will add itself to the database
+        mClub.addRow(db: conn)
+        mClub.addRow(db: conn)
+        mClub.addRow(db: conn)
+        var array = mClub.getRow(db: conn, Search: "Club TestName") // getrow will return an array in the order of name, description, tbc
+        mClub.removeRowByID(db: conn, id: 2) // this should delete the row with an id of 2
+        print("Club name in VC = \(array[0])\n")
+        
+        //__________Event_Tests___________//
+        print("This is the start of the Event demo tests.")
+        var mEvent: Event = Event(name: "Event TestName", description: "Test description")
+        // Do any additional setup after loading the view.
+        mEvent.addRow(db: conn) //after you made a new club object, you can call its addrow method and it will add itself to the database
+        mEvent.addRow(db: conn)
+        mEvent.addRow(db: conn)
+        mEvent.addRow(db: conn)
+        array = mEvent.getRow(db: conn, Search: "Event TestName") // getrow will return an array in the order of name, description, tbc
+        mEvent.removeRowByID(db: conn, id: 2) // this should delete the row with an id of 2
+        print("Event name in VC = \(array[0])\n")
+        
+        //__________Sustainability_Tests___________//
+        print("This is the start of the Sustainability demo tests.")
+        var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Thest description")
+        // Do any additional setup after loading the view.
+        mSustainability.addRow(db: conn) //after you made a new club object, you can call its addrow method and it will add itself to the database
+        mSustainability.addRow(db: conn)
+        mSustainability.addRow(db: conn)
+        mSustainability.addRow(db: conn)
+        array = mSustainability.getRow(db: conn, Search: "Sustainability TestName") // getrow will return an array in the order of name, description, tbc
+        mEvent.removeRowByID(db: conn, id: 2) // this should delete the row with an id of 2
+        print("Sustainability name in VC = \(array[0])\n")
+        //__________End_of_my_tests___________//
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
