@@ -1,25 +1,20 @@
 //
-//  Campus_Guidebook_iosTests.swift
+//  DatabaseTest.swift
 //  Campus-Guidebook-iosTests
 //
-//  Created by Student Account on 4/26/22.
+//  Created by Student Account on 5/18/22.
 //
 
 import XCTest
-@testable import Campus_Guidebook_ios
 
-class Campus_Guidebook_iosTests: XCTestCase {
-    let dbase: DataBaseHelper = DataBaseHelper()
-    let conn: OpaquePointer = dbase.GetOpenDB()
+class DatabaseTest: UITableViewCell {
 
-    override func setUp() {
-         //link databse here
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        dbase.RemoveDBTables()
-        
     }
 
     func testExample() throws {
