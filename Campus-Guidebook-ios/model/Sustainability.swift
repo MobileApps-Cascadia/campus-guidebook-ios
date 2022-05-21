@@ -25,7 +25,4 @@ class Sustainability: Codable{
         Name = name ?? ""
         Description = description ?? ""
     }
-        
-    
-
-    }
+}
