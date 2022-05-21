@@ -84,7 +84,7 @@ class DataBaseHelper {
         }
         
     }
-    func getAllTableContents(tablename: String){
+    func getAllTableContents(tablename: String) -> Array<Any>{
         var Array: [Any] = []
             
             var statement: OpaquePointer?
@@ -105,12 +105,12 @@ class DataBaseHelper {
             }
         
             statement = nil
-            return ClubArray
+            return Array
         }
-    }
+    
     
     func GetOpenDB() -> OpaquePointer{ //this method will return the activated database connection to use in objects
-        return self.db!
+        return db!
         
     }
 }

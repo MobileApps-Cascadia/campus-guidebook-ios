@@ -9,18 +9,27 @@ import XCTest
 @testable import Campus_Guidebook_ios
 
 class Campus_Guidebook_iosTests: XCTestCase {
-    let dbase: DataBaseHelper = DataBaseHelper()
-    let conn: OpaquePointer = dbase.GetOpenDB()
-    var mClub
-    var mEvent
-    var mSustainability
-    var results = []
+    var dbase: DataBaseHelper
+    var conn: OpaquePointer
+    var mClub: Club
+    var mEvent: Event
+    var mSustainability: Sustainability
+    var results: [Any] = ["hi"]
+    
+    override init(){
+        
+        self.dbase = DataBaseHelper()
+        self.conn = dbase.GetOpenDB()
+        mEvent = Event(name: "Event TestName", description: "Test Event description")
+        mClub = Club(name: "Club TestName", description: "Test Club description")
+        mSustainability = Sustainability(name: "Sustainability TestName", description: "Test Sustainability description")
+        super.init()
+    }
 
     override func setUp() {
          //link databse here
-    mEvent: Event = Event(name: "Event TestName", description: "Test Event description")
-    mClub: Club = Club(name: "Club TestName", description: "Test Club description")
-    mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test Sustainability description")
+        
+        
     }
 
     override func tearDown() {
@@ -33,29 +42,29 @@ class Campus_Guidebook_iosTests: XCTestCase {
     func test3TableAdd() throws {
         mEvent.addRow(db: conn)
         results = mEvent.getRow(db: conn, Search: "Event TestName")
-        XCTAssertEqual(results[0][1], "Event TestName")
+        XCTAssertEqual(results[0] as? NSString, "Event TestName")
         mClub.addRow(db: conn)
         results = mClub.getRow(db: conn, Search: "Club TestName")
-        XCTAssertEqual(results[0][1], "Club TestName")
+        XCTAssertEqual(results[0] as? NSString, "Club TestName")
         mSustainability.addRow(db: conn)
         results = mSustainability.getRow(db: conn, Search: "Sustainability TestName")
-        XCTAssertEqual(results[0][1], "Sustainability TestName")
+        XCTAssertEqual(results[0] as? NSString, "Sustainability TestName")
     }
     func test3TableRemove() throws {
         mEvent.addRow(db: conn)
         mEvent.removeRowByID(db: conn, id: 1)
         results = mEvent.getRow(db: conn, Search: "Event TestName")
-        XCTAssertEqual(results[0][0], 2)
+        XCTAssertEqual(results[0] as? NSInteger, 2)
         mClub.addRow(db: conn)
         mClub.removeRowByID(db: conn, id: 1)
         results = mEvent.getRow(db: conn, Search: "Club TestName")
-        XCTAssertEqual(results[0][0], 2)
+        XCTAssertEqual(results[0] as? NSInteger, 2)
         mSustainability.addRow(db: conn)
         mSustainability.removeRowByID(db: conn, id: 1)
         results = mEvent.getRow(db: conn, Search: "Sustainability TestName")
-        XCTAssertEqual(results[0][0], 2)
+        XCTAssertEqual(results[0] as? NSInteger, 2)
     }
-    func GetAllTests() throws {
+    func testGetAllTests() throws {
         mClub.addRow(db: conn)
         mClub.addRow(db: conn)
         mClub.addRow(db: conn)
