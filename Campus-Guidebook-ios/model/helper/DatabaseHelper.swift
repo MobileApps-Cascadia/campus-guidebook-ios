@@ -84,6 +84,30 @@ class DataBaseHelper {
         }
         
     }
+    func getAllTableContents(tablename: String){
+        var Array: [Any] = []
+            
+            var statement: OpaquePointer?
+            if sqlite3_prepare_v2(db, "select * from \(tablename)", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing select: \(errmsg)")
+            }
+
+            while sqlite3_step(statement) == SQLITE_ROW {
+                let id = sqlite3_column_int64(statement, 0)
+                print("id = \(id); ", terminator: "")
+                Array.append(sqlite3_step(statement))
+            }
+
+            if sqlite3_finalize(statement) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error finalizing prepared statement: \(errmsg)")
+            }
+        
+            statement = nil
+            return ClubArray
+        }
+    }
     
     func GetOpenDB() -> OpaquePointer{ //this method will return the activated database connection to use in objects
         return self.db!

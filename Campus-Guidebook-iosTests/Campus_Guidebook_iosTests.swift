@@ -55,4 +55,21 @@ class Campus_Guidebook_iosTests: XCTestCase {
         results = mEvent.getRow(db: conn, Search: "Sustainability TestName")
         XCTAssertEqual(results[0][0], 2)
     }
+    func GetAllTests() throws {
+        mClub.addRow(db: conn)
+        mClub.addRow(db: conn)
+        mClub.addRow(db: conn)
+        results = dbase.getAllTableContents(tablename: "Club")
+        XCTAssertTrue(results.count > 2)
+        mEvent.addRow(db: conn)
+        mEvent.addRow(db: conn)
+        mEvent.addRow(db: conn)
+        results = dbase.getAllTableContents(tablename: "Event")
+        XCTAssertTrue(results.count > 2)
+        mSustainability.addRow(db: conn)
+        mSustainability.addRow(db: conn)
+        mSustainability.addRow(db: conn)
+        results = dbase.getAllTableContents(tablename: "Sustainability")
+        XCTAssertTrue(results.count > 2)
+    }
 }
