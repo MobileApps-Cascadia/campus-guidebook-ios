@@ -14,6 +14,8 @@ class DataBaseHelper {
     var db: OpaquePointer? // db refrance
     var path: String = "AppDatabase.sqlite"// db path
     var ClubDB: OpaquePointer?
+    internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
+    internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
     
     init(){
         self.db = CreateDB()
@@ -122,20 +124,34 @@ class DataBaseHelper {
     
     
     
-    func addRow(tableName: String, tableColumns: String){ //this will need some thinking
+    func addRow(Club: Club?, Event: Event?, Sustainability: Sustainability?){ //this will need some thinking
         var statement: OpaquePointer?
-        //var t: String =
-
-        if sqlite3_prepare_v2(db, "insert into \(tableName) (\(tableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("error preparing insert: \(errmsg)")
+        if (Club != nil){
+            if sqlite3_prepare_v2(db, "insert into \(Club!.TableName) (\(Club!.TableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing insert: \(errmsg)")
+            }
+        }
+        if (Event != nil){
+            if sqlite3_prepare_v2(db, "insert into \(Event!.TableName) (\(Event!.TableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing insert: \(errmsg)")
+            }
+        }
+        if (Club != nil){
+            if sqlite3_prepare_v2(db, "insert into \(Sustainability!.TableName) (\(Sustainability!.TableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing insert: \(errmsg)")
+            }
         }
 
-        if sqlite3_bind_text(statement, 1, Name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        
+
+        if sqlite3_bind_text(statement, 1, lineOBJ.Name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding foo: \(errmsg)")
         }
-        if sqlite3_bind_text(statement, 2, Description, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        if sqlite3_bind_text(statement, 2, LineOBJ.Description, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding foo: \(errmsg)")
         }

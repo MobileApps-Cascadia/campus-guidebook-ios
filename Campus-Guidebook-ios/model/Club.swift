@@ -11,7 +11,7 @@ import SQLite3
 
 class Club: Codable{
     var TableName: String = "Club"//track the table in which the dao is refering to for genaric queries
-    var Tablecolumns: String = "name, description"//track values in columns in the table for queries
+    var TableColumns: String = "name, description"//track values in columns in the table for queries
     var Name: String
     var Description: String
     internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
