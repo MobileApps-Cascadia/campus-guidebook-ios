@@ -28,9 +28,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         print("This is the start of the Club demo tests.")
         var mClub: Club = Club(name: "Club TestName", description: "Test description") //make the new database row
         
-        dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
-        dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
-        dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
+        dbase.addClubRow(Club: mClub) //add the database row to the table
+        dbase.addClubRow(Club: mClub) //add the database row to the table
+        dbase.addClubRow(Club: mClub) //add the database row to the table
         
         var array = dbase.getAllTableContents(tablename: "Club")//get all rows
         for item in array{

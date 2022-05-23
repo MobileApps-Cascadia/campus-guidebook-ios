@@ -38,7 +38,7 @@ class DataBaseHelper {
     }
     
     func CreateTable(){
-        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT);" //create the Clubs table
+        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Clubs table
         let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT, Time TEXT, Date TEXT);" //create the Event table
         let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
@@ -90,9 +90,7 @@ class DataBaseHelper {
         var Array: [Any] = []
         var subarray: [Any] = []
         var i: Int32 = 0
-        
 
-            
             var statement: OpaquePointer?
             if sqlite3_prepare_v2(db, "select * from \(tablename)", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
@@ -101,17 +99,29 @@ class DataBaseHelper {
 
             while sqlite3_step(statement) == SQLITE_ROW {
             
-                while(sqlite3_column_text(statement, i) != nil){
+                //while (sqlite3_column_text(statement, i) != nil){
                     
-                    guard let queryResultCol = sqlite3_column_text(statement, i) else {
-                        print("Query result is nil")
-                        return Array
-                    }
-                    let item = String(cString: queryResultCol)
-                    
-                    subarray.append(item)
-                    i = i + 1
+                guard let queryResultCol = sqlite3_column_text(statement, 0) else {
+                    print("Query result is nil")
+                    return Array
                 }
+                var item = String(cString: queryResultCol)
+                subarray.append(item)
+                guard let queryResultCol = sqlite3_column_text(statement, 1) else {
+                    print("Query result is nil")
+                    return Array
+                }
+                 item = String(cString: queryResultCol)
+                subarray.append(item)
+                guard let queryResultCol = sqlite3_column_text(statement, 2) else {
+                    print("Query result is nil")
+                    return Array
+                }
+                item = String(cString: queryResultCol)
+               subarray.append(item)
+                
+                  //  i = i + 1
+                //}
                 i = 0
                 Array.append(subarray)
                 subarray = []
@@ -154,13 +164,14 @@ class DataBaseHelper {
                 i = i + 1
             }
             i = 0
+            print("insert into \(mClub.TableName) (\(mClub.TableColumns)) values (\(valueString))")
             if sqlite3_prepare_v2(db, "insert into \(mClub.TableName) (\(mClub.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error preparing insert: \(errmsg)")
             }
+            var valIndex: Int32 = 1
             while (i < columnArray.count)
             {
-                var valIndex: Int32 = 1
                 if sqlite3_bind_text(statement, valIndex, columnArray[i], -1, SQLITE_TRANSIENT) != SQLITE_OK {
                     let errmsg = String(cString: sqlite3_errmsg(db)!)
                     print("failure binding name: \(errmsg)")
