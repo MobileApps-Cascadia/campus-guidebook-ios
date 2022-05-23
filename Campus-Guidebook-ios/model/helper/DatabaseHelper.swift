@@ -204,14 +204,6 @@ class DataBaseHelper {
             i = 0
         }
 
-        
-        while
-        if sqlite3_bind_text(statement, 1, Name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("failure binding foo: \(errmsg)")
-        }
-        
-
         if sqlite3_step(statement) != SQLITE_DONE {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure inserting foo: \(errmsg)")

@@ -23,43 +23,41 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let conn: OpaquePointer = dbase.GetOpenDB()
+        
         //__________Club_Tests___________//
         print("This is the start of the Club demo tests.")
-        var mClub: Club = Club(name: "Club TestName", description: "Test description")
-        // Do any additional setup after loading the view.
-        mClub.addRow(db: conn) //after you made a new club object, you can call its addrow method and it will add itself to the database
-        mClub.addRow(db: conn)
-        mClub.addRow(db: conn)
-        mClub.addRow(db: conn)
-        var array = mClub.getRow(db: conn, Search: "Club TestName") // getrow will return an array in the order of name, description, tbc
-        mClub.removeRowByID(db: conn, id: 2) // this should delete the row with an id of 2
+        var mClub: Club = Club(name: "Club TestName", description: "Test description") //make the new database row
+        
+        dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
+        dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
+        dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
+        
+        var array = dbase.getAllTableContents(tablename: "Club")//get all rows
+        print(array)
+        
+        dbase.removeRowByID(tableName: "Club", id: 2)//remove a row with the id of 2
+        
+        array = dbase.getAllTableContents(tablename: "Club")//get all rows. the row with the id of 2 should be missing
+        print(array)
+        
+        dbase.getRow(tableName: "Club", Search: "Club TestName")//search for an entry by string
+        
         print("Club name in VC = \(array[0])\n")
         
-        //__________Event_Tests___________//
-        print("This is the start of the Event demo tests.")
-        var mEvent: Event = Event(name: "Event TestName", description: "Test description")
-        // Do any additional setup after loading the view.
-        mEvent.addRow(db: conn) //after you made a new club object, you can call its addrow method and it will add itself to the database
-        mEvent.addRow(db: conn)
-        mEvent.addRow(db: conn)
-        mEvent.addRow(db: conn)
-        array = mEvent.getRow(db: conn, Search: "Event TestName") // getrow will return an array in the order of name, description, tbc
-        mEvent.removeRowByID(db: conn, id: 2) // this should delete the row with an id of 2
-        print("Event name in VC = \(array[0])\n")
         
-        //__________Sustainability_Tests___________//
-        print("This is the start of the Sustainability demo tests.")
-        var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Thest description")
-        // Do any additional setup after loading the view.
-        mSustainability.addRow(db: conn) //after you made a new club object, you can call its addrow method and it will add itself to the database
-        mSustainability.addRow(db: conn)
-        mSustainability.addRow(db: conn)
-        mSustainability.addRow(db: conn)
-        array = mSustainability.getRow(db: conn, Search: "Sustainability TestName") // getrow will return an array in the order of name, description, tbc
-        mEvent.removeRowByID(db: conn, id: 2) // this should delete the row with an id of 2
-        print("Sustainability name in VC = \(array[0])\n")
-        //__________End_of_my_tests___________//
+//        //__________Event_Tests___________//
+//        print("This is the start of the Event demo tests.")
+//        var mEvent: Event = Event(name: "Event TestName", description: "Test description")
+//        // Do any additional setup after loading the view.
+//
+//        print("Event name in VC = \(array[0])\n")
+//
+//        //__________Sustainability_Tests___________//
+//        print("This is the start of the Sustainability demo tests.")
+//        var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Thest description")
+//
+//        print("Sustainability name in VC = \(array[0])\n")
+//        //__________End_of_my_tests___________//
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
