@@ -9,7 +9,8 @@ import Foundation
 import SQLite3
 class Event: Codable{
     var TableName: String = "Event"//track the table in which the dao is refering to for genaric queries
-    var Tablecolumns: String = "name, description"//track values in columns in the table for queries
+    var TableColumns: String = "name, description"//track values in columns in the table for queries
+    var InsertableValueCount: Int = 2
     
     var Name: String
     var Description: String

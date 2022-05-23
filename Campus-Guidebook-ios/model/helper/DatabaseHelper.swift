@@ -126,42 +126,98 @@ class DataBaseHelper {
     
     func addRow(Club: Club?, Event: Event?, Sustainability: Sustainability?){ //this will need some thinking
         var statement: OpaquePointer?
+        var i: Int = 0
+        var valueString: String = ""
+        
+        
         if (Club != nil){
-            if sqlite3_prepare_v2(db, "insert into \(Club!.TableName) (\(Club!.TableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+            while (i < Club!.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                if (i == 1){
+                    valueString = "?"
+                }
+                else{
+                    valueString = valueString + ", ?"
+                }
+                i = i + 1
+            }
+            i = 0
+            if sqlite3_prepare_v2(db, "insert into \(Club!.TableName) (\(Club!.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error preparing insert: \(errmsg)")
             }
+            while (i < Club!.InsertableValueCount){ // walk through the table and bind a select number of text items to the fields
+                if sqlite3_bind_text(statement, Int32(i)+1, Club!.TableName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                    let errmsg = String(cString: sqlite3_errmsg(db)!)
+                    print("failure binding foo: \(errmsg)")
+                }
+                i = i + 1
+            }
+            i = 0
         }
         if (Event != nil){
-            if sqlite3_prepare_v2(db, "insert into \(Event!.TableName) (\(Event!.TableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+            
+            while (i < Event!.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                if (i == 1){
+                    valueString = "?"
+                }
+                else{
+                    valueString = valueString + ", ?"
+                }
+                i = i + 1
+            }
+            i = 0
+            if sqlite3_prepare_v2(db, "insert into \(Event!.TableName) (\(Event!.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error preparing insert: \(errmsg)")
             }
+            while (i < Event!.InsertableValueCount){
+                if sqlite3_bind_text(statement, Int32(i)+1, Event!.TableName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                    let errmsg = String(cString: sqlite3_errmsg(db)!)
+                    print("failure binding foo: \(errmsg)")
+                }
+                i = i + 1
+            }
+            i = 0
         }
         if (Club != nil){
-            if sqlite3_prepare_v2(db, "insert into \(Sustainability!.TableName) (\(Sustainability!.TableColumns)) values (?, ?)", -1, &statement, nil) != SQLITE_OK {
+            while (i < Club!.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                if (i == 1){
+                    valueString = "?"
+                }
+                else{
+                    valueString = valueString + ", ?"
+                }
+                i = i + 1
+            }
+            i = 0
+            if sqlite3_prepare_v2(db, "insert into \(Club!.TableName) (\(Club!.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error preparing insert: \(errmsg)")
             }
+            while (i < Event!.InsertableValueCount){
+                if sqlite3_bind_text(statement, Int32(i)+1, Club!.TableName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                    let errmsg = String(cString: sqlite3_errmsg(db)!)
+                    print("failure binding foo: \(errmsg)")
+                }
+                i = i + 1
+            }
+            i = 0
         }
 
         
-
-        if sqlite3_bind_text(statement, 1, lineOBJ.Name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+        while
+        if sqlite3_bind_text(statement, 1, Name, -1, SQLITE_TRANSIENT) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding foo: \(errmsg)")
         }
-        if sqlite3_bind_text(statement, 2, LineOBJ.Description, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("failure binding foo: \(errmsg)")
-        }
+        
 
         if sqlite3_step(statement) != SQLITE_DONE {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure inserting foo: \(errmsg)")
         }
         statement = nil
-            }
+    }
     func removeRowByID(tableName: String, id: Int){
             
             

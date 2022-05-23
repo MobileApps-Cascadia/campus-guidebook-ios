@@ -10,7 +10,7 @@ import SQLite3
 class Sustainability: Codable{
     var TableName: String = "Sustainability"//track the table in which the dao is refering to for genaric queries
     var TableColumns: String = "name, description"//track values in columns in the table for queries
-    
+    var InsertableValueCount: Int = 2
     var Name: String
     var Description: String
     internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
