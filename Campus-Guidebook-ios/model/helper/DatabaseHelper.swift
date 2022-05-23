@@ -135,7 +135,49 @@ class DataBaseHelper {
     
     
     
-    
+    func addClubRow(Club: Club?){
+        var statement: OpaquePointer?
+        var i: Int = 0
+        var valueString: String = ""
+        
+        
+        if (Club != nil){
+            let mClub: Club = Club!
+            let columnArray = [mClub.Name, mClub.Description] //add new values here when you add another column to the table.
+            while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                if (i == 0){
+                    valueString = "?"
+                }
+                else{
+                    valueString = valueString + ", ?"
+                }
+                i = i + 1
+            }
+            i = 0
+            if sqlite3_prepare_v2(db, "insert into \(mClub.TableName) (\(mClub.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing insert: \(errmsg)")
+            }
+            while (i < columnArray.count)
+            {
+                var valIndex: Int32 = 1
+                if sqlite3_bind_text(statement, valIndex, columnArray[i], -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                    let errmsg = String(cString: sqlite3_errmsg(db)!)
+                    print("failure binding name: \(errmsg)")
+                }
+                valIndex = valIndex + 1
+                i = i + 1
+            }
+                
+            
+            i = 0
+        }
+        if sqlite3_step(statement) != SQLITE_DONE {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure inserting foo: \(errmsg)")
+        }
+        statement = nil
+    }
     
     
     
@@ -195,33 +237,7 @@ class DataBaseHelper {
             }
             i = 0
         }
-        if (Club != nil){
-            var mClub: Club = Club!
-            while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
-                if (i == 0){
-                    valueString = "?"
-                }
-                else{
-                    valueString = valueString + ", ?"
-                }
-                i = i + 1
-            }
-            i = 0
-            if sqlite3_prepare_v2(db, "insert into \(mClub.TableName) (\(mClub.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error preparing insert: \(errmsg)")
-            }
-            while (i < mClub.InsertableValueCount){
-                var valIndex: Int32 = 1
-                if sqlite3_bind_text(statement, valIndex, mClub.TableName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                    let errmsg = String(cString: sqlite3_errmsg(db)!)
-                    print("failure binding foo: \(errmsg)")
-                }
-                valIndex = valIndex + 1
-                i = i + 1
-            }
-            i = 0
-        }
+        
 
         if sqlite3_step(statement) != SQLITE_DONE {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
