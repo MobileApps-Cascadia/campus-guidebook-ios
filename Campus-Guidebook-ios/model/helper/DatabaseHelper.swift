@@ -40,7 +40,7 @@ class DataBaseHelper {
     func CreateTable(){
         let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Clubs table
         let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Event table
-        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Sustainability table
+        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
         initTable(table: CreateSustainabilityTable, name: "Sustainability")
@@ -229,7 +229,7 @@ class DataBaseHelper {
             
             if (Sustainability != nil){
                 let mSustainability: Sustainability = Sustainability!
-                let columnArray = [mSustainability.Name, mSustainability.Description] //add new values here when you add another column to the table.
+                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.Image] //add new values here when you add another column to the table.
                 while (i < mSustainability.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"

@@ -72,7 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
 //        //__________Sustainability_Tests___________//
         print("\n\n\nThis is the start of the Sustainability demo tests.")
-                var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test description") //make the new database row
+        var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
                 
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
