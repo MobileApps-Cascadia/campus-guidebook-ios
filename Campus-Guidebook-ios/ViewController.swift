@@ -42,7 +42,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         dbase.getRow(tableName: "Club", Search: "Club TestName")//search for an entry by string
         
-        print("Club name in VC = \(array[0])\n")
+        
         
         
 //        //__________Event_Tests___________//
