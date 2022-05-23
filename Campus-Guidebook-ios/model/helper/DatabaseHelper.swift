@@ -39,8 +39,8 @@ class DataBaseHelper {
     
     func CreateTable(){
         let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Clubs table
-        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT, Time TEXT, Date TEXT);" //create the Event table
-        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Description TEXT);" //create the Sustainability table
+        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Event table
+        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
         initTable(table: CreateSustainabilityTable, name: "Sustainability")
@@ -99,29 +99,15 @@ class DataBaseHelper {
 
             while sqlite3_step(statement) == SQLITE_ROW {
             
-                //while (sqlite3_column_text(statement, i) != nil){
-                    
-                guard let queryResultCol = sqlite3_column_text(statement, 0) else {
-                    print("Query result is nil")
-                    return Array
+                while (sqlite3_column_text(statement, i) != nil){
+                    guard let queryResultCol = sqlite3_column_text(statement, i) else {
+                        print("Query result is nil")
+                        return Array
+                    }
+                    var item = String(cString: queryResultCol)
+                    subarray.append(item)
+                    i = i + 1
                 }
-                var item = String(cString: queryResultCol)
-                subarray.append(item)
-                guard let queryResultCol = sqlite3_column_text(statement, 1) else {
-                    print("Query result is nil")
-                    return Array
-                }
-                 item = String(cString: queryResultCol)
-                subarray.append(item)
-                guard let queryResultCol = sqlite3_column_text(statement, 2) else {
-                    print("Query result is nil")
-                    return Array
-                }
-                item = String(cString: queryResultCol)
-               subarray.append(item)
-                
-                  //  i = i + 1
-                //}
                 i = 0
                 Array.append(subarray)
                 subarray = []
@@ -190,72 +176,97 @@ class DataBaseHelper {
         statement = nil
     }
     
-    
-    
-    
-    func addRow(Club: Club?, Event: Event?, Sustainability: Sustainability?){ //this will need some thinking
-        var statement: OpaquePointer?
-        var i: Int = 0
-        var valueString: String = ""
-        
-        
-        if (Sustainability != nil){
-            while (i < Club!.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
-                if (i == 1){
-                    valueString = "?"
-                }
-                else{
-                    valueString = valueString + ", ?"
-                }
-                i = i + 1
-            }
-            i = 0
-            if sqlite3_prepare_v2(db, "insert into \(Club!.TableName) (\(Club!.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error preparing insert: \(errmsg)")
-            }
-            while (i < Club!.InsertableValueCount){ // walk through the table and bind a select number of text items to the fields
-                if sqlite3_bind_text(statement, Int32(i)+1, Club!.TableName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
-                    let errmsg = String(cString: sqlite3_errmsg(db)!)
-                    print("failure binding foo: \(errmsg)")
-                }
-                i = i + 1
-            }
-            i = 0
-        }
-        if (Event != nil){
+    func addEventRow(Event: Event?){
+            var statement: OpaquePointer?
+            var i: Int = 0
+            var valueString: String = ""
             
-            while (i < Event!.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
-                if (i == 1){
-                    valueString = "?"
+            
+            if (Event != nil){
+                let mEvent: Event = Event!
+                let columnArray = [mEvent.Name, mEvent.Description] //add new values here when you add another column to the table.
+                while (i < mEvent.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                    if (i == 0){
+                        valueString = "?"
+                    }
+                    else{
+                        valueString = valueString + ", ?"
+                    }
+                    i = i + 1
                 }
-                else{
-                    valueString = valueString + ", ?"
-                }
-                i = i + 1
-            }
-            i = 0
-            if sqlite3_prepare_v2(db, "insert into \(Event!.TableName) (\(Event!.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
-                let errmsg = String(cString: sqlite3_errmsg(db)!)
-                print("error preparing insert: \(errmsg)")
-            }
-            while (i < Event!.InsertableValueCount){
-                if sqlite3_bind_text(statement, Int32(i)+1, Event!.TableName, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                i = 0
+                print("insert into \(mEvent.TableName) (\(mEvent.TableColumns)) values (\(valueString))")
+                if sqlite3_prepare_v2(db, "insert into \(mEvent.TableName) (\(mEvent.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
                     let errmsg = String(cString: sqlite3_errmsg(db)!)
-                    print("failure binding foo: \(errmsg)")
+                    print("error preparing insert: \(errmsg)")
                 }
-                i = i + 1
+                var valIndex: Int32 = 1
+                while (i < columnArray.count)
+                {
+                    if sqlite3_bind_text(statement, valIndex, columnArray[i], -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                        let errmsg = String(cString: sqlite3_errmsg(db)!)
+                        print("failure binding name: \(errmsg)")
+                    }
+                    valIndex = valIndex + 1
+                    i = i + 1
+                }
+                    
+                
+                i = 0
             }
-            i = 0
+            if sqlite3_step(statement) != SQLITE_DONE {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure inserting foo: \(errmsg)")
+            }
+            statement = nil
         }
-        
 
-        if sqlite3_step(statement) != SQLITE_DONE {
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("failure inserting foo: \(errmsg)")
+    func addSustainabilityRow(Sustainability: Sustainability?){
+            var statement: OpaquePointer?
+            var i: Int = 0
+            var valueString: String = ""
+            
+            
+            if (Sustainability != nil){
+                let mSustainability: Sustainability = Sustainability!
+                let columnArray = [mSustainability.Name, mSustainability.Description] //add new values here when you add another column to the table.
+                while (i < mSustainability.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                    if (i == 0){
+                        valueString = "?"
+                    }
+                    else{
+                        valueString = valueString + ", ?"
+                    }
+                    i = i + 1
+                }
+                i = 0
+                print("insert into \(mSustainability.TableName) (\(mSustainability.TableColumns)) values (\(valueString))")
+                if sqlite3_prepare_v2(db, "insert into \(mSustainability.TableName) (\(mSustainability.TableColumns)) values (\(valueString))", -1, &statement, nil) != SQLITE_OK {
+                    let errmsg = String(cString: sqlite3_errmsg(db)!)
+                    print("error preparing insert: \(errmsg)")
+                }
+                var valIndex: Int32 = 1
+                while (i < columnArray.count)
+                {
+                    if sqlite3_bind_text(statement, valIndex, columnArray[i], -1, SQLITE_TRANSIENT) != SQLITE_OK {
+                        let errmsg = String(cString: sqlite3_errmsg(db)!)
+                        print("failure binding name: \(errmsg)")
+                    }
+                    valIndex = valIndex + 1
+                    i = i + 1
+                }
+                    
+                
+                i = 0
+            }
+            if sqlite3_step(statement) != SQLITE_DONE {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("failure inserting foo: \(errmsg)")
+            }
+            statement = nil
         }
-        statement = nil
-    }
+
+        
     func removeRowByID(tableName: String, id: Int){
             
             
