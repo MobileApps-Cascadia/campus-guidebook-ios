@@ -33,7 +33,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         dbase.addRow(Club: mClub, Event: nil, Sustainability: nil) //add the database row to the table
         
         var array = dbase.getAllTableContents(tablename: "Club")//get all rows
-        print(array)
+        for item in array{
+            print(item)
+        }
         
         dbase.removeRowByID(tableName: "Club", id: 2)//remove a row with the id of 2
         

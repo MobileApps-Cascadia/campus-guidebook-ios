@@ -90,6 +90,7 @@ class DataBaseHelper {
         var Array: [Any] = []
         var subarray: [Any] = []
         var i: Int32 = 0
+        
 
             
             var statement: OpaquePointer?
@@ -99,13 +100,21 @@ class DataBaseHelper {
             }
 
             while sqlite3_step(statement) == SQLITE_ROW {
-                let id = sqlite3_column_int64(statement, 0)
-                print("id = \(id); ", terminator: "")
-                while((sqlite3_column_text(statement, i)) != nil){
-                    subarray.append(sqlite3_column_text(statement, i)!)
+            
+                while(sqlite3_column_text(statement, i) != nil){
+                    
+                    guard let queryResultCol = sqlite3_column_text(statement, i) else {
+                        print("Query result is nil")
+                        return Array
+                    }
+                    let item = String(cString: queryResultCol)
+                    
+                    subarray.append(item)
+                    i = i + 1
                 }
                 i = 0
                 Array.append(subarray)
+                subarray = []
             }
 
             if sqlite3_finalize(statement) != SQLITE_OK {
