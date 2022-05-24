@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1E6DBA283D4E0F0060FB76 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E6DB9283D4DC50060FB76 /* CardDetailViewController.swift */; };
 		3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AB281896E00000F1DD /* AppDelegate.swift */; };
 		3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AD281896E00000F1DD /* SceneDelegate.swift */; };
 		3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50AF281896E00000F1DD /* ViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F1E6DB9283D4DC50060FB76 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		3F3F50A8281896E00000F1DD /* Campus-Guidebook-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Campus-Guidebook-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3F50AB281896E00000F1DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F3F50AD281896E00000F1DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				3F3F50E4281B45750000F1DD /* .gitignore */,
 				3FCB57B72821DB5000887B08 /* CardViewController.swift */,
 				3FCB57B92821DB9900887B08 /* CardCell.swift */,
+				3F1E6DB9283D4DC50060FB76 /* CardDetailViewController.swift */,
 			);
 			path = "Campus-Guidebook-ios";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
 				3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */,
 				3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */,
+				3F1E6DBA283D4E0F0060FB76 /* CardDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +584,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,6 +612,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

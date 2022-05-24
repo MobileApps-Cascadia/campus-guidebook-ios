@@ -10,7 +10,7 @@ import UIKit
 class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cardTableView: UITableView!
-
+    
     var categoryID: Int!
     let clubPictures: [UIImage] =
     [UIImage(named: "clubs_logo-1")!,
@@ -46,7 +46,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         default:
             print("default")
         }
-   
+        
     }
     
     // MARK: How many rows in the tableView?
@@ -71,10 +71,15 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         default:
             print("default")
         }
-        
-        
         return cell
     }
-
+    
+    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController {
+//            vc.selectedImage = clubPictures[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
