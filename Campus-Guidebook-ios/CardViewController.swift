@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -80,6 +81,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //            vc.selectedImage = clubPictures[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
 }
 

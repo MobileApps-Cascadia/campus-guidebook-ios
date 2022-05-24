@@ -14,23 +14,31 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var selectedImage: String?
+//    var selectedImage: Int?
    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        if let imageToLoad = selectedImage {
 //            imgView.image = UIImage(named: imageToLoad)
 //        }
-        imgView.image = UIImage(named: "dnd_club_logo")!
-        titleLabel.text = "hi"
-        descriptionLabel.text = "description"
+        
+        
+        var data: DataBaseHelper = DataBaseHelper()
+        var testClub: Club = Club(name: "Sample Club Name", description: "Sample Club Description")
+        
+        data.addClubRow(Club: testClub)
+        data.addClubRow(Club: testClub)
+        data.addClubRow(Club: testClub)
+
+        imgView.image = UIImage(named: "clubs_logo-1")!
+        titleLabel.text = testClub.Name
+        descriptionLabel.text = testClub.Description
+        
     }
     
-    func configure(picture: UIImage, title: String, description: String) {
-        imgView.image = UIImage(named: "dnd_club_logo")!
-        titleLabel.text = "hi"
-        descriptionLabel.text = "description"
-    }
+
     
     
 }
