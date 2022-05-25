@@ -17,9 +17,9 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var mEvent: Event!
     var mSustainability: Sustainability!
     
-    var ClubsArray: [Any]!
-    var EventsArray: [Any]!
-    var SustainabilityArray: [Any]!
+    var ClubsArray = [[Any]]()
+    var EventsArray = [[Any]]()
+    var SustainabilityArray = [[Any]]()
 
     var categoryID: Int!
 //    let clubPictures: [UIImage] =
@@ -46,20 +46,26 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //remove tables and create them
+        dbase.RemoveDBTables()
+        dbase.CreateTable()
         
-        for i in 0...sampleData.clubTitles.count {
+        //add sample data for clubs
+        for i in 0..<sampleData.clubTitles.count {
             //make the new database row
             mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], image: sampleData.clubPictures[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
-        for i in 0...sampleData.eventTitles.count {
+        //add sample data for events
+        for i in 0..<sampleData.eventTitles.count {
             //make the new database row
             mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], image: sampleData.eventPictures[i])
             dbase.addEventRow(Event: mEvent) //add the database row to the table
         }
         
-        for i in 0...sampleData.sustainabilityTitles.count {
+        //add sample data for sustainability
+        for i in 0..<sampleData.sustainabilityTitles.count {
             //make the new database row
             mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], image: sampleData.sustainabilityPictures[i])
             dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
@@ -111,16 +117,22 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switch categoryID {
         case 0:
-//            cell.configure(id: ClubsArray[indexPath.row][0] as! String,
-//                           title: ClubsArray[indexPath.row][1] as! String,
-//                           description: ClubsArray[indexPath.row][2] as! String,
-//                           picture: UIImage(named: ClubsArray[indexPath.row][3] as! String))
+            cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
+                           title: (EventsArray[indexPath.row][1] as? String)!,
+                           description: (EventsArray[indexPath.row][2] as? String)!,
+                           picture: UIImage(named: (EventsArray[indexPath.row][3] as? String)!)!)
             print("events")
         case 1:
-//            cell.configure(title: clubTitles[indexPath.row], description: sustainabilityDescriptions[indexPath.row], picture: clubPictures[indexPath.row])
+            cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
+                           title: (SustainabilityArray[indexPath.row][1] as? String)!,
+                           description: (SustainabilityArray[indexPath.row][2] as? String)!,
+                           picture: UIImage(named: (SustainabilityArray[indexPath.row][3] as? String)!)!)
             print("sustainability")
         case 2:
-//            cell.configure(title: clubTitles[indexPath.row], description: clubDescriptions[indexPath.row], picture: clubPictures[indexPath.row])
+            cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
+                           title: (ClubsArray[indexPath.row][1] as? String)!,
+                           description: (ClubsArray[indexPath.row][2] as? String)!,
+                           picture: UIImage(named: (ClubsArray[indexPath.row][3] as? String)!)!)
             print("clubs")
         default:
             print("default")
