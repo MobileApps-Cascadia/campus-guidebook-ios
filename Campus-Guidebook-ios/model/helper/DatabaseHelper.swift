@@ -11,9 +11,8 @@ import SQLite3
 
 class DataBaseHelper {
     
-    var db: OpaquePointer? // db refrance
-    var path: String = "AppDatabase.sqlite"// db path
-    var ClubDB: OpaquePointer?
+    private var db: OpaquePointer? // db refrance
+    private var path: String = "AppDatabase.sqlite"// db path
     internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
     internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
     
@@ -24,7 +23,7 @@ class DataBaseHelper {
     }
     
     
-    func CreateDB() -> OpaquePointer?{ //make a database file at this location. if it fails, print result
+    private func CreateDB() -> OpaquePointer?{ //make a database file at this location. if it fails, print result
         let FilePath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathExtension(path)
         
         var db: OpaquePointer? = nil
@@ -106,6 +105,7 @@ class DataBaseHelper {
                         return [[]]
                     }
                     var item = String(cString: queryResultCol)
+                    
                     subarray.append(item)
                     i = i + 1
                 }
