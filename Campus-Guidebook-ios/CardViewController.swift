@@ -78,7 +78,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Navigation
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController {
-//            vc.selectedImage = clubPictures[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
         
