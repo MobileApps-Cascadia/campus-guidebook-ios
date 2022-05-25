@@ -20,6 +20,7 @@ class DataBaseHelper {
     init(){
         self.db = CreateDB()
         self.CreateTable()
+        
     }
     
     
@@ -38,8 +39,8 @@ class DataBaseHelper {
     }
     
     func CreateTable(){
-        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Clubs table
-        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT);" //create the Event table
+        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Clubs table
+        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Event table
         let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
@@ -98,7 +99,7 @@ class DataBaseHelper {
             }
 
             while sqlite3_step(statement) == SQLITE_ROW {
-            
+
                 while (sqlite3_column_text(statement, i) != nil){
                     guard let queryResultCol = sqlite3_column_text(statement, i) else {
                         print("Query result is nil")
@@ -117,9 +118,10 @@ class DataBaseHelper {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error finalizing prepared statement: \(errmsg)")
             }
-        
+
             statement = nil
             return Array
+
         }
     
     
@@ -139,7 +141,7 @@ class DataBaseHelper {
         
         if (Club != nil){
             let mClub: Club = Club!
-            let columnArray = [mClub.Name, mClub.Description] //add new values here when you add another column to the table.
+            let columnArray = [mClub.Name, mClub.Description, mClub.Image] //add new values here when you add another column to the table.
             while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                 if (i == 0){
                     valueString = "?"
@@ -184,7 +186,7 @@ class DataBaseHelper {
             
             if (Event != nil){
                 let mEvent: Event = Event!
-                let columnArray = [mEvent.Name, mEvent.Description] //add new values here when you add another column to the table.
+                let columnArray = [mEvent.Name, mEvent.Description, mEvent.Image] //add new values here when you add another column to the table.
                 while (i < mEvent.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"
