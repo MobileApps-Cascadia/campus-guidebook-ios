@@ -37,6 +37,11 @@
                BlueprintName = "Campus-Guidebook-iosTests"
                ReferencedContainer = "container:Campus-Guidebook-ios.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "Campus_Guidebook_iosTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
