@@ -25,12 +25,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         //__________Club_Tests___________//
         print("\n\n\nThis is the start of the Club demo tests.")
         var mClub: Club = Club(name: "Club TestName", description: "Test description") //make the new database row
-        
+        var array = [[Any]]()
         dbase.addClubRow(Club: mClub) //add the database row to the table
         dbase.addClubRow(Club: mClub) //add the database row to the table
         dbase.addClubRow(Club: mClub) //add the database row to the table
         
-        var array = dbase.getAllTableContents(tablename: "Club")//get all rows
+        array = dbase.getAllTableContents(tablename: "Club")//get all rows
         for item in array{
             print(item)
         }
@@ -40,9 +40,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         array = dbase.getAllTableContents(tablename: "Club")//get all rows. the row with the id of 2 should be missing
         print(array)
         
-        array = dbase.getRow(tableName: "Club", Search: "Club TestName")//search for an entry by string
+        var array2 = dbase.getRow(tableName: "Club", Search: "Club TestName")//search for an entry by string
         print("\n")
-        print(array)
+        print(array2)
         
         
         
@@ -65,9 +65,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         print(array)
         
 
-        array = dbase.getRow(tableName: "Event", Search: "Event TestName")//search for an entry by string
+        array2 = dbase.getRow(tableName: "Event", Search: "Event TestName")//search for an entry by string
         print("\n")
-        print(array)
+        print(array2)
         
 
 //        //__________Sustainability_Tests___________//
@@ -79,8 +79,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
                 
                 array = dbase.getAllTableContents(tablename: "Sustainability")//get all rows
+        print(array[0])
+        print(array[0][0])
                 for item in array{
-                    print(item)
+                    print(item[0])
                 }
                 
                 dbase.removeRowByID(tableName: "Sustainability", id: 2)//remove a row with the id of 2
@@ -89,9 +91,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 print(array)
                 
                 
-        array = dbase.getRow(tableName: "Sustainability", Search: "Sustainability TestName")//search for an entry by string
+        array2 = dbase.getRow(tableName: "Sustainability", Search: "Sustainability TestName")//search for an entry by string
         print("\n")
-        print(array)
+        print(array2)
                 
 
 //        //__________End_of_my_tests___________//

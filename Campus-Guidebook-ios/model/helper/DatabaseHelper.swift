@@ -86,9 +86,9 @@ class DataBaseHelper {
         }
         
     }
-    func getAllTableContents(tablename: String) -> Array<Any>{
-        var Array: [Any] = []
-        var subarray: [Any] = []
+    func getAllTableContents(tablename: String) -> [[String]]{
+        var rArray = [[String]]()
+        var subarray = [String]()
         var i: Int32 = 0
 
             var statement: OpaquePointer?
@@ -102,14 +102,15 @@ class DataBaseHelper {
                 while (sqlite3_column_text(statement, i) != nil){
                     guard let queryResultCol = sqlite3_column_text(statement, i) else {
                         print("Query result is nil")
-                        return Array
+                        return [[]]
                     }
                     var item = String(cString: queryResultCol)
+                    
                     subarray.append(item)
                     i = i + 1
                 }
                 i = 0
-                Array.append(subarray)
+                rArray.append(subarray)
                 subarray = []
             }
 
@@ -119,7 +120,7 @@ class DataBaseHelper {
             }
         
             statement = nil
-            return Array
+            return rArray
         }
     
     
