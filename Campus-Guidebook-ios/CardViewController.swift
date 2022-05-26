@@ -60,14 +60,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for events
         for i in 0..<sampleData.eventTitles.count {
             //make the new database row
-            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], image: sampleData.eventPictures[i])
+            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: "", startTime: "", creationDate: "", location: "")
             dbase.addEventRow(Event: mEvent) //add the database row to the table
         }
         
         //add sample data for sustainability
         for i in 0..<sampleData.sustainabilityTitles.count {
             //make the new database row
-            mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], image: sampleData.sustainabilityPictures[i])
+            mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], imageURL: sampleData.sustainabilityPictures[i], location: "")
             dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
         }
         
