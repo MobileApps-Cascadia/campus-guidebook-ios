@@ -21,12 +21,11 @@ class CardDetailViewController: UIViewController {
     var categoryID: Int!
     var id: String!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-       
         switch categoryID {
             
         case 0:
@@ -40,8 +39,8 @@ class CardDetailViewController: UIViewController {
         }
         
         imgView.image = UIImage(named: ((array[3]) as? String)!)!
-        titleLabel.text = array[1] as? String)
-        descriptionLabel.text = array[2] as? String)!
+        titleLabel.text = array[1] as? String
+        descriptionLabel.text = array[2] as? String
         
     }
 }
