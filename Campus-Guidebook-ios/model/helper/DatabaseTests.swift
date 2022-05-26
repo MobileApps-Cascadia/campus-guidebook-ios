@@ -36,7 +36,7 @@ class DataBaseTests {
         array = dbase.getAllTableContents(tablename: "Club")//get all rows. the row with the id of 2 should be missing
         print(array)
         
-        var array2 = dbase.getRow(tableName: "Club", Search: "Club TestName")//search for an entry by string
+        var array2 = dbase.getRowByName(tableName: "Club", Search: "Club TestName")//search for an entry by string
         print("\n")
         print(array2)
         
@@ -61,7 +61,7 @@ class DataBaseTests {
         print(array)
         
 
-        array2 = dbase.getRow(tableName: "Event", Search: "Event TestName")//search for an entry by string
+        array2 = dbase.getRowByName(tableName: "Event", Search: "Event TestName")//search for an entry by string
         print("\n")
         print(array2)
         
@@ -85,7 +85,7 @@ class DataBaseTests {
                 print(array)
                 
                 
-        array2 = dbase.getRow(tableName: "Sustainability", Search: "Sustainability TestName")//search for an entry by string
+        array2 = dbase.getRowByName(tableName: "Sustainability", Search: "Sustainability TestName")//search for an entry by string
         print("\n")
         print(array2)
                 

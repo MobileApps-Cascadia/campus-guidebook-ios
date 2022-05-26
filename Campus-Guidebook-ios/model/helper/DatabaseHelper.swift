@@ -295,7 +295,7 @@ class DataBaseHelper {
         var i: Int32 = 0
 
             var statement: OpaquePointer?
-            if sqlite3_prepare_v2(db, "select * from \(tableName) WHERE id = \(Search)", -1, &statement, nil) != SQLITE_OK {
+            if sqlite3_prepare_v2(db, "select * from \(tableName) WHERE Name = '\(Search)'", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error preparing select: \(errmsg)")
             }
