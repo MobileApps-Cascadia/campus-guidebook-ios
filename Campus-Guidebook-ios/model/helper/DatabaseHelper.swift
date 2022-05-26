@@ -38,9 +38,9 @@ class DataBaseHelper {
     }
     
     func CreateTable(){
-        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Clubs table
-        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Event table
-        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Sustainability table
+        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT);" //create the Clubs table
+        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT);" //create the Event table
+        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, Location TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
         initTable(table: CreateSustainabilityTable, name: "Sustainability")
@@ -141,7 +141,7 @@ class DataBaseHelper {
         
         if (Club != nil){
             let mClub: Club = Club!
-            let columnArray = [mClub.Name, mClub.Description, mClub.Image] //add new values here when you add another column to the table.
+            let columnArray = [mClub.Name, mClub.Description, mClub.ImageURL] //add new values here when you add another column to the table.
             while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                 if (i == 0){
                     valueString = "?"
@@ -183,10 +183,10 @@ class DataBaseHelper {
             var i: Int = 0
             var valueString: String = ""
             
-            
+
             if (Event != nil){
                 let mEvent: Event = Event!
-                let columnArray = [mEvent.Name, mEvent.Description, mEvent.Image] //add new values here when you add another column to the table.
+                let columnArray = [mEvent.Name, mEvent.Description, mEvent.ImageURL, mEvent.StartDate, mEvent.StartTime, mEvent.CreationDate, mEvent.Location] //add new values here when you add another column to the table.
                 while (i < mEvent.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"
@@ -227,11 +227,10 @@ class DataBaseHelper {
             var statement: OpaquePointer?
             var i: Int = 0
             var valueString: String = ""
-            
-            
+        
             if (Sustainability != nil){
                 let mSustainability: Sustainability = Sustainability!
-                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.Image] //add new values here when you add another column to the table.
+                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.ImageURL, mSustainability.Location] //add new values here when you add another column to the table.
                 while (i < mSustainability.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"

@@ -53,7 +53,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for clubs
         for i in 0..<sampleData.clubTitles.count {
             //make the new database row
-            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], image: sampleData.clubPictures[i])
+            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
