@@ -17,7 +17,7 @@ class DataBaseTests {
     func makeTests () {
         //__________Club_Tests___________//
         print("\n\n\nThis is the start of the Club demo tests.")
-        var mClub: Club = Club(name: "Club TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
+        let mClub: Club = Club(name: "Club TestName", description: "Test description", imageURL: "Cats. All the cats.") //make the new database row
         var array = [[Any]]()
         dbase.addClubRow(Club: mClub) //add the database row to the table
         dbase.addClubRow(Club: mClub) //add the database row to the table
@@ -44,7 +44,7 @@ class DataBaseTests {
         
 //        //__________Event_Tests___________//
         print("\n\n\nThis is the start of the Event demo tests.")
-        var mEvent: Event = Event(name: "Event TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
+        var mEvent: Event = Event(name: "Event TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "startDate", startTime: "startTime", creationDate: "creationDate", location: "location") //make the new database row
         
         dbase.addEventRow(Event: mEvent) //add the database row to the table
         dbase.addEventRow(Event: mEvent) //add the database row to the table
@@ -68,7 +68,7 @@ class DataBaseTests {
 
 //        //__________Sustainability_Tests___________//
         print("\n\n\nThis is the start of the Sustainability demo tests.")
-        var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
+        let mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test description", imageURL: "Cats. All the cats.", location: "location") //make the new database row
                 
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
