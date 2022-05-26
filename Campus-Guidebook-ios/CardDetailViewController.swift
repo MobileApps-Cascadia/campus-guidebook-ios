@@ -14,23 +14,34 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    let dbase: DataBaseHelper = DataBaseHelper()
+    
+    var array = [[Any]]()
+    
+    var categoryID: Int!
+    var id: String!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        var data: DataBaseHelper = DataBaseHelper()
         
-    
         
-        var testClub: Club = Club(name: "Sample Club Name", description: "Sample Club Description")
        
+        switch categoryID {
+            
+        case 0:
+            array = dbase.getRowByID(tablename: "Events", id)
+        case 1:
+            array = dbase.getRowByID(tablename: "Sustainability", id)
+        case 2:
+            array = dbase.getRowByID(tablename: "Clubs", id)
+        default:
+            print("default")
+        }
         
-        var testTable: Any = data.getAllTableContents(tablename: "Club")
-        
-        
-        data.addClubRow(Club: testClub)
-        
-        imgView.image = UIImage(named: "clubs_logo-1")!
-        titleLabel.text = testClub.Name
-        descriptionLabel.text = testClub.Description
+        imgView.image = UIImage(named: ((array[3]) as? String)!)!
+        titleLabel.text = array[1] as? String)
+        descriptionLabel.text = array[2] as? String)!
         
     }
 }

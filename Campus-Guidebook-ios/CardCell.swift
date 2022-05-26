@@ -14,11 +14,12 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+    var id: String!
     
     // MARK: Set up the cell
-    func configure(picture: UIImage, title: String, description: String)
+    func configure(id: String, title: String, description: String, picture: UIImage)
     {
+        self.id = id
         pictureView.image = picture
         titleLabel.text = title
         descriptionLabel.text = description
