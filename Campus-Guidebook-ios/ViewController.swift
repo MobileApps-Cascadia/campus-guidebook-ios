@@ -20,9 +20,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         //do tests of db
-//        dbTest.removeTables()
-//        dbTest.makeTables()
-//        dbTest.makeTests()
+        dbTest.removeTables()
+        dbTest.makeTables()
+        dbTest.makeTests()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
