@@ -139,39 +139,31 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Navigation
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController {
-            vc.categoryID = categoryID
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
-            switch categoryID {
-            case 0:
-                vc.id = EventsArray[indexPath.row][0] as! String
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
+                
+            {
+                vc.categoryID = indexPath.row
+                
+                switch categoryID {
+                    case 0:
+                        vc.id = EventsArray[indexPath.row][0] as? String
+                    print("id Event")
+                    
+                    case 1:
+                        vc.id = SustainabilityArray[indexPath.row][0] as? String
+                    print("id Sus")
+                    
+                    case 2:
+                        vc.id = ClubsArray[indexPath.row][0] as? String
+                    print("id Club")
 
-            case 1:
-                vc.id = SustainabilityArray[indexPath.row][0] as! String
-
-            case 2:
-                vc.id = ClubsArray[indexPath.row][0] as! String
-
-            default:
-                print("default")
+                    default:
+                        print("default")
+                    }
+                navigationController?.pushViewController(vc, animated: true)
             }
-            
-            navigationController?.pushViewController(vc, animated: true)
-        }
-        
-        // This function is called before the segue
-         func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-            // Get a reference to the second view controller
-            let secondViewController = segue.destination as! CardDetailViewController
-
-            // Set a variable in the second view controller with the String to pass
-            secondViewController.receivedString = EventsArray[indexPath.row][0] as! String
-        }
-
     }
-    
-    
 }
 

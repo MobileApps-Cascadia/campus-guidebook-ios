@@ -16,31 +16,42 @@ class CardDetailViewController: UIViewController {
     
     let dbase: DataBaseHelper = DataBaseHelper()
     
-    var array = [[Any]]()
-    
     var categoryID: Int!
     var id: String!
+    var array = [[Any]]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        print("Card details View is loaded")
+
         switch categoryID {
+          
+            case 0:
+                array = dbase.getRowByID(tableName: "Event", id: Int(id)!)
+                print("Event ID")
+                
+            case 1:
+                array = dbase.getRowByID(tableName: "Sustainability", id: Int(id)!)
+                print("Sus ID")
+                
+            case 2:
+                array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
+                print("Club ID")
+                
+            case 3:
+                array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
+                print("Club ID")
+                
+            default:
+                print("default?")
+            }
             
-        case 0:
-            array = dbase.getRowByID(tablename: "Events", id)
-        case 1:
-            array = dbase.getRowByID(tablename: "Sustainability", id)
-        case 2:
-            array = dbase.getRowByID(tablename: "Clubs", id)
-        default:
-            print("default")
-        }
-        
-        imgView.image = UIImage(named: ((array[3]) as? String)!)!
-        titleLabel.text = array[1] as? String
-        descriptionLabel.text = array[2] as? String
+            print( "Category id is \(categoryID!)")
+            
+            titleLabel.text = (array[0][1]) as? String
+            descriptionLabel.text = (array[0][2]) as? String
+            imgView.image = UIImage(named: (array[0][3] as? String)!)
         
     }
 }
