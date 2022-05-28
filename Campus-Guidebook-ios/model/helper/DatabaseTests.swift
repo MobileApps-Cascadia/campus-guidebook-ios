@@ -17,7 +17,7 @@ class DataBaseTests {
     func makeTests () {
         //__________Club_Tests___________//
         print("\n\n\nThis is the start of the Club demo tests.")
-        var mClub: Club = Club(name: "Club TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
+        let mClub: Club = Club(name: "Club TestName", description: "Test description", imageURL: "Cats. All the cats.") //make the new database row
         var array = [[Any]]()
         dbase.addClubRow(Club: mClub) //add the database row to the table
         dbase.addClubRow(Club: mClub) //add the database row to the table
@@ -36,7 +36,7 @@ class DataBaseTests {
         array = dbase.getAllTableContents(tablename: "Club")//get all rows. the row with the id of 2 should be missing
         print(array)
         
-        var array2 = dbase.getRow(tableName: "Club", Search: "Club TestName")//search for an entry by string
+        var array2 = dbase.getRowByName(tableName: "Club", Search: "Club TestName")//search for an entry by string
         print("\n")
         print(array2)
         
@@ -44,7 +44,7 @@ class DataBaseTests {
         
 //        //__________Event_Tests___________//
         print("\n\n\nThis is the start of the Event demo tests.")
-        var mEvent: Event = Event(name: "Event TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
+        var mEvent: Event = Event(name: "Event TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "startDate", startTime: "startTime", creationDate: "creationDate", location: "location") //make the new database row
         
         dbase.addEventRow(Event: mEvent) //add the database row to the table
         dbase.addEventRow(Event: mEvent) //add the database row to the table
@@ -61,14 +61,14 @@ class DataBaseTests {
         print(array)
         
 
-        array2 = dbase.getRow(tableName: "Event", Search: "Event TestName")//search for an entry by string
+        array2 = dbase.getRowByName(tableName: "Event", Search: "Event TestName")//search for an entry by string
         print("\n")
         print(array2)
         
 
 //        //__________Sustainability_Tests___________//
         print("\n\n\nThis is the start of the Sustainability demo tests.")
-        var mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test description", image: "Cats. All the cats.") //make the new database row
+        let mSustainability: Sustainability = Sustainability(name: "Sustainability TestName", description: "Test description", imageURL: "Cats. All the cats.", location: "location") //make the new database row
                 
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
                 dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
@@ -85,7 +85,7 @@ class DataBaseTests {
                 print(array)
                 
                 
-        array2 = dbase.getRow(tableName: "Sustainability", Search: "Sustainability TestName")//search for an entry by string
+        array2 = dbase.getRowByName(tableName: "Sustainability", Search: "Sustainability TestName")//search for an entry by string
         print("\n")
         print(array2)
                 

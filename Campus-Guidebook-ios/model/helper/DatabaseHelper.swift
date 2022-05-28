@@ -38,9 +38,9 @@ class DataBaseHelper {
     }
     
     func CreateTable(){
-        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Clubs table
-        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Event table
-        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, image TEXT);" //create the Sustainability table
+        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT);" //create the Clubs table
+        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT);" //create the Event table
+        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, Location TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
         initTable(table: CreateSustainabilityTable, name: "Sustainability")
@@ -141,7 +141,7 @@ class DataBaseHelper {
         
         if (Club != nil){
             let mClub: Club = Club!
-            let columnArray = [mClub.Name, mClub.Description, mClub.Image] //add new values here when you add another column to the table.
+            let columnArray = [mClub.Name, mClub.Description, mClub.ImageURL] //add new values here when you add another column to the table.
             while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                 if (i == 0){
                     valueString = "?"
@@ -183,10 +183,10 @@ class DataBaseHelper {
             var i: Int = 0
             var valueString: String = ""
             
-            
+
             if (Event != nil){
                 let mEvent: Event = Event!
-                let columnArray = [mEvent.Name, mEvent.Description, mEvent.Image] //add new values here when you add another column to the table.
+                let columnArray = [mEvent.Name, mEvent.Description, mEvent.ImageURL, mEvent.StartDate, mEvent.StartTime, mEvent.CreationDate, mEvent.Location] //add new values here when you add another column to the table.
                 while (i < mEvent.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"
@@ -227,11 +227,10 @@ class DataBaseHelper {
             var statement: OpaquePointer?
             var i: Int = 0
             var valueString: String = ""
-            
-            
+        
             if (Sustainability != nil){
                 let mSustainability: Sustainability = Sustainability!
-                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.Image] //add new values here when you add another column to the table.
+                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.ImageURL, mSustainability.Location] //add new values here when you add another column to the table.
                 while (i < mSustainability.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"
@@ -289,50 +288,80 @@ class DataBaseHelper {
               
               sqlite3_finalize(insertStatement)
         }
-    func getRow (tableName: String, Search: String) -> Array<Any>{
+    func getRowByName (tableName: String, Search: String) -> [[String]]{
         
-        var Array: [Any] = []
-        var SubArray: [Any] = []
-            
+        var rArray = [[String]]()
+        var subarray = [String]()
+        var i: Int32 = 0
+
             var statement: OpaquePointer?
-            if sqlite3_prepare_v2(db, "select id, name, description from \(tableName) where name = '\(Search)'", -1, &statement, nil) != SQLITE_OK {
+            if sqlite3_prepare_v2(db, "select * from \(tableName) WHERE Name = '\(Search)'", -1, &statement, nil) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error preparing select: \(errmsg)")
             }
 
             while sqlite3_step(statement) == SQLITE_ROW {
-                let id = sqlite3_column_int64(statement, 0)
-                print("id = \(id); ", terminator: "")
 
-                if let cString = sqlite3_column_text(statement, 1) {
-                    let name = String(cString: cString)
-                    print("name = \(name)")
-                    if let cString = sqlite3_column_text(statement, 2) {
-                        let description = String(cString: cString)
-                        print("description = \(description)")
-                        
-                        SubArray.append(id)
-                        SubArray.append(name)
-                        SubArray.append(description)
-                        Array.append(SubArray)
-                        SubArray = []
-                    } else {
-                        print("description not found")
+                while (sqlite3_column_text(statement, i) != nil){
+                    guard let queryResultCol = sqlite3_column_text(statement, i) else {
+                        print("Query result is nil")
+                        return [[]]
                     }
-
-                } else {
-                    print("name not found")
+                    var item = String(cString: queryResultCol)
+                    
+                    subarray.append(item)
+                    i = i + 1
                 }
+                i = 0
+                rArray.append(subarray)
+                subarray = []
             }
 
             if sqlite3_finalize(statement) != SQLITE_OK {
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("error finalizing prepared statement: \(errmsg)")
             }
-        
+
             statement = nil
-            return Array
+            return rArray
         }
+    func getRowByID (tableName: String, id: Int) -> [[String]]{
+            
+        var rArray = [[String]]()
+        var subarray = [String]()
+        var i: Int32 = 0
+
+            var statement: OpaquePointer?
+            if sqlite3_prepare_v2(db, "select * from \(tableName) WHERE id = \(id)", -1, &statement, nil) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error preparing select: \(errmsg)")
+            }
+
+            while sqlite3_step(statement) == SQLITE_ROW {
+
+                while (sqlite3_column_text(statement, i) != nil){
+                    guard let queryResultCol = sqlite3_column_text(statement, i) else {
+                        print("Query result is nil")
+                        return [[]]
+                    }
+                    var item = String(cString: queryResultCol)
+                    
+                    subarray.append(item)
+                    i = i + 1
+                }
+                i = 0
+                rArray.append(subarray)
+                subarray = []
+            }
+
+            if sqlite3_finalize(statement) != SQLITE_OK {
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("error finalizing prepared statement: \(errmsg)")
+            }
+
+            statement = nil
+            return rArray
+            }
 
 }
 
