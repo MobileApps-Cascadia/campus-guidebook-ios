@@ -22,25 +22,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var SustainabilityArray = [[Any]]()
 
     var categoryID: Int!
-//    let clubPictures: [UIImage] =
-//    [UIImage(named: "clubs_logo-1")!,
-//     UIImage(named: "dnd_club_logo")!,
-//     UIImage(named: "engineers_club")!,
-//     UIImage(named: "japanese_culture_club")!]
-//    let clubTitles: [String] = ["Clubs at Cascadia", "DnD Club", "Engineers Club", "Japanese Culture Club"]
-//    let clubDescriptions: [String] = ["club", "club", "club", "club"]
-//
-//    let eventDescriptions: [String] = ["event", "event", "event", "event"]
-//    let sustainabilityDescriptions: [String] = ["sustainabaility", "sustainabaility", "sustainabaility", "sustainabaility"]
-//
-//    let titles: [String] = ["Clubs at Cascadia", "DnD Club", "Engineers Club", "Japanese Culture Club"]
-//    let descriptions: [String] = [
-//        "Roll the dice at EAB and CEB's annual Casino Night!",
-//        "Roll20 until you reach the lands of 5e",
-//        "The engineering club is open to any student who is interested in science, technology, engineering, and math (STEM). Through hands on activities, members of all skill levels will have the opportunity to design, build, and share engineered projects with other creative problem solvers. Get ready to strengthen your skills, create a collection of projects related to your career, and connect with your peers! Some of the club projects we've undertaken include designing 3d printing models, making a video game with python, and electronic prototyping with Arduino.",
-//        "The purpose of this club is to provide a comfortable place for the students at Cascadia college to learn and experience Japanese culture together. In our club, we will share traditional Japanese culture such as Japanese calligraphy, origami, karate, etc. together."]
-    
-    
 
 
     
@@ -114,26 +95,33 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: Defines what cells are being used
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
-        
+        var image: UIImage!
+
         switch categoryID {
         case 0:
+            //checks if img is a url
+            image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
+            
             cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
                            title: (EventsArray[indexPath.row][1] as? String)!,
                            description: (EventsArray[indexPath.row][2] as? String)!,
-                           picture: UIImage(named: (EventsArray[indexPath.row][3] as? String)!)!)
-            print("events")
+                           picture: image)
         case 1:
+            //checks if img is a url
+            image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
+            
             cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
                            title: (SustainabilityArray[indexPath.row][1] as? String)!,
                            description: (SustainabilityArray[indexPath.row][2] as? String)!,
-                           picture: UIImage(named: (SustainabilityArray[indexPath.row][3] as? String)!)!)
-            print("sustainability")
+                           picture: image)
         case 2:
+            //checks if img is a url
+            image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
+            
             cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
                            title: (ClubsArray[indexPath.row][1] as? String)!,
                            description: (ClubsArray[indexPath.row][2] as? String)!,
-                           picture: UIImage(named: (ClubsArray[indexPath.row][3] as? String)!)!)
-            print("clubs")
+                           picture: image)
         default:
             print("default")
         }
@@ -141,6 +129,40 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
+    
+    func getImg(urlString: String) -> UIImage {
+        let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
+        if (imageUrlString.isValidURL) {
+            let imageUrl = URL(string: imageUrlString)
+            return try! UIImage(withContentsOfUrl: imageUrl!)!
+        }
+        else {
+            return UIImage(named: imageUrlString)!
+        }
+    }
+    
+}
+
+extension UIImage {
+
+    convenience init?(withContentsOfUrl url: URL) throws {
+        let imageData = try Data(contentsOf: url)
+    
+        self.init(data: imageData)
+    }
 
 }
+
+extension String {
+    var isValidURL: Bool {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+            // it is a link, if the match covers the whole string
+            return match.range.length == self.utf16.count
+        } else {
+            return false
+        }
+    }
+}
+
 
