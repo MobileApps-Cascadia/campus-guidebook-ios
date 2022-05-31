@@ -24,23 +24,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var SustainabilityArray = [[Any]]()
     
     var categoryID: Int!
-    let clubPictures: [String] =
-    ["clubs_logo-1",
-     "dnd_club_logo",
-     "engineers_club",
-     "japanese_culture_club"]
-    let clubTitles: [String] = ["Clubs at Cascadia", "DnD Club", "Engineers Club", "Japanese Culture Club"]
-    let clubDescriptions: [String] = ["club", "club", "club", "club"]
-    
-    let eventDescriptions: [String] = ["event", "event", "event", "event"]
-    let sustainabilityDescriptions: [String] = ["sustainabaility", "sustainabaility", "sustainabaility", "sustainabaility"]
-    
-    let titles: [String] = ["Clubs at Cascadia", "DnD Club", "Engineers Club", "Japanese Culture Club"]
-    let descriptions: [String] = [
-        "Roll the dice at EAB and CEB's annual Casino Night!",
-        "Roll20 until you reach the lands of 5e",
-        "The engineering club is open to any student who is interested in science, technology, engineering, and math (STEM). Through hands on activities, members of all skill levels will have the opportunity to design, build, and share engineered projects with other creative problem solvers. Get ready to strengthen your skills, create a collection of projects related to your career, and connect with your peers! Some of the club projects we've undertaken include designing 3d printing models, making a video game with python, and electronic prototyping with Arduino.",
-        "The purpose of this club is to provide a comfortable place for the students at Cascadia college to learn and experience Japanese culture together. In our club, we will share traditional Japanese culture such as Japanese calligraphy, origami, karate, etc. together."]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,21 +34,21 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for clubs
         for i in 0..<sampleData.clubTitles.count {
             //make the new database row
-            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], image: sampleData.clubPictures[i])
+            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
         //add sample data for events
         for i in 0..<sampleData.eventTitles.count {
             //make the new database row
-            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], image: sampleData.eventPictures[i])
+            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: "", startTime: "", creationDate: "", location: "")
             dbase.addEventRow(Event: mEvent) //add the database row to the table
         }
         
         //add sample data for sustainability
         for i in 0..<sampleData.sustainabilityTitles.count {
             //make the new database row
-            mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], image: sampleData.sustainabilityPictures[i])
+            mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], imageURL: sampleData.sustainabilityPictures[i], location: "")
             dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
         }
         
@@ -112,26 +95,33 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: Defines what cells are being used
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
+        var image: UIImage!
         
         switch categoryID {
         case 0:
+            //checks if img is a url
+            image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
+            
             cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
                            title: (EventsArray[indexPath.row][1] as? String)!,
                            description: (EventsArray[indexPath.row][2] as? String)!,
-                           picture: UIImage(named: (EventsArray[indexPath.row][3] as? String)!)!)
-            print("events")
+                           picture: image)
         case 1:
+            //checks if img is a url
+            image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
+            
             cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
                            title: (SustainabilityArray[indexPath.row][1] as? String)!,
                            description: (SustainabilityArray[indexPath.row][2] as? String)!,
-                           picture: UIImage(named: (SustainabilityArray[indexPath.row][3] as? String)!)!)
-            print("sustainability")
+                           picture: image)
         case 2:
+            //checks if img is a url
+            image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
+            
             cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
                            title: (ClubsArray[indexPath.row][1] as? String)!,
                            description: (ClubsArray[indexPath.row][2] as? String)!,
-                           picture: UIImage(named: (ClubsArray[indexPath.row][3] as? String)!)!)
-            print("clubs")
+                           picture: image)
         default:
             print("default")
         }
@@ -139,31 +129,64 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Navigation
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
             
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
+        {
+            vc.categoryID = categoryID
+            
+            switch categoryID {
+            case 0:
+                vc.id = EventsArray[indexPath.row][0] as? String
+                print("id Event")
                 
-            {
-                vc.categoryID = indexPath.row
+            case 1:
+                vc.id = SustainabilityArray[indexPath.row][0] as? String
+                print("id Sus")
                 
-                switch categoryID {
-                    case 0:
-                        vc.id = EventsArray[indexPath.row][0] as? String
-                    print("id Event")
-                    
-                    case 1:
-                        vc.id = SustainabilityArray[indexPath.row][0] as? String
-                    print("id Sus")
-                    
-                    case 2:
-                        vc.id = ClubsArray[indexPath.row][0] as? String
-                    print("id Club")
-
-                    default:
-                        print("default")
-                    }
-                navigationController?.pushViewController(vc, animated: true)
+            case 2:
+                vc.id = ClubsArray[indexPath.row][0] as? String
+                print("id Club")
+            default:
+                print("default")
             }
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func getImg(urlString: String) -> UIImage {
+        let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
+        if (imageUrlString.isValidURL) {
+            let imageUrl = URL(string: imageUrlString)
+            return try! UIImage(withContentsOfUrl: imageUrl!)!
+        }
+        else {
+            return UIImage(named: imageUrlString)!
+        }
+    }
+    
+}
+
+extension UIImage {
+    
+    convenience init?(withContentsOfUrl url: URL) throws {
+        let imageData = try Data(contentsOf: url)
+        
+        self.init(data: imageData)
     }
 }
+
+extension String {
+    var isValidURL: Bool {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+            // it is a link, if the match covers the whole string
+            return match.range.length == self.utf16.count
+        } else {
+            return false
+        }
+    }
+}
+
 

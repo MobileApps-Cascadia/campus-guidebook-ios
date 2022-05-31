@@ -48,9 +48,33 @@ class CardDetailViewController: UIViewController {
         
         print( "Category id is \(categoryID!)")
         
+        print(array)
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = (array[0][2]) as? String
-        imgView.image = UIImage(named: (array[0][3] as? String)!)
+        let image = getImg(urlString: array[0][3] as! String)
+
+        imgView.image = image
+        
         
     }
+    
+    func getImg(urlString: String) -> UIImage {
+        let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
+        if (imageUrlString.isValidURL) {
+            let imageUrl = URL(string: imageUrlString)
+            return try! UIImage(withContentsOfUrl: imageUrl!)!
+        }
+        else {
+            return UIImage(named: imageUrlString)!
+        }
+    }
 }
+
+//extension UIImage {
+//
+//    convenience init?(withContentsOfUrl url: URL) throws {
+//        let imageData = try Data(contentsOf: url)
+//
+//        self.init(data: imageData)
+//    }
+//}
