@@ -52,6 +52,6 @@ class CardDetailViewController: UIViewController {
             titleLabel.text = (array[0][1]) as? String
             descriptionLabel.text = (array[0][2]) as? String
             imgView.image = UIImage(named: (array[0][3] as? String)!)
-        
+            
     }
 }
