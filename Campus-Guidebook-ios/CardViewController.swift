@@ -130,6 +130,33 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
+            
+        {
+            vc.categoryID = indexPath.row
+            
+            switch categoryID {
+            case 0:
+                vc.id = EventsArray[indexPath.row][0] as? String
+                print("id Event")
+                
+            case 1:
+                vc.id = SustainabilityArray[indexPath.row][0] as? String
+                print("id Sus")
+                
+            case 2:
+                vc.id = ClubsArray[indexPath.row][0] as? String
+                print("id Club")
+            default:
+                print("default")
+            }
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func getImg(urlString: String) -> UIImage {
         let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
         if (imageUrlString.isValidURL) {
