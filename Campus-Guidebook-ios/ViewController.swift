@@ -52,7 +52,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView,
-      didSelectItemAt indexPath: IndexPath) {
+                        didSelectItemAt indexPath: IndexPath) {
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
         let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
         
@@ -66,9 +66,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             self.navigationController?.pushViewController(vc!, animated: true)
             
         }
-        
-      }
-
-
+    }
 }
 
