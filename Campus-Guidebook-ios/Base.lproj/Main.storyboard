@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pjo-JJ-niu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pjo-JJ-niu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -221,11 +221,67 @@
                     <navigationItem key="navigationItem" id="BUz-5u-pYb"/>
                     <connections>
                         <outlet property="cardTableView" destination="BqW-xn-TDT" id="3rN-Fp-lfj"/>
+                        <segue destination="ehh-1n-4EJ" kind="show" identifier="showDetailSegue" id="nvw-wr-adB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFA-ai-vXk" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="742" y="808"/>
+        </scene>
+        <!--Card Detail View Controller-->
+        <scene sceneID="CMY-5p-1X3">
+            <objects>
+                <viewController storyboardIdentifier="CardDetailsView" id="ehh-1n-4EJ" customClass="CardDetailViewController" customModule="Campus_Guidebook_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cfx-dO-V77">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsE-cS-RbP">
+                                <rect key="frame" x="25" y="304" width="364" height="43"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljF-Ly-gta">
+                                <rect key="frame" x="25" y="471" width="374" height="347"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ian-jV-dXR">
+                                <rect key="frame" x="20" y="103" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="mUc-jP-l8E"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JVJ-24-yxA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ian-jV-dXR" firstAttribute="top" secondItem="JVJ-24-yxA" secondAttribute="top" constant="15" id="5Pb-R7-P4y"/>
+                            <constraint firstItem="ljF-Ly-gta" firstAttribute="leading" secondItem="JVJ-24-yxA" secondAttribute="leading" constant="25" id="A2C-hy-lNW"/>
+                            <constraint firstItem="JVJ-24-yxA" firstAttribute="trailing" secondItem="FsE-cS-RbP" secondAttribute="trailing" constant="25" id="IjH-cV-gyC"/>
+                            <constraint firstItem="FsE-cS-RbP" firstAttribute="leading" secondItem="JVJ-24-yxA" secondAttribute="leading" constant="25" id="d5j-pO-Owc"/>
+                            <constraint firstItem="Ian-jV-dXR" firstAttribute="leading" secondItem="cfx-dO-V77" secondAttribute="leadingMargin" id="hfT-sx-lNt"/>
+                            <constraint firstItem="Ian-jV-dXR" firstAttribute="trailing" secondItem="cfx-dO-V77" secondAttribute="trailingMargin" id="jaV-VR-9Ss"/>
+                            <constraint firstItem="FsE-cS-RbP" firstAttribute="top" secondItem="Ian-jV-dXR" secondAttribute="bottom" constant="101" id="kUq-Hq-LSB"/>
+                            <constraint firstItem="ljF-Ly-gta" firstAttribute="centerX" secondItem="cfx-dO-V77" secondAttribute="centerX" id="oCG-jK-wWT"/>
+                            <constraint firstItem="ljF-Ly-gta" firstAttribute="top" secondItem="Ian-jV-dXR" secondAttribute="bottom" constant="268" id="p71-5C-hkM"/>
+                            <constraint firstItem="JVJ-24-yxA" firstAttribute="trailing" secondItem="ljF-Ly-gta" secondAttribute="trailing" constant="25" id="t9y-4p-B0M"/>
+                            <constraint firstItem="FsE-cS-RbP" firstAttribute="centerX" secondItem="cfx-dO-V77" secondAttribute="centerX" id="tcv-xU-gCs"/>
+                            <constraint firstItem="Ian-jV-dXR" firstAttribute="centerX" secondItem="cfx-dO-V77" secondAttribute="centerX" id="yA1-qR-c8y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UKH-fR-UJC"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="ljF-Ly-gta" id="feG-OQ-Jzw"/>
+                        <outlet property="imgView" destination="Ian-jV-dXR" id="nfS-zF-GJO"/>
+                        <outlet property="titleLabel" destination="FsE-cS-RbP" id="xaI-Nh-cbZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X4Q-2h-eej" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="741" y="1574"/>
         </scene>
     </scenes>
     <resources>
