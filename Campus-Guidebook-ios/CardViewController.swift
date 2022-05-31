@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cardTableView: UITableView!
+    
     let dbase: DataBaseHelper = DataBaseHelper()
     let sampleData: SampleData = SampleData()
     
@@ -20,10 +22,8 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var ClubsArray = [[Any]]()
     var EventsArray = [[Any]]()
     var SustainabilityArray = [[Any]]()
-
+    
     var categoryID: Int!
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +52,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
         }
         
-        
-
         switch categoryID {
         case 0:
             self.title = "events"
@@ -71,7 +69,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         ClubsArray = dbase.getAllTableContents(tablename: "Club")//get all rows
         EventsArray = dbase.getAllTableContents(tablename: "Event")//get all rows
         SustainabilityArray = dbase.getAllTableContents(tablename: "Sustainability")//get all rows
-   
     }
     
     // MARK: How many rows in the tableView?
@@ -96,7 +93,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
         var image: UIImage!
-
+        
         switch categoryID {
         case 0:
             //checks if img is a url
@@ -125,8 +122,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         default:
             print("default")
         }
-        
-        
         return cell
     }
     
@@ -136,7 +131,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
             
         {
-            vc.categoryID = indexPath.row
+            vc.categoryID = categoryID
             
             switch categoryID {
             case 0:
@@ -171,13 +166,12 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 }
 
 extension UIImage {
-
+    
     convenience init?(withContentsOfUrl url: URL) throws {
         let imageData = try Data(contentsOf: url)
-    
+        
         self.init(data: imageData)
     }
-
 }
 
 extension String {
@@ -191,5 +185,3 @@ extension String {
         }
     }
 }
-
-
