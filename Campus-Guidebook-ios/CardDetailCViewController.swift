@@ -13,7 +13,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    let dbase: DataBaseHelper = DataBaseHelper()
+    let dbase: DatabaseHelper = DatabaseHelper()
     
     var categoryID: Int!
     var id: String!

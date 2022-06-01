@@ -12,7 +12,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var cardTableView: UITableView!
     
-    let dbase: DataBaseHelper = DataBaseHelper()
+    let dbase: DatabaseHelper = DatabaseHelper()
     let sampleData: SampleData = SampleData()
     
     var mClub: Club!

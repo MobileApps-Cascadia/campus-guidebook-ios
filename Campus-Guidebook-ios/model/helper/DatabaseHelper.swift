@@ -9,7 +9,7 @@ import Foundation
 import SQLite3
 
 
-class DataBaseHelper {
+class DatabaseHelper {
     
     private var db: OpaquePointer? // db refrance
     private var path: String = "AppDatabase.sqlite"// db path

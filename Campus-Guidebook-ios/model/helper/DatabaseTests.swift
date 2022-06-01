@@ -8,7 +8,7 @@
 import Foundation
 
 class DataBaseTests {
-    let dbase: DataBaseHelper = DataBaseHelper()
+    let dbase: DatabaseHelper = DatabaseHelper()
 
     func makeTables() {
         dbase.CreateTable()
