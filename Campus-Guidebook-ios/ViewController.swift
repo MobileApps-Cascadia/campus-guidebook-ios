@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import SQLite3
+import Foundation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+  
+    let dbTest: DataBaseTests = DataBaseTests()
     
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]
     
@@ -15,7 +19,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //do tests of db
+        dbTest.removeTables()
+        dbTest.makeTables()
+        dbTest.makeTests()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,9 +54,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView,
       didSelectItemAt indexPath: IndexPath) {
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
-        vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
-        self.navigationController?.pushViewController(vc!, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+        
+        if indexPath.row < 3 {
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        else {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
+            vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
+            self.navigationController?.pushViewController(vc!, animated: true)
+            
+        }
+        
       }
 
 

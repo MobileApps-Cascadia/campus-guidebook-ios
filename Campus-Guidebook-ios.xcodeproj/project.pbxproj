@@ -19,6 +19,18 @@
 		3F3F50D2281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50D1281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift */; };
 		3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */; };
 		3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */; };
+		3F3F50E5281B45750000F1DD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50E4281B45750000F1DD /* .gitignore */; };
+		3F6A5EBC2835AEE60047DE45 /* DataBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */; };
+		3F6A5EC32835AF0B0047DE45 /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */; };
+		3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC292EC283DA95E0021B469 /* DatabaseTests.swift */; };
+		3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */; };
+		3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B72821DB5000887B08 /* CardViewController.swift */; };
+		3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B92821DB9900887B08 /* CardCell.swift */; };
+		DA1CFB20281D99DB0060B255 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB1F281D99DB0060B255 /* Club.swift */; };
+		DA1CFB22281D99E90060B255 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB21281D99E90060B255 /* Event.swift */; };
+		DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB23281D99FA0060B255 /* Sustainability.swift */; };
+		DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */; };
+		DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB28281D9A5A0060B255 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +42,13 @@
 			remoteInfo = "Campus-Guidebook-ios";
 		};
 		3F3F50CC281896E20000F1DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F3F50A0281896E00000F1DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F3F50A7281896E00000F1DD;
+			remoteInfo = "Campus-Guidebook-ios";
+		};
+		3F6A5EBD2835AEE60047DE45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3F3F50A0281896E00000F1DD /* Project object */;
 			proxyType = 1;
@@ -55,6 +74,20 @@
 		3F3F50D1281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campus_Guidebook_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		3F3F50E4281B45750000F1DD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3F6A5EB92835AEE60047DE45 /* DataBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseTests.swift; sourceTree = "<group>"; };
+		3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
+		3FC292EC283DA95E0021B469 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
+		3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailCViewController.swift; sourceTree = "<group>"; };
+		3FCB57B72821DB5000887B08 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		3FCB57B92821DB9900887B08 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		3FD7B8F728396B2300971237 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		DA1CFB1F281D99DB0060B255 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
+		DA1CFB21281D99E90060B255 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		DA1CFB23281D99FA0060B255 /* Sustainability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sustainability.swift; sourceTree = "<group>"; };
+		DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		DA1CFB28281D9A5A0060B255 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,15 +112,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F6A5EB62835AEE60047DE45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		3F3F509F281896E00000F1DD = {
 			isa = PBXGroup;
 			children = (
+				3FD7B8F728396B2300971237 /* TestPlan.xctestplan */,
 				3F3F50AA281896E00000F1DD /* Campus-Guidebook-ios */,
 				3F3F50C4281896E20000F1DD /* Campus-Guidebook-iosTests */,
 				3F3F50CE281896E20000F1DD /* Campus-Guidebook-iosUITests */,
+				3F6A5EBA2835AEE60047DE45 /* DataBaseTests */,
 				3F3F50A9281896E00000F1DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,6 +140,7 @@
 				3F3F50A8281896E00000F1DD /* Campus-Guidebook-ios.app */,
 				3F3F50C1281896E20000F1DD /* Campus-Guidebook-iosTests.xctest */,
 				3F3F50CB281896E20000F1DD /* Campus-Guidebook-iosUITests.xctest */,
+				3F6A5EB92835AEE60047DE45 /* DataBaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,9 +148,11 @@
 		3F3F50AA281896E00000F1DD /* Campus-Guidebook-ios */ = {
 			isa = PBXGroup;
 			children = (
+				DA1CFB1E281D99AE0060B255 /* model */,
 				3F3F50AB281896E00000F1DD /* AppDelegate.swift */,
 				3F3F50AD281896E00000F1DD /* SceneDelegate.swift */,
 				3F3F50AF281896E00000F1DD /* ViewController.swift */,
+				3FCB57B92821DB9900887B08 /* CardCell.swift */,
 				3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */,
 				3F3F50B1281896E00000F1DD /* Main.storyboard */,
 				3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */,
@@ -115,6 +160,9 @@
 				3F3F50B9281896E20000F1DD /* LaunchScreen.storyboard */,
 				3F3F50BC281896E20000F1DD /* Info.plist */,
 				3F3F50B4281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld */,
+				3F3F50E4281B45750000F1DD /* .gitignore */,
+				3FCB57B72821DB5000887B08 /* CardViewController.swift */,
+				3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */,
 			);
 			path = "Campus-Guidebook-ios";
 			sourceTree = "<group>";
@@ -122,6 +170,7 @@
 		3F3F50C4281896E20000F1DD /* Campus-Guidebook-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */,
 				3F3F50C5281896E20000F1DD /* Campus_Guidebook_iosTests.swift */,
 			);
 			path = "Campus-Guidebook-iosTests";
@@ -134,6 +183,35 @@
 				3F3F50D1281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift */,
 			);
 			path = "Campus-Guidebook-iosUITests";
+			sourceTree = "<group>";
+		};
+		3F6A5EBA2835AEE60047DE45 /* DataBaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */,
+			);
+			path = DataBaseTests;
+			sourceTree = "<group>";
+		};
+		DA1CFB1E281D99AE0060B255 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DA1CFB25281D9A1E0060B255 /* helper */,
+				DA1CFB1F281D99DB0060B255 /* Club.swift */,
+				DA1CFB21281D99E90060B255 /* Event.swift */,
+				DA1CFB23281D99FA0060B255 /* Sustainability.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		DA1CFB25281D9A1E0060B255 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */,
+				DA1CFB28281D9A5A0060B255 /* SampleData.swift */,
+				3FC292EC283DA95E0021B469 /* DatabaseTests.swift */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +270,24 @@
 			productReference = 3F3F50CB281896E20000F1DD /* Campus-Guidebook-iosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		3F6A5EB82835AEE60047DE45 /* DataBaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F6A5EC12835AEE60047DE45 /* Build configuration list for PBXNativeTarget "DataBaseTests" */;
+			buildPhases = (
+				3F6A5EB52835AEE60047DE45 /* Sources */,
+				3F6A5EB62835AEE60047DE45 /* Frameworks */,
+				3F6A5EB72835AEE60047DE45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F6A5EBE2835AEE60047DE45 /* PBXTargetDependency */,
+			);
+			name = DataBaseTests;
+			productName = DataBaseTests;
+			productReference = 3F6A5EB92835AEE60047DE45 /* DataBaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,6 +309,10 @@
 						CreatedOnToolsVersion = 13.3.1;
 						TestTargetID = 3F3F50A7281896E00000F1DD;
 					};
+					3F6A5EB82835AEE60047DE45 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 3F3F50A7281896E00000F1DD;
+					};
 				};
 			};
 			buildConfigurationList = 3F3F50A3281896E00000F1DD /* Build configuration list for PBXProject "Campus-Guidebook-ios" */;
@@ -231,6 +331,7 @@
 				3F3F50A7281896E00000F1DD /* Campus-Guidebook-ios */,
 				3F3F50C0281896E20000F1DD /* Campus-Guidebook-iosTests */,
 				3F3F50CA281896E20000F1DD /* Campus-Guidebook-iosUITests */,
+				3F6A5EB82835AEE60047DE45 /* DataBaseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F3F50E5281B45750000F1DD /* .gitignore in Resources */,
 				3F3F50BB281896E20000F1DD /* LaunchScreen.storyboard in Resources */,
 				3F3F50B8281896E20000F1DD /* Assets.xcassets in Resources */,
 				3F3F50B3281896E00000F1DD /* Main.storyboard in Resources */,
@@ -260,6 +362,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F6A5EB72835AEE60047DE45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -267,11 +376,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1CFB22281D99E90060B255 /* Event.swift in Sources */,
+				3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */,
 				3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */,
 				3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */,
 				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,
+				3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */,
+				DA1CFB20281D99DB0060B255 /* Club.swift in Sources */,
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
+				DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */,
+				DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */,
+				3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */,
+				DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */,
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
+				3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */,
 				3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F6A5EC32835AF0B0047DE45 /* DatabaseTest.swift in Sources */,
 				3F3F50C6281896E20000F1DD /* Campus_Guidebook_iosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +409,14 @@
 			files = (
 				3F3F50D0281896E20000F1DD /* Campus_Guidebook_iosUITests.swift in Sources */,
 				3F3F50D2281896E20000F1DD /* Campus_Guidebook_iosUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F6A5EB52835AEE60047DE45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F6A5EBC2835AEE60047DE45 /* DataBaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +432,11 @@
 			isa = PBXTargetDependency;
 			target = 3F3F50A7281896E00000F1DD /* Campus-Guidebook-ios */;
 			targetProxy = 3F3F50CC281896E20000F1DD /* PBXContainerItemProxy */;
+		};
+		3F6A5EBE2835AEE60047DE45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F3F50A7281896E00000F1DD /* Campus-Guidebook-ios */;
+			targetProxy = 3F6A5EBD2835AEE60047DE45 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -378,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -432,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -504,7 +636,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cascadia.Campus-Guidebook-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -523,7 +655,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cascadia.Campus-Guidebook-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -568,6 +700,42 @@
 			};
 			name = Release;
 		};
+		3F6A5EBF2835AEE60047DE45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cascadia.DataBaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Campus-Guidebook-ios.app/Campus-Guidebook-ios";
+			};
+			name = Debug;
+		};
+		3F6A5EC02835AEE60047DE45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cascadia.DataBaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Campus-Guidebook-ios.app/Campus-Guidebook-ios";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -603,6 +771,15 @@
 			buildConfigurations = (
 				3F3F50DC281896E20000F1DD /* Debug */,
 				3F3F50DD281896E20000F1DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F6A5EC12835AEE60047DE45 /* Build configuration list for PBXNativeTarget "DataBaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F6A5EBF2835AEE60047DE45 /* Debug */,
+				3F6A5EC02835AEE60047DE45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

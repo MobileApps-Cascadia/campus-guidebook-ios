@@ -1,0 +1,27 @@
+{
+  "configurations" : [
+    {
+      "id" : "F1E6FF59-646A-4C78-9B1B-96BA8ADB50B9",
+      "name" : "Configuration 1",
+      "options" : {
+        "uiTestingScreenshotsLifetime" : "keepNever"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "DatabaseTest"
+      ],
+      "target" : {
+        "containerPath" : "container:Campus-Guidebook-ios.xcodeproj",
+        "identifier" : "3F3F50C0281896E20000F1DD",
+        "name" : "Campus-Guidebook-iosTests"
+      }
+    }
+  ],
+  "version" : 1
+}
