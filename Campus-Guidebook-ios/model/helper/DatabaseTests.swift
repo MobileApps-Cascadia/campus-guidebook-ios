@@ -17,7 +17,7 @@ class DataBaseTests {
     func makeTests () {
         //__________Club_Tests___________//
         print("\n\n\nThis is the start of the Club demo tests.")
-        let mClub: Club = Club(name: "Club TestName", description: "Test description", imageURL: "Cats. All the cats.") //make the new database row
+        let mClub: Club = Club(name: "Club TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "start Date", startTime: "start Time", location: "location", contactURL: "test@gmail.com") //make the new database row
         var array = [[Any]]()
         dbase.addClubRow(Club: mClub) //add the database row to the table
         dbase.addClubRow(Club: mClub) //add the database row to the table

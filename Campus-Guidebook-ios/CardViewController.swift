@@ -34,7 +34,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for clubs
         for i in 0..<sampleData.clubTitles.count {
             //make the new database row
-            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i])
+            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i], startDate: sampleData.clubStartdates[i], startTime: sampleData.clubStartTimes[i], location: sampleData.clubLocations[i], contactURL: sampleData.clubContacts[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
@@ -75,13 +75,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch categoryID {
         case 0:
-            self.title = "events"
+            self.title = "Events"
             return sampleData.eventTitles.count
         case 1:
-            self.title = "sustainability"
+            self.title = "Sustainability"
             return sampleData.sustainabilityTitles.count
         case 2:
-            self.title = "clubs"
+            self.title = "Clubs"
             return sampleData.clubTitles.count
         default:
             return 0
@@ -119,6 +119,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                            title: (ClubsArray[indexPath.row][1] as? String)!,
                            description: (ClubsArray[indexPath.row][2] as? String)!,
                            picture: image)
+                        
         default:
             print("default")
         }
