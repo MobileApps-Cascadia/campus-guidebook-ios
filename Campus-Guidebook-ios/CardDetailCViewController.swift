@@ -12,6 +12,11 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    // Add date, time, location, and contactUrl properties for IBoutlet here
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var contactInfoLabel: UILabel!
     
     let dbase: DatabaseHelper = DatabaseHelper()
     
@@ -52,6 +57,11 @@ class CardDetailViewController: UIViewController {
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = (array[0][2]) as? String
         let image = getImg(urlString: array[0][3] as! String)
+        
+        startDateLabel.text = (array[0][4]) as? String
+        startTimeLabel.text = (array[0][5]) as? String
+        locationLabel.text = (array[0][6]) as? String
+        contactInfoLabel.text = (array[0][7]) as? String
         
         imgView.image = image
         
