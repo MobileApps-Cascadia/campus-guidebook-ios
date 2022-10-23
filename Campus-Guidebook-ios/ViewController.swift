@@ -54,9 +54,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView,
       didSelectItemAt indexPath: IndexPath) {
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
         
+        
+        switch indexPath.row {
+        case 0:
+            self.title = "events"
+            print("events")
+        case 1:
+            self.title = "sustainability"
+            print("sustainability")
+        case 2:
+            self.title = "clubs"
+            print("clubs")
+        default:
+            print("default")
+        }
+        
+        if indexPath.row == 7 {
+            let vc1 = storyboard?.instantiateViewController(withIdentifier: "mapViewController") as? mapViewController
+            self.navigationController?.pushViewController(vc1!, animated: true)
+        }
         if indexPath.row < 3 {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
             vc?.categoryID = indexPath.row
             self.navigationController?.pushViewController(vc!, animated: true)
         }
