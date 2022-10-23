@@ -56,35 +56,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
         
         
-        switch indexPath.row {
+        let pathRow: Int = indexPath.row
+        switch pathRow {
         case 0:
-            self.title = "events"
-            print("events")
-        case 1:
-            self.title = "sustainability"
-            print("sustainability")
-        case 2:
-            self.title = "clubs"
-            print("clubs")
-        default:
-            print("default")
-        }
-        
-        if indexPath.row == 7 {
-            let vc1 = storyboard?.instantiateViewController(withIdentifier: "mapViewController") as? mapViewController
-            self.navigationController?.pushViewController(vc1!, animated: true)
-        }
-        if indexPath.row < 3 {
             let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
             vc?.categoryID = indexPath.row
             self.navigationController?.pushViewController(vc!, animated: true)
-        }
-        else {
+        case 1:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        case 2:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        case 7:
+            let vc1 = storyboard?.instantiateViewController(withIdentifier: "mapViewController") as? mapViewController
+            self.navigationController?.pushViewController(vc1!, animated: true)
+        default:
             let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
             vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
             self.navigationController?.pushViewController(vc!, animated: true)
-            
         }
+        
+        
         
       }
 
