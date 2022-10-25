@@ -8,7 +8,8 @@
 import UIKit
 import SwiftUI
 
-class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     @IBOutlet weak var cardTableView: UITableView!
     
@@ -25,8 +26,38 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var categoryID: Int!
     
+    let searchController = UISearchController(searchResultsController: ResultsVC())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Adds a search results updater
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        
+        //RW
+        // 1
+        searchController.searchResultsUpdater = self
+        // 2
+        searchController.obscuresBackgroundDuringPresentation = false
+        // 3
+        switch categoryID {
+        case 0:
+            self.title = "Events"
+        case 1:
+            self.title = "Sustainability"
+        case 2:
+            self.title = "Clubs"
+        default:
+            return self.title = "here"
+        }
+        searchController.searchBar.placeholder = "Search " + self.title!
+        // 4
+        navigationItem.searchController = searchController
+        // 5
+        definesPresentationContext = true
+        
+        
         //remove tables and create them
         dbase.RemoveDBTables()
         dbase.CreateTable()
@@ -164,7 +195,25 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    
+    // MARK: Search result updater
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        
+        let vc = searchController.searchResultsController as? ResultsVC
+        vc?.view.backgroundColor = .white
+        print(text)
+    }
+    
 }
+
+class ResultsVC: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+    }
+}
+        
 
 extension UIImage {
     
