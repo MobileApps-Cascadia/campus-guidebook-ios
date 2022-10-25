@@ -54,18 +54,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView,
       didSelectItemAt indexPath: IndexPath) {
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
         
-        if indexPath.row < 3 {
+        
+        let pathRow: Int = indexPath.row
+        switch pathRow {
+        case 0:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
             vc?.categoryID = indexPath.row
             self.navigationController?.pushViewController(vc!, animated: true)
-        }
-        else {
+        case 1:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        case 2:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        case 7:
+            let vc1 = storyboard?.instantiateViewController(withIdentifier: "mapViewController") as? mapViewController
+            self.navigationController?.pushViewController(vc1!, animated: true)
+        default:
             let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
             vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
             self.navigationController?.pushViewController(vc!, animated: true)
-            
         }
+        
+        
         
       }
 

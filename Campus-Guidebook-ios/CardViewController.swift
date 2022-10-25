@@ -42,6 +42,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
         cardTableView.delegate = self
         cardTableView.dataSource = self
+        filterBtn.isHidden = true
         //remove tables and create them
         dbase.RemoveDBTables()
         dbase.CreateTable()
@@ -70,12 +71,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         switch categoryID {
         case 0:
             self.title = "Events"
+            filterBtn.isHidden = false
             print("events")
         case 1:
             self.title = "Sustainability"
             print("sustainability")
         case 2:
             self.title = "clubs"
+            filterBtn.isHidden = false
             print("Clubs")
         default:
             print("default")
@@ -238,14 +241,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         selectedBtn = filterBtn
         addTransparentView(frame: filterBtn.frame)
     }
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return dataSource.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//        cell.textLabel?.text = dataSource[indexPath.row]
-//    }
 }
 
 extension UIImage {
