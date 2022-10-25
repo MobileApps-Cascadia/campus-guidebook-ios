@@ -22,6 +22,8 @@
 		3F3F50E5281B45750000F1DD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50E4281B45750000F1DD /* .gitignore */; };
 		3F6A5EBC2835AEE60047DE45 /* DataBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */; };
 		3F6A5EC32835AF0B0047DE45 /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */; };
+		3FB329352904B6F80020852A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB329342904B6F80020852A /* MapKit.framework */; };
+		3FB329372904B7AF0020852A /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB329362904B7AF0020852A /* mapViewController.swift */; };
 		3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC292EC283DA95E0021B469 /* DatabaseTests.swift */; };
 		3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */; };
 		3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B72821DB5000887B08 /* CardViewController.swift */; };
@@ -78,6 +80,8 @@
 		3F6A5EB92835AEE60047DE45 /* DataBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseTests.swift; sourceTree = "<group>"; };
 		3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
+		3FB329342904B6F80020852A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3FB329362904B7AF0020852A /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		3FC292EC283DA95E0021B469 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
 		3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailCViewController.swift; sourceTree = "<group>"; };
 		3FCB57B72821DB5000887B08 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB329352904B6F80020852A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +136,7 @@
 				3F3F50CE281896E20000F1DD /* Campus-Guidebook-iosUITests */,
 				3F6A5EBA2835AEE60047DE45 /* DataBaseTests */,
 				3F3F50A9281896E00000F1DD /* Products */,
+				3FB329332904B6F80020852A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +161,7 @@
 				3FCB57B92821DB9900887B08 /* CardCell.swift */,
 				3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */,
 				3F3F50B1281896E00000F1DD /* Main.storyboard */,
+				3FB329362904B7AF0020852A /* mapViewController.swift */,
 				3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */,
 				3F3F50B7281896E20000F1DD /* Assets.xcassets */,
 				3F3F50B9281896E20000F1DD /* LaunchScreen.storyboard */,
@@ -191,6 +198,14 @@
 				3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */,
 			);
 			path = DataBaseTests;
+			sourceTree = "<group>";
+		};
+		3FB329332904B6F80020852A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FB329342904B6F80020852A /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DA1CFB1E281D99AE0060B255 /* model */ = {
@@ -391,6 +406,7 @@
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
 				3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */,
 				3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */,
+				3FB329372904B7AF0020852A /* mapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

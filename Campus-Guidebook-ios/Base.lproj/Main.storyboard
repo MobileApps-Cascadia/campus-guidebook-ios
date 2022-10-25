@@ -9,6 +9,33 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="dMo-lX-FtY">
+            <objects>
+                <viewController storyboardIdentifier="mapViewController" id="cTf-aT-ue6" customClass="mapViewController" customModule="Campus_Guidebook_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DYU-wy-IGQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FQI-P4-aVB">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4AS-33-zgB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FQI-P4-aVB" firstAttribute="top" secondItem="4AS-33-zgB" secondAttribute="top" id="Ha0-Mc-ev5"/>
+                            <constraint firstItem="4AS-33-zgB" firstAttribute="bottom" secondItem="FQI-P4-aVB" secondAttribute="bottom" id="hlL-qS-5cw"/>
+                            <constraint firstItem="4AS-33-zgB" firstAttribute="trailing" secondItem="FQI-P4-aVB" secondAttribute="trailing" id="kFl-Bi-mFa"/>
+                            <constraint firstItem="FQI-P4-aVB" firstAttribute="leading" secondItem="4AS-33-zgB" secondAttribute="leading" id="xbK-HC-veI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rxU-FZ-UAJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dNk-8K-kNQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320" y="357"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -74,6 +101,7 @@
                     <connections>
                         <segue destination="w4L-pD-G04" kind="show" id="OEn-Fp-77Q"/>
                         <segue destination="VtX-SM-H7S" kind="show" id="8aQ-Oc-5dF"/>
+                        <segue destination="cTf-aT-ue6" kind="show" id="w9v-bk-XWD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -325,6 +353,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
