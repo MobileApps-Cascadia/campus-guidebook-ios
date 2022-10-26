@@ -8,12 +8,22 @@
 import UIKit
 import SwiftUI
 
+class CellClass: UITableViewCell {
+    
+}
+
 class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cardTableView: UITableView!
     
     let dbase: DatabaseHelper = DatabaseHelper()
     let sampleData: SampleData = SampleData()
+    
+    @IBOutlet weak var filterBtn: UIButton!
+    let transparentView = UIView()
+    let dropDownTableView = UITableView()
+    var selectedBtn = UIButton()
+    var dataSource = [String]()
     
     var mClub: Club!
     var mEvent: Event!
@@ -27,6 +37,12 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dropDownTableView.delegate = self
+        dropDownTableView.dataSource = self
+        dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
+        cardTableView.delegate = self
+        cardTableView.dataSource = self
+        filterBtn.isHidden = true
         //remove tables and create them
         dbase.RemoveDBTables()
         dbase.CreateTable()
@@ -41,7 +57,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for events
         for i in 0..<sampleData.eventTitles.count {
             //make the new database row
-            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: "", startTime: "", creationDate: "", location: "")
+            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: "", creationDate: "", location: sampleData.eventLocation[i])
             dbase.addEventRow(Event: mEvent) //add the database row to the table
         }
         
@@ -54,14 +70,16 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switch categoryID {
         case 0:
-            self.title = "events"
+            self.title = "Events"
+            filterBtn.isHidden = false
             print("events")
         case 1:
-            self.title = "sustainability"
+            self.title = "Sustainability"
             print("sustainability")
         case 2:
             self.title = "clubs"
-            print("clubs")
+            filterBtn.isHidden = false
+            print("Clubs")
         default:
             print("default")
         }
@@ -71,85 +89,140 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         SustainabilityArray = dbase.getAllTableContents(tablename: "Sustainability")//get all rows
     }
     
+    func addTransparentView(frame: CGRect) {
+        let window = UIApplication.shared.keyWindow
+        transparentView.frame = window?.frame ?? self.view.frame
+        self.view.addSubview(transparentView)
+        
+        dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: 0)
+        self.view.addSubview(dropDownTableView)
+        dropDownTableView.layer.cornerRadius = 5
+        
+        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
+        transparentView.addGestureRecognizer(tapgesture)
+        transparentView.alpha = 0
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            self.transparentView.alpha = 0.5
+            self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: 95)
+        }
+    }
+    
+    @objc func removeTransparentView() {
+        let frames = selectedBtn.frame
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            self.transparentView.alpha = 0
+            self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
+
+        }
+    }
+    
     // MARK: How many rows in the tableView?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch categoryID {
-        case 0:
-            self.title = "events"
-            return sampleData.eventTitles.count
-        case 1:
-            self.title = "sustainability"
-            return sampleData.sustainabilityTitles.count
-        case 2:
-            self.title = "clubs"
-            return sampleData.clubTitles.count
-        default:
-            return 0
+        
+        var count: Int?
+        
+        if tableView == self.cardTableView {
+            switch categoryID {
+            case 0:
+                self.title = "events"
+                count = sampleData.eventTitles.count
+            case 1:
+                self.title = "sustainability"
+                count = sampleData.sustainabilityTitles.count
+            case 2:
+                self.title = "clubs"
+                count = sampleData.clubTitles.count
+            default:
+                count = 0
+            }
         }
+        
+        if tableView == self.dropDownTableView {
+            count = dataSource.count
+        }
+        return count!
         
     }
     
     // MARK: Defines what cells are being used
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
-        var image: UIImage!
-        
-        switch categoryID {
-        case 0:
-            //checks if img is a url
-            image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
+        if tableView == self.cardTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
+            var image: UIImage!
             
-            cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
-                           title: (EventsArray[indexPath.row][1] as? String)!,
-                           description: (EventsArray[indexPath.row][2] as? String)!,
-                           picture: image)
-        case 1:
-            //checks if img is a url
-            image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
-            
-            cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
-                           title: (SustainabilityArray[indexPath.row][1] as? String)!,
-                           description: (SustainabilityArray[indexPath.row][2] as? String)!,
-                           picture: image)
-        case 2:
-            //checks if img is a url
-            image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
-            
-            cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
-                           title: (ClubsArray[indexPath.row][1] as? String)!,
-                           description: (ClubsArray[indexPath.row][2] as? String)!,
-                           picture: image)
-        default:
-            print("default")
+            switch categoryID {
+            case 0:
+                //checks if img is a url
+                image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
+                
+                cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
+                               title: (EventsArray[indexPath.row][1] as? String)!,
+                               description: (EventsArray[indexPath.row][2] as? String)!,
+                               picture: image,
+                               date: EventsArray[indexPath.row][4] as? String,
+                               location: EventsArray[indexPath.row][7] as? String)
+            case 1:
+                //checks if img is a url
+                image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
+                
+                cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
+                               title: (SustainabilityArray[indexPath.row][1] as? String)!,
+                               description: (SustainabilityArray[indexPath.row][2] as? String)!,
+                               picture: image)
+            case 2:
+                //checks if img is a url
+                image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
+                
+                cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
+                               title: (ClubsArray[indexPath.row][1] as? String)!,
+                               description: (ClubsArray[indexPath.row][2] as? String)!,
+                               picture: image)
+            default:
+                print("default")
+            }
+            return cell
         }
-        return cell
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            cell.textLabel?.text = dataSource[indexPath.row]
+            return cell
+        }
     }
     
     // MARK: - Navigation
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
-            
-        {
-            vc.categoryID = categoryID
-            
-            switch categoryID {
-            case 0:
-                vc.id = EventsArray[indexPath.row][0] as? String
-                print("id Event")
+        if tableView == self.cardTableView {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
                 
-            case 1:
-                vc.id = SustainabilityArray[indexPath.row][0] as? String
-                print("id Sus")
+            {
+                vc.categoryID = categoryID
                 
-            case 2:
-                vc.id = ClubsArray[indexPath.row][0] as? String
-                print("id Club")
-            default:
-                print("default")
+                switch categoryID {
+                case 0:
+                    vc.id = EventsArray[indexPath.row][0] as? String
+                    print("id Event")
+                    
+                case 1:
+                    vc.id = SustainabilityArray[indexPath.row][0] as? String
+                    print("id Sus")
+                    
+                case 2:
+                    vc.id = ClubsArray[indexPath.row][0] as? String
+                    print("id Club")
+                default:
+                    print("default")
+                }
+                navigationController?.pushViewController(vc, animated: true)
             }
-            navigationController?.pushViewController(vc, animated: true)
         }
+        
+        if tableView == self.dropDownTableView {
+            let cell = tableView.cellForRow(at: indexPath) as! CellClass
+            print(cell.textLabel?.text ?? "error")
+        }
+        
     }
     
     func getImg(urlString: String) -> UIImage {
@@ -163,6 +236,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    @IBAction func filterBtn_Onclick(_ sender: Any) {
+        dataSource = ["Most Recent", "Less Recent"]
+        selectedBtn = filterBtn
+        addTransparentView(frame: filterBtn.frame)
+    }
 }
 
 extension UIImage {
