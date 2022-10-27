@@ -42,6 +42,10 @@ class SampleData {
      ""]
     let eventTitles: [String] = ["Events and Advocacy Board", "Engineering Club - Symposium", "Math Club - Weekly Meeting", "Math Club - Weekly Meeting", "Science Club - Weekly Meeting"]
     let eventDescriptions: [String] = ["Roll the dice at EAB and CEB's annual Casino Night!", "The biggest Engineering event of the year", "Meets every other Tuesday at 3:30", "Meets every other Tuesday at 3:30", "Meets every other Tuesday at 3:30"]
+    
+    let eventStartDate: [String] = ["11/11/2023", "8/23/2023", "05/12/2023", "04/07/2023", "12/16/2023"]
+    
+    let eventLocation: [String] = ["Online", "Online", "Online", "Online", "Online"]
 
 
     // Sample Data for sustainability
