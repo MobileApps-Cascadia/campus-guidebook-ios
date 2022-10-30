@@ -46,10 +46,9 @@ class mapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
 
         let annotation = MKPointAnnotation()
         annotation.coordinate = locValue
-        annotation.title = "Javed Multani"
+        annotation.title = UIDevice.current.name
         annotation.subtitle = "current location"
         mapView.addAnnotation(annotation)
 
-        //centerMap(locValue)
     }
 }
