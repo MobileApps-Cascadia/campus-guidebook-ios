@@ -6,24 +6,50 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class mapViewController: UIViewController {
+class mapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
 
+    
+    let locationManager = CLLocationManager()
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+            self.locationManager.requestWhenInUseAuthorization()
+
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                locationManager.startUpdatingLocation()
+            }
+
+            mapView.delegate = self
+            mapView.mapType = .standard
+            mapView.isZoomEnabled = true
+            mapView.isScrollEnabled = true
+
+            if let coor = mapView.userLocation.location?.coordinate{
+                mapView.setCenter(coor, animated: true)
+            }
     }
-    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
 
-    /*test
-    // MARK: - Navigation
+        mapView.mapType = MKMapType.standard
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        mapView.setRegion(region, animated: true)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+        annotation.title = "Javed Multani"
+        annotation.subtitle = "current location"
+        mapView.addAnnotation(annotation)
+
+        //centerMap(locValue)
     }
-    */
-
 }
