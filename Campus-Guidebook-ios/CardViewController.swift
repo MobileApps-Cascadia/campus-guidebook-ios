@@ -8,11 +8,12 @@
 import UIKit
 import SwiftUI
 
+
 class CellClass: UITableViewCell {
     
 }
 
-class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     @IBOutlet weak var cardTableView: UITableView!
     
@@ -35,14 +36,46 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var categoryID: Int!
     
+    let searchController = UISearchController(searchResultsController: ResultsVC())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Adds a search results updater
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        
+        //RW
+        // 1
+        searchController.searchResultsUpdater = self
+        // 2
+        searchController.obscuresBackgroundDuringPresentation = false
+        // 3
+        switch categoryID {
+        case 0:
+            self.title = "Events"
+        case 1:
+            self.title = "Sustainability"
+        case 2:
+            self.title = "Clubs"
+        default:
+            return self.title = "here"
+        }
+        searchController.searchBar.placeholder = "Search " + self.title!
+        // 4
+        navigationItem.searchController = searchController
+        // 5
+        definesPresentationContext = true
+        
+        
+
         dropDownTableView.delegate = self
         dropDownTableView.dataSource = self
         dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
         cardTableView.delegate = self
         cardTableView.dataSource = self
         filterBtn.isHidden = true
+
         //remove tables and create them
         dbase.RemoveDBTables()
         dbase.CreateTable()
@@ -50,7 +83,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for clubs
         for i in 0..<sampleData.clubTitles.count {
             //make the new database row
-            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i])
+            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i], startDate: sampleData.clubStartdates[i], startTime: sampleData.clubStartTimes[i], location: sampleData.clubLocations[i], contactURL: sampleData.clubContacts[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
@@ -127,17 +160,18 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if tableView == self.cardTableView {
             switch categoryID {
             case 0:
-                self.title = "events"
+                self.title = "Events"
                 count = sampleData.eventTitles.count
             case 1:
-                self.title = "sustainability"
+                self.title = "Sustainability"
                 count = sampleData.sustainabilityTitles.count
             case 2:
-                self.title = "clubs"
+                self.title = "Clubs"
                 count = sampleData.clubTitles.count
             default:
                 count = 0
             }
+
         }
         
         if tableView == self.dropDownTableView {
@@ -149,6 +183,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: Defines what cells are being used
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  
         if tableView == self.cardTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
             var image: UIImage!
@@ -272,12 +307,33 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+
+    
+    // MARK: Search result updater
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        
+        let vc = searchController.searchResultsController as? ResultsVC
+        vc?.view.backgroundColor = .white
+        print(text)
+    }
+    
+
     @IBAction func filterBtn_Onclick(_ sender: Any) {
         dataSource = ["Most Recent", "Less Recent"]
         selectedBtn = filterBtn
         addTransparentView(frame: filterBtn.frame)
     }
+
 }
+
+class ResultsVC: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+    }
+}
+        
 
 extension UIImage {
     

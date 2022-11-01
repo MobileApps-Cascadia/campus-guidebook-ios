@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import UIKit                
 
 
 class SampleData {
@@ -24,7 +24,14 @@ class SampleData {
         "Roll20 until you reach the lands of 5e",
         "The engineering club is open to any student who is interested in science, technology, engineering, and math (STEM). Through hands on activities, members of all skill levels will have the opportunity to design, build, and share engineered projects with other creative problem solvers. Get ready to strengthen your skills, create a collection of projects related to your career, and connect with your peers! Some of the club projects we've undertaken include designing 3d printing models, making a video game with python, and electronic prototyping with Arduino.",
         "The purpose of this club is to provide a comfortable place for the students at Cascadia college to learn and experience Japanese culture together. In our club, we will share traditional Japanese culture such as Japanese calligraphy, origami, karate, etc. together."]
-
+    let clubStartdates: [String] = [
+        "Bi-weekly on Thursday (start on 10/02)",
+        "Weekly on Mondays (start from 10/03)",
+        "Bi-weekly on Thursday (start on 10/02)",
+        "Weekly on Mondays (start from 10/03)"]
+    let clubStartTimes: [String] = ["2:00 - 3:15 PM", "2:00-3:30 PM", "2:00 - 3:15 PM", "2:00-4:00 PM"]
+    let clubLocations: [String] = ["ARC1-210", "ARC2-360", "ARC1-210", "ARC2-360"]
+    let clubContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com"]
     
     // Sample Data for events
     let eventPictures: [String] =
