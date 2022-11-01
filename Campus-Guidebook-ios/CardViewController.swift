@@ -68,6 +68,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
         }
         
+        //checks which category has been tapped on
         switch categoryID {
         case 0:
             self.title = "Events"
@@ -99,13 +100,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         dropDownTableView.layer.cornerRadius = 5
         
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        
+        dropDownTableView.reloadData()
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
         transparentView.addGestureRecognizer(tapgesture)
         transparentView.alpha = 0
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
             self.transparentView.alpha = 0.5
-            self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: 95)
+            self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: CGFloat(self.dataSource.count * 45))
         }
     }
     
@@ -219,8 +220,43 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if tableView == self.dropDownTableView {
-            let cell = tableView.cellForRow(at: indexPath) as! CellClass
-            print(cell.textLabel?.text ?? "error")
+            selectedBtn.setTitle(dataSource[indexPath.row], for: .normal)
+            let df = DateFormatter()
+            df.dateFormat = "MM-dd-yyyy"
+            
+            // filter by most recent
+            if dataSource[indexPath.row] == "Most Recent" {
+                switch categoryID {
+                case 0:
+                    EventsArray = EventsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
+//                case 2:
+//                    ClubsArray = ClubsArray.sorted(by: {
+//                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+//                    })
+                default:
+                    print("default")
+                }
+            }
+            // filter by less recent
+            else {
+                switch categoryID {
+                case 0:
+                    EventsArray = EventsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
+                    cardTableView.reloadData()
+//                case 2:
+//                    ClubsArray = ClubsArray.sorted(by: {
+//                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+//                    })
+                default:
+                    print("default")
+                }
+            }
+            cardTableView.reloadData()
+            removeTransparentView()
         }
         
     }

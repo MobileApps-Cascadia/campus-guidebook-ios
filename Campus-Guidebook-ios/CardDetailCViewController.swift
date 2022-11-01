@@ -12,6 +12,8 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     let dbase: DatabaseHelper = DatabaseHelper()
     
@@ -52,8 +54,9 @@ class CardDetailViewController: UIViewController {
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = (array[0][2]) as? String
         let image = getImg(urlString: array[0][3] as! String)
-        
         imgView.image = image
+        dateLabel.text = (array[0][4]) as? String
+        locationLabel.text = (array[0][7]) as? String
         
     }
     

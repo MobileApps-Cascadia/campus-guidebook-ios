@@ -26,8 +26,8 @@ class CardCell: UITableViewCell {
         pictureView.image = picture
         titleLabel.text = title
         descriptionLabel.text = description
-        dateTimeLabel.text = date
-        locationLabel.text = location
+        dateTimeLabel.text = "Date: \(date!)"
+        locationLabel.text = "Location: \(location!)"
         
         cardView.layer.shadowColor = UIColor.gray.cgColor
         cardView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
