@@ -83,14 +83,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for clubs
         for i in 0..<sampleData.clubTitles.count {
             //make the new database row
-            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i], startDate: sampleData.clubStartdates[i], startTime: sampleData.clubStartTimes[i], location: sampleData.clubLocations[i], contactURL: sampleData.clubContacts[i])
+            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i], startDate: sampleData.clubStartdates[i], startTime: sampleData.clubStartTimes[i], creationDate: "", location: sampleData.clubLocations[i], contactURL: sampleData.clubContacts[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
         //add sample data for events
         for i in 0..<sampleData.eventTitles.count {
             //make the new database row
-            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: "", creationDate: "", location: sampleData.eventLocation[i])
+            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: sampleData.eventStartTimes[i], creationDate: "", location: sampleData.eventLocation[i], contactURL: sampleData.eventContacts[i])
             dbase.addEventRow(Event: mEvent) //add the database row to the table
         }
         
@@ -191,6 +191,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             switch categoryID {
             case 0:
                 //checks if img is a url
+                print(EventsArray[indexPath.row])
                 image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
                 
                 cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
@@ -214,7 +215,9 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
                                title: (ClubsArray[indexPath.row][1] as? String)!,
                                description: (ClubsArray[indexPath.row][2] as? String)!,
-                               picture: image)
+                               picture: image,
+                               date: ClubsArray[indexPath.row][4] as? String,
+                               location: ClubsArray[indexPath.row][7] as? String)
             default:
                 print("default")
             }
@@ -266,10 +269,10 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     EventsArray = EventsArray.sorted(by: {
                         ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
                     })
-//                case 2:
-//                    ClubsArray = ClubsArray.sorted(by: {
-//                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
-//                    })
+                case 2:
+                    ClubsArray = ClubsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
                 default:
                     print("default")
                 }
@@ -282,10 +285,10 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
                     })
                     cardTableView.reloadData()
-//                case 2:
-//                    ClubsArray = ClubsArray.sorted(by: {
-//                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
-//                    })
+                case 2:
+                    ClubsArray = ClubsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
                 default:
                     print("default")
                 }

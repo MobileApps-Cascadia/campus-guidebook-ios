@@ -16,7 +16,7 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+//    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contactInfoLabel: UILabel!
     
     let dbase: DatabaseHelper = DatabaseHelper()
@@ -34,6 +34,10 @@ class CardDetailViewController: UIViewController {
             
         case 0:
             array = dbase.getRowByID(tableName: "Event", id: Int(id)!)
+            startDateLabel.text = (array[0][4]) as? String
+            startTimeLabel.text = (array[0][5]) as? String
+            contactInfoLabel.text = (array[0][6]) as? String
+            locationLabel.text = (array[0][7]) as? String
             print("Event ID")
             
         case 1:
@@ -42,6 +46,10 @@ class CardDetailViewController: UIViewController {
             
         case 2:
             array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
+            startDateLabel.text = (array[0][4]) as? String
+            startTimeLabel.text = (array[0][5]) as? String
+            contactInfoLabel.text = (array[0][6]) as? String
+            locationLabel.text = (array[0][7]) as? String
             print("Club ID")
             
         case 3:
@@ -58,15 +66,13 @@ class CardDetailViewController: UIViewController {
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = (array[0][2]) as? String
         let image = getImg(urlString: array[0][3] as! String)
-        
-        startDateLabel.text = (array[0][4]) as? String
-        startTimeLabel.text = (array[0][5]) as? String
-        locationLabel.text = (array[0][6]) as? String
-        contactInfoLabel.text = (array[0][7]) as? String
-        
         imgView.image = image
-        dateLabel.text = (array[0][4]) as? String
-        locationLabel.text = (array[0][7]) as? String
+
+        
+
+        
+//        dateLabel.text = (array[0][4]) as? String
+//        locationLabel.text = (array[0][7]) as? String
         
     }
     

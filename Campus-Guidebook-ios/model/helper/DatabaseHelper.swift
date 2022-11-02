@@ -38,8 +38,8 @@ class DatabaseHelper {
     }
     
     func CreateTable(){
-        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, Location TEXT, ContactURL TEXT);" //create the Clubs table
-        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT);" //create the Event table
+        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT, ContactURL TEXT);" //create the Clubs table
+        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT, ContactURL TEXT);" //create the Event table
         let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, Location TEXT);" //create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
@@ -141,7 +141,7 @@ class DatabaseHelper {
         
         if (Club != nil){
             let mClub: Club = Club!
-            let columnArray = [mClub.Name, mClub.Description, mClub.ImageURL, mClub.StartDate, mClub.StartTime, mClub.Location, mClub.ContactURL] //add new values here when you add another column to the table.
+            let columnArray = [mClub.Name, mClub.Description, mClub.ImageURL, mClub.StartDate, mClub.StartTime, mClub.CreationDate, mClub.Location, mClub.ContactURL] //add new values here when you add another column to the table.
             while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                 if (i == 0){
                     valueString = "?"
@@ -186,7 +186,7 @@ class DatabaseHelper {
 
             if (Event != nil){
                 let mEvent: Event = Event!
-                let columnArray = [mEvent.Name, mEvent.Description, mEvent.ImageURL, mEvent.StartDate, mEvent.StartTime, mEvent.CreationDate, mEvent.Location] //add new values here when you add another column to the table.
+                let columnArray = [mEvent.Name, mEvent.Description, mEvent.ImageURL, mEvent.StartDate, mEvent.StartTime, mEvent.CreationDate, mEvent.Location, mEvent.ContactURL] //add new values here when you add another column to the table.
                 while (i < mEvent.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
                     if (i == 0){
                         valueString = "?"
