@@ -13,7 +13,7 @@ class CellClass: UITableViewCell {
     
 }
 
-class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cardTableView: UITableView!
     
@@ -36,16 +36,16 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var categoryID: Int!
     
-    let searchController = UISearchController(searchResultsController: ResultsVC())
+//    let searchController = UISearchController(searchResultsController: ResultsVC())
+    var clubs: [Club] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredClubs: [Club] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Adds a search results updater
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
-        
-        //RW
         // 1
         searchController.searchResultsUpdater = self
         // 2
@@ -112,7 +112,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         case 2:
             self.title = "clubs"
             filterBtn.isHidden = false
-            print("Clubs")
+            print("clubs")
         default:
             print("default")
         }
@@ -151,6 +151,15 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+
+    
     // MARK: How many rows in the tableView?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -176,6 +185,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if tableView == self.dropDownTableView {
             count = dataSource.count
         }
+        
+        if isFiltering {
+            return filteredClubs.count
+          }
+        
         return count!
         
     }
@@ -217,8 +231,12 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             default:
                 print("default")
             }
+            
+    
             return cell
         }
+        
+        
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             cell.textLabel?.text = dataSource[indexPath.row]
@@ -271,32 +289,29 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-
     
-    // MARK: Search result updater
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        
-        let vc = searchController.searchResultsController as? ResultsVC
-        vc?.view.backgroundColor = .white
-        print(text)
-    }
-    
-
     @IBAction func filterBtn_Onclick(_ sender: Any) {
         dataSource = ["Most Recent", "Less Recent"]
         selectedBtn = filterBtn
         addTransparentView(frame: filterBtn.frame)
     }
 
+    func filterContentForSearchText(_ searchText: String){
+      filteredClubs = clubs.filter { (club: Club) -> Bool in
+        return club.Name.lowercased().contains(searchText.lowercased())
+      }
+      
+      cardTableView.reloadData()
+    }
+    
 }
 
-class ResultsVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-    }
-}
+//class ResultsVC: UIViewController {
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = .white
+//    }
+//}
         
 
 extension UIImage {
@@ -319,3 +334,24 @@ extension String {
         }
     }
 }
+
+
+// MARK: Search result updater
+extension CardsViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+      guard let text = searchController.searchBar.text else { return }
+      
+      let searchBar = searchController.searchBar
+      filterContentForSearchText(searchBar.text!)
+//      ClubsArray.filter( $0[1].contains()
+      print(text)
+  }
+}
+
+//func updateSearchResults(for searchController: UISearchController) {
+//    guard let text = searchController.searchBar.text else { return }
+//
+//    let vc = searchController.searchResultsController as? ResultsVC
+//    vc?.view.backgroundColor = .white
+//    print(text)
+//}
