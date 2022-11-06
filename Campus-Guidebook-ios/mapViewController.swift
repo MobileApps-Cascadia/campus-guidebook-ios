@@ -14,10 +14,13 @@ class mapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
     
     let locationManager = CLLocationManager()
     @IBOutlet weak var mapView: MKMapView!
+    var long: Double!
+    var lat: Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("long: \(long)    Lat: \(lat)")
             self.locationManager.requestWhenInUseAuthorization()
 
             if CLLocationManager.locationServicesEnabled() {

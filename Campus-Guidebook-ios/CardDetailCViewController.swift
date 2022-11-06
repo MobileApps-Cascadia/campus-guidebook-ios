@@ -17,8 +17,8 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var startTimeLabel: UILabel!
     
     @IBOutlet weak var locationNavButton: UIButton!
-    
-    @IBAction func NavToMaps(_ sender: UIButton) {
+    @IBAction func about(sender: UIButton) {//Segue trigger for navigating to maps page
+        performSegue(withIdentifier: "MapToLocation", sender: sender)
     }
     //    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contactInfoLabel: UILabel!
@@ -44,7 +44,9 @@ class CardDetailViewController: UIViewController {
             contactInfoLabel.text = (array[0][6]) as? String
             
             LocationButtonText = (array[0][7]) as? String
-            locationNavButton.setTitle(LocationButtonText, for: .normal)
+            locationNavButton.setTitle(LocationButtonText, for: .normal)//Set name of the map button
+            print("long in carddetail vc: \(LocationButtonText.components(separatedBy: ", ")[0])")
+            print("lat in carddetail vc: \(LocationButtonText.components(separatedBy: ", ")[1])")
             //locationButton.text = (array[0][7]) as? String
             print("Event ID")
             
@@ -59,7 +61,7 @@ class CardDetailViewController: UIViewController {
             contactInfoLabel.text = (array[0][6]) as? String
             
             LocationButtonText = (array[0][7]) as? String
-            locationNavButton.setTitle(LocationButtonText, for: .normal)
+            locationNavButton.setTitle(LocationButtonText, for: .normal)//Set name of the map button
             //locationButton.text = (array[0][7]) as? String
             print("Club ID")
             
@@ -95,6 +97,15 @@ class CardDetailViewController: UIViewController {
         }
         else {
             return UIImage(named: imageUrlString)!
+        }
+    }
+    // MARK: - Navigation to maps page
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //NAVIGATION
+        if segue.identifier == "MapToLocation" {
+            if let nextViewController = segue.destination as? mapViewController {
+                nextViewController.long = Double(LocationButtonText.components(separatedBy: ", ")[0])
+                nextViewController.lat = Double(LocationButtonText.components(separatedBy: ", ")[1])
+            }
         }
     }
 }

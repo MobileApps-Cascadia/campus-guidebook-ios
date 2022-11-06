@@ -350,8 +350,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="NavToMaps:" destination="ehh-1n-4EJ" eventType="touchUpInside" id="HYP-UA-qFe"/>
-                                    <action selector="aboutWithSender:" destination="ehh-1n-4EJ" eventType="touchUpInside" id="1bK-vT-5JG"/>
                                     <segue destination="cTf-aT-ue6" kind="show" identifier="MapToLocation" id="vto-6a-ahN"/>
                                 </connections>
                             </button>
