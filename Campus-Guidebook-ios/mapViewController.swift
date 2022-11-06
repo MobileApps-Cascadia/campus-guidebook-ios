@@ -13,7 +13,7 @@ class mapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
 
     
     let locationManager = CLLocationManager()
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapkitView: MKMapView!
     var long: Double!
     var lat: Double!
     
@@ -21,37 +21,62 @@ class mapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
         super.viewDidLoad()
         
         print("long: \(long)    Lat: \(lat)")
-            self.locationManager.requestWhenInUseAuthorization()
 
-            if CLLocationManager.locationServicesEnabled() {
-                locationManager.delegate = self
-                locationManager.desiredAccuracy = kCLLocationAccuracyBest
-                locationManager.startUpdatingLocation()
+        mapkitView.delegate = self
+        mapkitView.mapType = .standard
+        mapkitView.isZoomEnabled = true
+        mapkitView.isScrollEnabled = true
+        mapkitView.showsScale = true
+        mapkitView.showsPointsOfInterest = true
+        mapkitView.showsUserLocation = true
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+        
+        let sourceCoordinats = locationManager.location?.coordinate
+        let destinationCoordinats = CLLocationCoordinate2DMake(lat, long)
+        let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinats!)
+        let destinationPlacemanrk = MKPlacemark(coordinate: destinationCoordinats)
+        
+        let sourceItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationItem = MKMapItem(placemark: destinationPlacemanrk)
+        
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceItem
+        directionRequest.destination = destinationItem
+        
+        directionRequest.transportType = .walking
+        
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate(completionHandler: {
+            response, error in
+            guard let response = response else{
+                if let error = error{
+                    print("Mapping fialed")
+                }
+                return
             }
+            let route = response.routes[0]
+            self.mapkitView.addOverlay(route.polyline, level: .aboveRoads)
+            
+            let mapScreen = route.polyline.boundingMapRect
+            self.mapkitView.setRegion(MKCoordinateRegion(mapScreen), animated: true)
+        })
+        
+        func mapView(_ mapView: MKMapView, renderFor overlay: MKOverlay) -> MKOverlayRenderer{
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = UIColor.blue
+            renderer.lineWidth = 5
+            return renderer
+        }
 
-            mapView.delegate = self
-            mapView.mapType = .standard
-            mapView.isZoomEnabled = true
-            mapView.isScrollEnabled = true
-
-            if let coor = mapView.userLocation.location?.coordinate{
-                mapView.setCenter(coor, animated: true)
-            }
+            
     }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-
-        mapView.mapType = MKMapType.standard
-
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: locValue, span: span)
-        mapView.setRegion(region, animated: true)
-
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locValue
-        annotation.title = UIDevice.current.name
-        annotation.subtitle = "current location"
-        mapView.addAnnotation(annotation)
-
-    }
+    
 }

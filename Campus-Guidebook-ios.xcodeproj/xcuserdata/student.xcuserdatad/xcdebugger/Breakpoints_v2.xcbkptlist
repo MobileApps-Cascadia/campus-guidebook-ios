@@ -177,5 +177,222 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3651595C-FBB9-482D-91A2-C88E297DCC54"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/CardDetailCViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "nav(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34BF8BD6-4FD7-4F7E-8374-1C6FDA80A765"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/mapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "mapViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "34BF8BD6-4FD7-4F7E-8374-1C6FDA80A765 - b32e3155d8951844"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Campus_Guidebook_ios.mapViewController"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  uuid = "34BF8BD6-4FD7-4F7E-8374-1C6FDA80A765 - 99495054b1f5fe9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Campus_Guidebook_ios.mapViewController"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "141">
+               </Location>
+               <Location
+                  uuid = "34BF8BD6-4FD7-4F7E-8374-1C6FDA80A765 - c3f3ce090f722838"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Campus_Guidebook_ios.mapViewController&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "34BF8BD6-4FD7-4F7E-8374-1C6FDA80A765 - 537116aa33b8baa6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Campus_Guidebook_ios.mapViewController&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "98">
+               </Location>
+               <Location
+                  uuid = "34BF8BD6-4FD7-4F7E-8374-1C6FDA80A765 - 17eac48cf72541a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.__deallocating_deinit"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/mapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "mapViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B - 3a23bae5be507efc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.long.getter : Swift.Optional&lt;Swift.Double&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B - 702e5033cc328ee0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.long.setter : Swift.Optional&lt;Swift.Double&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B - c273d2a0dc7392f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.long.modify : Swift.Optional&lt;Swift.Double&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B - 676bc32c4f8cbbeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.long.modify : Swift.Optional&lt;Swift.Double&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B - 99495054b1f5fed8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Campus_Guidebook_ios.mapViewController"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "237">
+               </Location>
+               <Location
+                  uuid = "9A723A9E-3644-4A84-B198-F7738DA01C3B - 537116aa33b8bae4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.mapViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Campus_Guidebook_ios.mapViewController&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/mapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "194">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
