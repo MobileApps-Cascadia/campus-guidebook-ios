@@ -17,6 +17,9 @@ class CardDetailViewController: UIViewController {
     @IBOutlet weak var startTimeLabel: UILabel!
     
     @IBOutlet weak var locationNavButton: UIButton!
+    
+    @IBAction func NavToMaps(_ sender: UIButton) {
+    }
     //    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contactInfoLabel: UILabel!
     
@@ -40,8 +43,8 @@ class CardDetailViewController: UIViewController {
             startTimeLabel.text = (array[0][5]) as? String
             contactInfoLabel.text = (array[0][6]) as? String
             
-            //LocationButtonText = (array[0][7]) as? String
-            //locationButton.setTitle("test", for: .normal)
+            LocationButtonText = (array[0][7]) as? String
+            locationNavButton.setTitle(LocationButtonText, for: .normal)
             //locationButton.text = (array[0][7]) as? String
             print("Event ID")
             
@@ -54,8 +57,9 @@ class CardDetailViewController: UIViewController {
             startDateLabel.text = (array[0][4]) as? String
             startTimeLabel.text = (array[0][5]) as? String
             contactInfoLabel.text = (array[0][6]) as? String
-            //LocationButtonText = (array[0][7]) as? String
-            //locationButton.setTitle(LocationButtonText, for: .normal)
+            
+            LocationButtonText = (array[0][7]) as? String
+            locationNavButton.setTitle(LocationButtonText, for: .normal)
             //locationButton.text = (array[0][7]) as? String
             print("Club ID")
             

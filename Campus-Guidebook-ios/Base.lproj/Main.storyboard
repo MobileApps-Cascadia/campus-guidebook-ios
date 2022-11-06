@@ -349,6 +349,11 @@
                                 <rect key="frame" x="45" y="393" width="311" height="23"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="NavToMaps:" destination="ehh-1n-4EJ" eventType="touchUpInside" id="HYP-UA-qFe"/>
+                                    <action selector="aboutWithSender:" destination="ehh-1n-4EJ" eventType="touchUpInside" id="1bK-vT-5JG"/>
+                                    <segue destination="cTf-aT-ue6" kind="show" identifier="MapToLocation" id="vto-6a-ahN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAB-6D-g4P">
                                 <rect key="frame" x="181.5" y="432" width="51.5" height="17"/>
@@ -404,6 +409,9 @@
             <point key="canvasLocation" x="740.57971014492762" y="1573.6607142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vto-6a-ahN"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
