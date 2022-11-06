@@ -15,8 +15,9 @@ class CardDetailViewController: UIViewController {
     // Add date, time, location, and contactUrl properties for IBoutlet here
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-//    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var locationNavButton: UIButton!
+    //    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contactInfoLabel: UILabel!
     
     let dbase: DatabaseHelper = DatabaseHelper()
@@ -24,6 +25,7 @@ class CardDetailViewController: UIViewController {
     var categoryID: Int!
     var id: String!
     var array = [[Any]]()
+    var LocationButtonText: String!
     
     
     override func viewDidLoad() {
@@ -37,7 +39,10 @@ class CardDetailViewController: UIViewController {
             startDateLabel.text = (array[0][4]) as? String
             startTimeLabel.text = (array[0][5]) as? String
             contactInfoLabel.text = (array[0][6]) as? String
-            locationLabel.text = (array[0][7]) as? String
+            
+            //LocationButtonText = (array[0][7]) as? String
+            //locationButton.setTitle("test", for: .normal)
+            //locationButton.text = (array[0][7]) as? String
             print("Event ID")
             
         case 1:
@@ -49,7 +54,9 @@ class CardDetailViewController: UIViewController {
             startDateLabel.text = (array[0][4]) as? String
             startTimeLabel.text = (array[0][5]) as? String
             contactInfoLabel.text = (array[0][6]) as? String
-            locationLabel.text = (array[0][7]) as? String
+            //LocationButtonText = (array[0][7]) as? String
+            //locationButton.setTitle(LocationButtonText, for: .normal)
+            //locationButton.text = (array[0][7]) as? String
             print("Club ID")
             
         case 3:
@@ -72,7 +79,7 @@ class CardDetailViewController: UIViewController {
 
         
 //        dateLabel.text = (array[0][4]) as? String
-//        locationLabel.text = (array[0][7]) as? String
+//        locationButton.text = (array[0][7]) as? String
         
     }
     

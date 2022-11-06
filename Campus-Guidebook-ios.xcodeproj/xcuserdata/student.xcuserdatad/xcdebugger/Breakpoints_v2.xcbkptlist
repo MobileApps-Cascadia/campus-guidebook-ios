@@ -36,5 +36,146 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC1C7D3F-8134-4795-A4EE-1D0F4BCAEDE5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/DetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "50254A32-C627-44F0-A827-81B90A44C395"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/CardCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "configure(id:title:description:picture:date:location:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD537470-C25A-4A69-9351-32F15C05FB7F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/CardDetailCViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B3A9891-0F7F-4324-8AB6-67B3C388DD4E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Campus-Guidebook-ios/CardDetailCViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "CardDetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "6B3A9891-0F7F-4324-8AB6-67B3C388DD4E - a1308b4a303968e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.CardDetailViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Campus_Guidebook_ios.CardDetailViewController"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/CardDetailCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  uuid = "6B3A9891-0F7F-4324-8AB6-67B3C388DD4E - b36583d1e0068370"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.CardDetailViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Campus_Guidebook_ios.CardDetailViewController"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/CardDetailCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "229">
+               </Location>
+               <Location
+                  uuid = "6B3A9891-0F7F-4324-8AB6-67B3C388DD4E - fbff75f7bf16853"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.CardDetailViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Campus_Guidebook_ios.CardDetailViewController&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/CardDetailCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "6B3A9891-0F7F-4324-8AB6-67B3C388DD4E - 73dde2bb234d8f38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.CardDetailViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Campus_Guidebook_ios.CardDetailViewController&gt;"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/CardDetailCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "186">
+               </Location>
+               <Location
+                  uuid = "6B3A9891-0F7F-4324-8AB6-67B3C388DD4E - ca9a4ea9979bbaee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Campus_Guidebook_ios.CardDetailViewController.__deallocating_deinit"
+                  moduleName = "Campus-Guidebook-ios"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student/Documents/campus-guidebook-ios/Campus-Guidebook-ios/CardDetailCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
