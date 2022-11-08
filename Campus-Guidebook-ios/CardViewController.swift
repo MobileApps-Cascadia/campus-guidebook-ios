@@ -175,7 +175,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 count = sampleData.sustainabilityTitles.count
             case 2:
                 self.title = "Clubs"
-                count = sampleData.clubTitles.count
+                if isFiltering {
+                    count = filteredClubs.count
+                } else {
+                    count = sampleData.clubTitles.count
+                }
             default:
                 count = 0
             }
@@ -186,9 +190,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             count = dataSource.count
         }
         
-        if isFiltering {
-            return filteredClubs.count
-          }
+    
         
         return count!
         
@@ -222,12 +224,23 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                picture: image)
             case 2:
                 //checks if img is a url
+                if isFiltering  {
+                    // if it is searching, use the filtered array, otherwise use the original array
+                    image = getImg(urlString: filteredClubs[indexPath.row][3] as! String)
+                        
+                    cell.configure(id: (filteredClubs[indexPath.row][0] as? String)!,
+                                   title: (filteredClubs[indexPath.row][1] as? String)!,
+                                   description: (filteredClubs[indexPath.row][2] as? String)!,
+                                   picture: image)
+                } else {
+                    
                 image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
-                
+                    
                 cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
                                title: (ClubsArray[indexPath.row][1] as? String)!,
                                description: (ClubsArray[indexPath.row][2] as? String)!,
                                picture: image)
+                }
             default:
                 print("default")
             }
