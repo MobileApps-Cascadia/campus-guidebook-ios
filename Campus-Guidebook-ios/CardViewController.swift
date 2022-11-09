@@ -37,9 +37,9 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var categoryID: Int!
     
 //    let searchController = UISearchController(searchResultsController: ResultsVC())
-    var clubs: [Club] = []
+    var clubs = [[Club]]()
     let searchController = UISearchController(searchResultsController: nil)
-    var filteredClubs: [Club] = []
+    var filteredClubs = [[Any]]()
 
     
     override func viewDidLoad() {
@@ -310,7 +310,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func filterContentForSearchText(_ searchText: String){
-      filteredClubs = clubs.filter { (club: Club) -> Bool in
+      filteredClubs = ClubsArray.filter { (club: Club) -> Bool in
         return club.Name.lowercased().contains(searchText.lowercased())
       }
       
