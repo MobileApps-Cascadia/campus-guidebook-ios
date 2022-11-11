@@ -226,7 +226,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                picture: image)
             case 2:
                 //checks if img is a url
-<<<<<<< HEAD
                 if isFiltering  {
                     // if it is searching, use the filtered array, otherwise use the original array
                     image = getImg(urlString: filteredClubs[indexPath.row][3] as! String)
@@ -244,16 +243,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                    description: (ClubsArray[indexPath.row][2] as? String)!,
                                    picture: image)
                 }
-=======
-                image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
-                
-                cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
-                               title: (ClubsArray[indexPath.row][1] as? String)!,
-                               description: (ClubsArray[indexPath.row][2] as? String)!,
-                               picture: image,
-                               date: ClubsArray[indexPath.row][4] as? String,
-                               location: ClubsArray[indexPath.row][7] as? String)
->>>>>>> develop
             default:
                 print("default")
             }
@@ -358,20 +347,23 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredClubs = ClubsArray.filter {
-            
-            $0[0].lowercased().contains(searchText.lowercased())
+        print (ClubsArray.filter)
+        filteredClubs = ClubsArray.filter({ object in
+            return ( object[1] as! String ).contains(searchText)
+        })
+//            $0[1].lowercased().contains(searchText.lowercased())
+        
             // (object: [Any]) -> Bool in
-            
+
             //            if let club = object as? Club {
             // print("Name of the club: " + club.Name + "search text: " + searchText)
 //            return object.lowercased().contains(searchText.lowercased())
             // } else {
             // return false
-            // }
-            
-        }
-        
+//             }
+
+//        }
+
         cardTableView.reloadData()
     }
     
