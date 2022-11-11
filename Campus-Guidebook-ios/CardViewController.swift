@@ -83,14 +83,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //add sample data for clubs
         for i in 0..<sampleData.clubTitles.count {
             //make the new database row
-            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i], startDate: sampleData.clubStartdates[i], startTime: sampleData.clubStartTimes[i], location: sampleData.clubLocations[i], contactURL: sampleData.clubContacts[i])
+            mClub = Club(name: sampleData.clubTitles[i], description: sampleData.clubDescriptions[i], imageURL: sampleData.clubPictures[i], startDate: sampleData.clubStartdates[i], startTime: sampleData.clubStartTimes[i], creationDate: "", location: sampleData.clubLocations[i], contactURL: sampleData.clubContacts[i])
             dbase.addClubRow(Club: mClub) //add the database row to the table
         }
         
         //add sample data for events
         for i in 0..<sampleData.eventTitles.count {
             //make the new database row
-            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: "", creationDate: "", location: sampleData.eventLocation[i])
+            mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: sampleData.eventStartTimes[i], creationDate: "", location: sampleData.eventLocation[i], contactURL: sampleData.eventContacts[i])
             dbase.addEventRow(Event: mEvent) //add the database row to the table
         }
         
@@ -101,6 +101,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
         }
         
+        //checks which category has been tapped on
         switch categoryID {
         case 0:
             self.title = "Events"
@@ -132,13 +133,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         dropDownTableView.layer.cornerRadius = 5
         
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        
+        dropDownTableView.reloadData()
         let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
         transparentView.addGestureRecognizer(tapgesture)
         transparentView.alpha = 0
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
             self.transparentView.alpha = 0.5
-            self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: 95)
+            self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: CGFloat(self.dataSource.count * 45))
         }
     }
     
@@ -206,6 +207,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             switch categoryID {
             case 0:
                 //checks if img is a url
+                print(EventsArray[indexPath.row])
                 image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
                 
                 cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
@@ -224,6 +226,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                picture: image)
             case 2:
                 //checks if img is a url
+<<<<<<< HEAD
                 if isFiltering  {
                     // if it is searching, use the filtered array, otherwise use the original array
                     image = getImg(urlString: filteredClubs[indexPath.row][3] as! String)
@@ -241,6 +244,16 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                    description: (ClubsArray[indexPath.row][2] as? String)!,
                                    picture: image)
                 }
+=======
+                image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
+                
+                cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
+                               title: (ClubsArray[indexPath.row][1] as? String)!,
+                               description: (ClubsArray[indexPath.row][2] as? String)!,
+                               picture: image,
+                               date: ClubsArray[indexPath.row][4] as? String,
+                               location: ClubsArray[indexPath.row][7] as? String)
+>>>>>>> develop
             default:
                 print("default")
             }
@@ -285,8 +298,43 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if tableView == self.dropDownTableView {
-            let cell = tableView.cellForRow(at: indexPath) as! CellClass
-            print(cell.textLabel?.text ?? "error")
+            selectedBtn.setTitle(dataSource[indexPath.row], for: .normal)
+            let df = DateFormatter()
+            df.dateFormat = "MM-dd-yyyy"
+            
+            // filter by most recent
+            if dataSource[indexPath.row] == "Most Recent" {
+                switch categoryID {
+                case 0:
+                    EventsArray = EventsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
+                case 2:
+                    ClubsArray = ClubsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") < ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
+                default:
+                    print("default")
+                }
+            }
+            // filter by less recent
+            else {
+                switch categoryID {
+                case 0:
+                    EventsArray = EventsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
+                    cardTableView.reloadData()
+                case 2:
+                    ClubsArray = ClubsArray.sorted(by: {
+                        ("\(df.date(from: String(describing: $0[4] as! String) )! as Any)") > ("\(df.date(from: String(describing: $1[4] as! String) )! as Any)")
+                    })
+                default:
+                    print("default")
+                }
+            }
+            cardTableView.reloadData()
+            removeTransparentView()
         }
         
     }

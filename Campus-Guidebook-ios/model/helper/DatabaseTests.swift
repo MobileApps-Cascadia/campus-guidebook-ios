@@ -17,7 +17,7 @@ class DataBaseTests {
     func makeTests () {
         //__________Club_Tests___________//
         print("\n\n\nThis is the start of the Club demo tests.")
-        let mClub: Club = Club(name: "Club TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "start Date", startTime: "start Time", location: "location", contactURL: "test@gmail.com") //make the new database row
+        let mClub: Club = Club(name: "Club TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "start Date", startTime: "start Time", creationDate: "", location: "location", contactURL: "test@gmail.com") //make the new database row
         var array = [[Any]]()
         dbase.addClubRow(Club: mClub) //add the database row to the table
         dbase.addClubRow(Club: mClub) //add the database row to the table
@@ -44,7 +44,7 @@ class DataBaseTests {
         
 //        //__________Event_Tests___________//
         print("\n\n\nThis is the start of the Event demo tests.")
-        var mEvent: Event = Event(name: "Event TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "startDate", startTime: "startTime", creationDate: "creationDate", location: "location") //make the new database row
+        var mEvent: Event = Event(name: "Event TestName", description: "Test description", imageURL: "Cats. All the cats.", startDate: "startDate", startTime: "startTime", creationDate: "creationDate", location: "location", contactURL: "xyz@gmail.com") //make the new database row
         
         dbase.addEventRow(Event: mEvent) //add the database row to the table
         dbase.addEventRow(Event: mEvent) //add the database row to the table
