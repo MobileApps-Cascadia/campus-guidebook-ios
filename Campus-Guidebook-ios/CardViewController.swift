@@ -309,15 +309,23 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         addTransparentView(frame: filterBtn.frame)
     }
 
-    func filterContentForSearchText(_ searchText: String){
-      filteredClubs = ClubsArray.filter { (club: Club) -> Bool in
-        return club.Name.lowercased().contains(searchText.lowercased())
-      }
+    func filterContentForSearchText(_ searchText: String) {
+        filteredClubs = ClubsArray.filter {
+            (object: [Any]) -> Bool in
+//            if let club = object as? Club {
+                // print("Name of the club: " + club.Name + "search text: " + searchText)
+                return object[1].lowercased().contains(searchText.lowercased())
+                // } else {
+                // return false
+                // }
+                
+            }
       
-      cardTableView.reloadData()
-    }
+            cardTableView.reloadData()
+        }
     
-}
+    }
+//}
 
 //class ResultsVC: UIViewController {
 //    override func viewDidLoad() {
@@ -325,7 +333,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        view.backgroundColor = .white
 //    }
 //}
-        
+
 
 extension UIImage {
     
