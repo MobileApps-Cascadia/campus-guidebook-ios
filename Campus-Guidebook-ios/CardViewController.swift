@@ -277,8 +277,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print("id Sus")
                     
                 case 2:
-                    vc.id = ClubsArray[indexPath.row][0] as? String
-                    print("id Club")
+                    if isFiltering {
+                        vc.id = filteredClubs[indexPath.row][0] as? String
+                        print("id Club")
+                    } else {
+                        
+                        vc.id = ClubsArray[indexPath.row][0] as? String
+                        print("id Club")
+                    }
                 default:
                     print("default")
                 }
@@ -349,7 +355,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func filterContentForSearchText(_ searchText: String) {
         print (ClubsArray.filter)
         filteredClubs = ClubsArray.filter({ object in
-            return ( object[1] as! String ).contains(searchText)
+            return ( object[1] as! String ).lowercased().contains(searchText.lowercased())
         })
 //            $0[1].lowercased().contains(searchText.lowercased())
         
