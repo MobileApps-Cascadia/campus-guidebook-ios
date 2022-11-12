@@ -31,31 +31,27 @@ class CardDetailViewController: UIViewController {
         print("Card details View is loaded")
         
         switch categoryID {
-            
         case 0:
             array = dbase.getRowByID(tableName: "Event", id: Int(id)!)
-            startDateLabel.text = (array[0][4]) as? String
-            startTimeLabel.text = (array[0][5]) as? String
-            contactInfoLabel.text = (array[0][6]) as? String
-            locationLabel.text = (array[0][7]) as? String
+            startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
+            startTimeLabel.text = "Time: \(((array[0][5]) as? String)!)"
+            contactInfoLabel.text = "Contact: \(((array[0][6]) as? String)!)"
+            locationLabel.text = "Location: \(((array[0][7]) as? String)!)"
             print("Event ID")
-            
         case 1:
             array = dbase.getRowByID(tableName: "Sustainability", id: Int(id)!)
+            startDateLabel.text = ""
+            startTimeLabel.text = ""
+            contactInfoLabel.text = ""
+            locationLabel.text = ""
             print("Sus ID")
-            
         case 2:
             array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
-            startDateLabel.text = (array[0][4]) as? String
-            startTimeLabel.text = (array[0][5]) as? String
-            contactInfoLabel.text = (array[0][6]) as? String
-            locationLabel.text = (array[0][7]) as? String
+            startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
+            startTimeLabel.text = "Time: \(((array[0][5]) as? String)!)"
+            contactInfoLabel.text = "Contact: \(((array[0][6]) as? String)!)"
+            locationLabel.text = "Location: \(((array[0][7]) as? String)!)"
             print("Club ID")
-            
-        case 3:
-            array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
-            print("Club ID")
-            
         default:
             print("default")
         }
@@ -64,7 +60,7 @@ class CardDetailViewController: UIViewController {
         
         print(array)
         titleLabel.text = (array[0][1]) as? String
-        descriptionLabel.text = (array[0][2]) as? String
+        descriptionLabel.text = "Description: \n\(((array[0][2]) as? String)!)"
         let image = getImg(urlString: array[0][3] as! String)
         imgView.image = image
 
