@@ -36,38 +36,16 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var categoryID: Int!
     
-    //    let searchController = UISearchController(searchResultsController: ResultsVC())
-    var clubs = [[Club]]()
     let searchController = UISearchController(searchResultsController: nil)
     var filteredClubs = [[Any]]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Adds a search results updater
-        // 1
+    
         searchController.searchResultsUpdater = self
-        // 2
         searchController.obscuresBackgroundDuringPresentation = false
-        // 3
-        switch categoryID {
-        case 0:
-            self.title = "Events"
-        case 1:
-            self.title = "Sustainability"
-        case 2:
-            self.title = "Clubs"
-        default:
-            return self.title = "here"
-        }
-        searchController.searchBar.placeholder = "Search " + self.title!
-        // 4
-        navigationItem.searchController = searchController
-        // 5
         definesPresentationContext = true
-        
-        
         
         dropDownTableView.delegate = self
         dropDownTableView.dataSource = self
@@ -113,9 +91,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         case 2:
             self.title = "clubs"
             filterBtn.isHidden = false
+            navigationItem.searchController = searchController
+            searchController.searchBar.placeholder = "Search " + self.title!
             print("clubs")
         default:
             print("default")
+            navigationItem.searchController = searchController
+            searchController.searchBar.placeholder = "Search here"
         }
         
         ClubsArray = dbase.getAllTableContents(tablename: "Club")//get all rows
@@ -353,35 +335,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        print (ClubsArray.filter)
-        filteredClubs = ClubsArray.filter({ object in
-            return ( object[1] as! String ).lowercased().contains(searchText.lowercased())
-        })
-//            $0[1].lowercased().contains(searchText.lowercased())
-        
-            // (object: [Any]) -> Bool in
-
-            //            if let club = object as? Club {
-            // print("Name of the club: " + club.Name + "search text: " + searchText)
-//            return object.lowercased().contains(searchText.lowercased())
-            // } else {
-            // return false
-//             }
-
-//        }
-
+            filteredClubs = ClubsArray.filter( { object in
+                return ( object[1] as! String ).lowercased().contains(searchText.lowercased())
+            })
         cardTableView.reloadData()
     }
     
 }
-
-
-//class ResultsVC: UIViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .white
-//    }
-//}
 
 
 extension UIImage {
@@ -417,11 +377,3 @@ extension CardsViewController: UISearchResultsUpdating {
         print(text)
     }
 }
-
-//func updateSearchResults(for searchController: UISearchController) {
-//    guard let text = searchController.searchBar.text else { return }
-//
-//    let vc = searchController.searchResultsController as? ResultsVC
-//    vc?.view.backgroundColor = .white
-//    print(text)
-//}
