@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class CardDetailViewController: UIViewController {
     
@@ -18,7 +20,25 @@ class CardDetailViewController: UIViewController {
     
     @IBOutlet weak var locationNavButton: UIButton!
     @IBAction func nav(sender: UIButton) {//Segue trigger for navigating to maps page
-        performSegue(withIdentifier: "MapToLocation", sender: sender)
+        
+        let lat1 : NSString = LocationButtonText.components(separatedBy: ", ")[0] as NSString
+        let lng1 : NSString = LocationButtonText.components(separatedBy: ", ")[1] as NSString
+            
+            let latitude:CLLocationDegrees =  lat1.doubleValue
+            let longitude:CLLocationDegrees =  lng1.doubleValue
+            
+            let regionDistance:CLLocationDistance = 10000
+            let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+            let options = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+            ]
+            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "\(String(describing: titleLabel.text))"
+        mapItem.openInMaps(launchOptions: options)
+        
     }
     //    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contactInfoLabel: UILabel!
@@ -100,14 +120,14 @@ class CardDetailViewController: UIViewController {
         }
     }
     // MARK: - Navigation to maps page
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //NAVIGATION
-        if segue.identifier == "MapToLocation" {
-            if let nextViewController = segue.destination as? mapViewController {
-                nextViewController.long = Double(LocationButtonText.components(separatedBy: ", ")[0])
-                nextViewController.lat = Double(LocationButtonText.components(separatedBy: ", ")[1])
-            }
-        }
-    }
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //NAVIGATION
+    //    if segue.identifier == "MapToLocation" {
+    //        if let nextViewController = segue.destination as? mapViewController {
+    //            nextViewController.long = Double(LocationButtonText.components(separatedBy: ", ")[0])
+    //            nextViewController.lat = Double(LocationButtonText.components(separatedBy: ", ")[1])
+    //        }
+    //    }
+    //}
 }
 
 //extension UIImage {
