@@ -13,7 +13,7 @@ class CellClass: UITableViewCell {
     
 }
 
-class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var cardTableView: UITableView!
     
@@ -36,46 +36,24 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var categoryID: Int!
     
-    let searchController = UISearchController(searchResultsController: ResultsVC())
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredClubs = [[Any]]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Adds a search results updater
+    
         searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
-        
-        //RW
-        // 1
-        searchController.searchResultsUpdater = self
-        // 2
         searchController.obscuresBackgroundDuringPresentation = false
-        // 3
-        switch categoryID {
-        case 0:
-            self.title = "Events"
-        case 1:
-            self.title = "Sustainability"
-        case 2:
-            self.title = "Clubs"
-        default:
-            return self.title = "here"
-        }
-        searchController.searchBar.placeholder = "Search " + self.title!
-        // 4
-        navigationItem.searchController = searchController
-        // 5
         definesPresentationContext = true
         
-        
-
         dropDownTableView.delegate = self
         dropDownTableView.dataSource = self
         dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
         cardTableView.delegate = self
         cardTableView.dataSource = self
         filterBtn.isHidden = true
-
+        
         //remove tables and create them
         dbase.RemoveDBTables()
         dbase.CreateTable()
@@ -113,9 +91,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         case 2:
             self.title = "clubs"
             filterBtn.isHidden = false
-            print("Clubs")
+            navigationItem.searchController = searchController
+            searchController.searchBar.placeholder = "Search " + self.title!
+            print("clubs")
         default:
             print("default")
+            navigationItem.searchController = searchController
+            searchController.searchBar.placeholder = "Search here"
         }
         
         ClubsArray = dbase.getAllTableContents(tablename: "Club")//get all rows
@@ -148,9 +130,18 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
             self.transparentView.alpha = 0
             self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
-
+            
         }
     }
+    
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
     
     // MARK: How many rows in the tableView?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -167,23 +158,30 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 count = sampleData.sustainabilityTitles.count
             case 2:
                 self.title = "Clubs"
-                count = sampleData.clubTitles.count
+                if isFiltering {
+                    count = filteredClubs.count
+                } else {
+                    count = sampleData.clubTitles.count
+                }
             default:
                 count = 0
             }
-
+            
         }
         
         if tableView == self.dropDownTableView {
             count = dataSource.count
         }
+        
+        
+        
         return count!
         
     }
     
     // MARK: Defines what cells are being used
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-  
+        
         if tableView == self.cardTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
             var image: UIImage!
@@ -210,19 +208,32 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                picture: image)
             case 2:
                 //checks if img is a url
-                image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
-                
-                cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
-                               title: (ClubsArray[indexPath.row][1] as? String)!,
-                               description: (ClubsArray[indexPath.row][2] as? String)!,
-                               picture: image,
-                               date: ClubsArray[indexPath.row][4] as? String,
-                               location: ClubsArray[indexPath.row][7] as? String)
+                if isFiltering  {
+                    // if it is searching, use the filtered array, otherwise use the original array
+                    image = getImg(urlString: filteredClubs[indexPath.row][3] as! String)
+                    
+                    cell.configure(id: (filteredClubs[indexPath.row][0] as? String)!,
+                                   title: (filteredClubs[indexPath.row][1] as? String)!,
+                                   description: (filteredClubs[indexPath.row][2] as? String)!,
+                                   picture: image)
+                } else {
+                    
+                    image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
+                    
+                    cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
+                                   title: (ClubsArray[indexPath.row][1] as? String)!,
+                                   description: (ClubsArray[indexPath.row][2] as? String)!,
+                                   picture: image)
+                }
             default:
                 print("default")
             }
+            
+            
             return cell
         }
+        
+        
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             cell.textLabel?.text = dataSource[indexPath.row]
@@ -248,8 +259,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print("id Sus")
                     
                 case 2:
-                    vc.id = ClubsArray[indexPath.row][0] as? String
-                    print("id Club")
+                    if isFiltering {
+                        vc.id = filteredClubs[indexPath.row][0] as? String
+                        print("id Club")
+                    } else {
+                        
+                        vc.id = ClubsArray[indexPath.row][0] as? String
+                        print("id Club")
+                    }
                 default:
                     print("default")
                 }
@@ -310,33 +327,22 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-
     
-    // MARK: Search result updater
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        
-        let vc = searchController.searchResultsController as? ResultsVC
-        vc?.view.backgroundColor = .white
-        print(text)
-    }
-    
-
     @IBAction func filterBtn_Onclick(_ sender: Any) {
         dataSource = ["Most Recent", "Less Recent"]
         selectedBtn = filterBtn
         addTransparentView(frame: filterBtn.frame)
     }
-
-}
-
-class ResultsVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
+    
+    func filterContentForSearchText(_ searchText: String) {
+            filteredClubs = ClubsArray.filter( { object in
+                return ( object[1] as! String ).lowercased().contains(searchText.lowercased())
+            })
+        cardTableView.reloadData()
     }
+    
 }
-        
+
 
 extension UIImage {
     
@@ -356,5 +362,18 @@ extension String {
         } else {
             return false
         }
+    }
+}
+
+
+// MARK: Search result updater
+extension CardsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+        //      ClubsArray.filter( $0[1].contains()
+        print(text)
     }
 }
