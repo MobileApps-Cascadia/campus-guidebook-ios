@@ -12,6 +12,7 @@ import Foundation
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
     let dbTest: DataBaseTests = DataBaseTests()
+    let RoomsTest: Rooms = Rooms() //rooms test
     
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]
     
@@ -23,6 +24,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         dbTest.removeTables()
         dbTest.makeTables()
         dbTest.makeTests()
+        //do tests of Rooms
+        RoomsTest.checkUniqueData()
+        let roomLocation = RoomsTest.getRoomCoordinatesByName(Building: "CC1", roomNumber: 250)
+        print("Get the location of the room CC1-250: \(roomLocation)")
+        let roomName = RoomsTest.getRoomNameByCoordinates(Long: 47.7611409, Lat: -122.1917763)
+        print("Get the name of the room at Long: 47.7611409, Lat: -122.1917763: \(roomName)")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
