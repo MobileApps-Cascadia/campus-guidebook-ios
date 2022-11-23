@@ -84,9 +84,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         case 0:
             self.title = "Events"
             filterBtn.isHidden = false
+            navigationItem.searchController = searchController
+            searchController.searchBar.placeholder = "Search " + self.title!
             print("events")
         case 1:
             self.title = "Sustainability"
+            navigationItem.searchController = searchController
+            searchController.searchBar.placeholder = "Search " + self.title!
             print("sustainability")
         case 2:
             self.title = "clubs"
@@ -216,11 +220,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 //checks if img is a url
                 if isFiltering  {
                     // if it is searching, use the filtered array, otherwise use the original array
-                    image = getImg(urlString: filteredClubs[indexPath.row][3] as! String)
+                    image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
                     
-                    cell.configure(id: (filteredClubs[indexPath.row][0] as? String)!,
-                                   title: (filteredClubs[indexPath.row][1] as? String)!,
-                                   description: (filteredClubs[indexPath.row][2] as? String)!,
+                    cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
+                                   title: (filteredObjects[indexPath.row][1] as? String)!,
+                                   description: (filteredObjects[indexPath.row][2] as? String)!,
                                    picture: image)
                 } else {
                     
@@ -266,7 +270,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     
                 case 2:
                     if isFiltering {
-                        vc.id = filteredClubs[indexPath.row][0] as? String
+                        vc.id = filteredObjects[indexPath.row][0] as? String
                         print("id Club")
                     } else {
                         
@@ -341,7 +345,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func filterContentForSearchText(_ searchText: String) {
-            filteredClubs = ClubsArray.filter( { object in
+            filteredObjects = ClubsArray.filter( { object in
                 return ( object[1] as! String ).lowercased().contains(searchText.lowercased())
             })
         cardTableView.reloadData()
