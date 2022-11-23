@@ -37,8 +37,8 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var categoryID: Int!
     
     let searchController = UISearchController(searchResultsController: nil)
-    var filteredClubs = [[Any]]()
-    
+    var filteredObjects = [[Any]]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
