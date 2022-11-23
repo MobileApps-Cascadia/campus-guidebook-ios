@@ -152,14 +152,22 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             switch categoryID {
             case 0:
                 self.title = "Events"
-                count = sampleData.eventTitles.count
+                if isFiltering {
+                    count = filteredObjects.count
+                } else {
+                    count = sampleData.eventTitles.count }
+
             case 1:
                 self.title = "Sustainability"
-                count = sampleData.sustainabilityTitles.count
+                if isFiltering {
+                    count = filteredObjects.count
+                } else {
+                    count = sampleData.sustainabilityTitles.count }
+
             case 2:
                 self.title = "Clubs"
                 if isFiltering {
-                    count = filteredClubs.count
+                    count = filteredObjects.count
                 } else {
                     count = sampleData.clubTitles.count
                 }
@@ -172,8 +180,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if tableView == self.dropDownTableView {
             count = dataSource.count
         }
-        
-        
         
         return count!
         
