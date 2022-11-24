@@ -74,6 +74,6 @@ class Rooms {
                 }
             }
         }
-        return "G2G"
+        return "G2G" 
     }
 }
