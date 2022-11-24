@@ -345,9 +345,29 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func filterContentForSearchText(_ searchText: String) {
+        switch categoryID {
+            // Events
+        case 0:
+            filteredObjects = EventsArray.filter({ object in
+                return( object[1] as! String ).lowercased().contains(searchText.lowercased())
+            })
+            
+            //Sustainability
+        case 1:
+            filteredObjects = SustainabilityArray.filter({ object in
+                return( object[1] as! String ).lowercased().contains(searchText.lowercased())
+            })
+            
+            // Clubs
+        case 2:
             filteredObjects = ClubsArray.filter( { object in
                 return ( object[1] as! String ).lowercased().contains(searchText.lowercased())
             })
+            
+        default:
+            print ("default")
+            
+        }
         cardTableView.reloadData()
     }
     
