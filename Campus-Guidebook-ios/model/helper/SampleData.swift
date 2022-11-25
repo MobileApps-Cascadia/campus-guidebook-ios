@@ -25,7 +25,7 @@ class SampleData {
         "The engineering club is open to any student who is interested in science, technology, engineering, and math (STEM). Through hands on activities, members of all skill levels will have the opportunity to design, build, and share engineered projects with other creative problem solvers. Get ready to strengthen your skills, create a collection of projects related to your career, and connect with your peers! Some of the club projects we've undertaken include designing 3d printing models, making a video game with python, and electronic prototyping with Arduino.",
         "The purpose of this club is to provide a comfortable place for the students at Cascadia college to learn and experience Japanese culture together. In our club, we will share traditional Japanese culture such as Japanese calligraphy, origami, karate, etc. together."]
     let clubStartdates: [String] = ["11/11/2023", "08/23/2023", "05/12/2023", "04/07/2023"]
-    let clubStartTimes: [String] = ["2:00 - 3:15 PM", "2:00-3:30 PM", "2:00 - 3:15 PM", "2:00-4:00 PM"]
+    let clubStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM"]
     let clubLocations: [String] = ["ARC1-210", "ARC2-360", "ARC1-210", "ARC2-360"]
     let clubContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com"]
     
@@ -40,7 +40,7 @@ class SampleData {
     let eventDescriptions: [String] = ["Roll the dice at EAB and CEB's annual Casino Night!", "The biggest Engineering event of the year", "Meets every other Tuesday at 3:30", "Meets every other Tuesday at 3:30", "Meets every other Tuesday at 3:30"]
     
     let eventStartDate: [String] = ["11/11/2023", "08/23/2023", "05/12/2023", "04/07/2023", "12/16/2023"]
-    let eventStartTimes: [String] = ["2:00 - 3:15 PM", "2:00-3:30 PM", "2:00 - 3:15 PM", "2:00-4:00 PM", "4:00-6:00 PM"]
+    let eventStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM", "4:00 PM - 6:00 PM"]
     let eventLocation: [String] = ["47.761121, -122.192806", "47.760536, -122.191381", "Online", "Online", "Online"]
     let eventContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com", "zyx@gmail.com"]
 

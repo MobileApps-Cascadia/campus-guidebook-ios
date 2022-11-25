@@ -346,6 +346,9 @@
                                                 <rect key="frame" x="14" y="512" width="386" height="35"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Subscribe"/>
+                                                <connections>
+                                                    <action selector="SubscribeToEvent:" destination="ehh-1n-4EJ" eventType="touchUpInside" id="hew-X9-Ldb"/>
+                                                </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bcl-8d-J8V">
                                                 <rect key="frame" x="20" y="-10" width="374" height="441"/>
@@ -435,6 +438,7 @@
                         <outlet property="locationNavButton" destination="Y8f-ja-04N" id="9T2-MS-YVA"/>
                         <outlet property="startDateLabel" destination="QIt-Y9-xtT" id="xlj-hc-GlC"/>
                         <outlet property="startTimeLabel" destination="JNu-Q9-tyK" id="OPX-uk-og7"/>
+                        <outlet property="subscribeButton" destination="m6A-jl-Mh9" id="cou-zA-7N1"/>
                         <outlet property="titleLabel" destination="aPM-ne-nO8" id="MQZ-mt-EyH"/>
                     </connections>
                 </viewController>
