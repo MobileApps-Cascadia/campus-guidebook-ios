@@ -200,6 +200,15 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             case 0:
                 //checks if img is a url
                 print(EventsArray[indexPath.row])
+                if isFiltering  {
+                    // if it is searching, use the filtered array, otherwise use the original array
+                    image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
+                    
+                    cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
+                                   title: (filteredObjects[indexPath.row][1] as? String)!,
+                                   description: (filteredObjects[indexPath.row][2] as? String)!,
+                                   picture: image)
+                } else {
                 image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
                 
                 cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
@@ -208,14 +217,25 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                picture: image,
                                date: EventsArray[indexPath.row][4] as? String,
                                location: EventsArray[indexPath.row][7] as? String)
+                }
             case 1:
                 //checks if img is a url
+                if isFiltering  {
+                    // if it is searching, use the filtered array, otherwise use the original array
+                    image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
+                    
+                    cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
+                                   title: (filteredObjects[indexPath.row][1] as? String)!,
+                                   description: (filteredObjects[indexPath.row][2] as? String)!,
+                                   picture: image)
+                } else {
                 image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
                 
                 cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
                                title: (SustainabilityArray[indexPath.row][1] as? String)!,
                                description: (SustainabilityArray[indexPath.row][2] as? String)!,
                                picture: image)
+                }
             case 2:
                 //checks if img is a url
                 if isFiltering  {
