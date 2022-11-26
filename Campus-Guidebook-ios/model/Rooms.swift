@@ -36,14 +36,9 @@ class Rooms {
     init(){
         
     }
-    func checkUniqueData(){
-        if checkForUniqueCoordinates() != "G2G"{
-            print(checkForUniqueCoordinates())
-        }else{
-            print("G2G")
-        }
-    }
-    func getRoomCoordinatesByName(Building: String, roomNumber: Int) -> String{
+    func getRoomCoordinatesByName(Room: String) -> String{
+    var Building: String = String(Room.components(separatedBy: "-")[0])
+    var roomNumber: Int = Int(Room.components(separatedBy: "-")[1])!
         for room in rooms{
             if ("\(room[0])" == Building){
                 if(room[1] as! Int == roomNumber){
@@ -52,28 +47,5 @@ class Rooms {
             }
         }
         return "Error in searching for coordinates"
-    }
-    func getRoomNameByCoordinates(Long: Double, Lat: Double) -> String{
-        for room in rooms{
-            if (room[3] as! Double == Long){
-                if(room[4] as! Double == Lat){
-                    return "\(room[0])-\(room[1])"
-                }
-            }
-        }
-        return "Error in searching for room name"
-    }
-    private func checkForUniqueCoordinates() -> String{
-        for room1 in rooms{
-            for room2 in rooms{
-                if "\(room1[3])" == "\(room2[3])" && "\(room1[1])" != "\(room2[1])"{
-                    return "room \(room1[0])-\(room1[1]) is not unique"
-                }
-                if "\(room1[4])" == "\(room2[4])" && "\(room1[1])" != "\(room2[1])"{
-                    return "room \(room1[0])-\(room1[1]) is not unique"
-                }
-            }
-        }
-        return "G2G"
     }
 }

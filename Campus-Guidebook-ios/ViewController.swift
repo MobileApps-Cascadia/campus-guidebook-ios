@@ -26,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         dbTest.makeTests()
         //do tests of Rooms
         
-        let roomLocation = RoomsTest.getRoomCoordinatesByName(Building: "CC1", roomNumber: 250)
+        let roomLocation = RoomsTest.getRoomCoordinatesByName(Room: "CC1-250")
         print("Get the location of the room CC1-250: \(roomLocation)")
         let roomName = RoomsTest.getRoomNameByCoordinates(Long: 47.7611409, Lat: -122.1917763)
         print("Get the name of the room at Long: 47.7611409, Lat: -122.1917763: \(roomName)")
