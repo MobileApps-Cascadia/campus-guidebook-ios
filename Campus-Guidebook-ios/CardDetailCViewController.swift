@@ -38,7 +38,8 @@ class CardDetailViewController: UIViewController {
             ]
             let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "\(String(describing: titleLabel.text?.components(separatedBy: "(")[1].components(separatedBy: ")")[0]))"
+        
+        mapItem.name = "\(String(describing: titleLabel.text!))"
         mapItem.openInMaps(launchOptions: options)
         
     }
