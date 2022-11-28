@@ -218,6 +218,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                date: EventsArray[indexPath.row][4] as? String,
                                location: EventsArray[indexPath.row][7] as? String)
                 }
+                
             case 1:
                 //checks if img is a url
                 if isFiltering  {
@@ -236,6 +237,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                description: (SustainabilityArray[indexPath.row][2] as? String)!,
                                picture: image)
                 }
+                
             case 2:
                 //checks if img is a url
                 if isFiltering  {
@@ -272,37 +274,46 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Navigation
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == self.cardTableView {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
-                
-            {
-                vc.categoryID = categoryID
-                
-                switch categoryID {
-                case 0:
-                    vc.id = EventsArray[indexPath.row][0] as? String
-                    print("id Event")
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            if tableView == self.cardTableView {
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
                     
-                case 1:
-                    vc.id = SustainabilityArray[indexPath.row][0] as? String
-                    print("id Sus")
+                {
+                    vc.categoryID = categoryID
                     
-                case 2:
-                    if isFiltering {
-                        vc.id = filteredObjects[indexPath.row][0] as? String
-                        print("id Club")
-                    } else {
+                    switch categoryID {
+                    case 0:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Event")
+                        } else {
+                            vc.id = EventsArray[indexPath.row][0] as? String
+                            print("id Event")
+                        }
                         
-                        vc.id = ClubsArray[indexPath.row][0] as? String
-                        print("id Club")
+                    case 1:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Sus")
+                        } else {
+                            vc.id = SustainabilityArray[indexPath.row][0] as? String
+                            print("id Sus")
+                        }
+                        
+                    case 2:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Club")
+                        } else {
+                            vc.id = ClubsArray[indexPath.row][0] as? String
+                            print("id Club")
+                        }
+                    default:
+                        print("default")
                     }
-                default:
-                    print("default")
+                    navigationController?.pushViewController(vc, animated: true)
                 }
-                navigationController?.pushViewController(vc, animated: true)
             }
-        }
         
         if tableView == self.dropDownTableView {
             selectedBtn.setTitle(dataSource[indexPath.row], for: .normal)
