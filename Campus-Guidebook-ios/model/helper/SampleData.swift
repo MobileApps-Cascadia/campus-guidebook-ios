@@ -41,7 +41,7 @@ class SampleData {
     
     let eventStartDate: [String] = ["11/11/2023", "08/23/2023", "05/12/2023", "04/07/2023", "12/16/2023"]
     let eventStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM", "4:00 PM - 6:00 PM"]
-    let eventLocation: [String] = ["47.761121, -122.192806", "47.760536, -122.191381", "Online", "Online", "Online"]
+    let eventLocation: [String] = ["CC1-250", "CC1-240", "CC2-360", "CC1-331", "CC1-302"]
     let eventContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com", "zyx@gmail.com"]
 
 

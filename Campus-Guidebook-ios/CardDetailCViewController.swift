@@ -29,8 +29,10 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     
     @IBAction func nav(sender: UIButton) {//Segue trigger for navigating to imaps
         
-        let lat1 : NSString = LocationButtonText.components(separatedBy: ", ")[0] as NSString
-        let lng1 : NSString = LocationButtonText.components(separatedBy: ", ")[1] as NSString
+        let RoomCoordinates: String = RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText))
+        
+        let lat1 : NSString = RoomCoordinates.components(separatedBy: ", ")[0] as NSString
+        let lng1 : NSString = RoomCoordinates.components(separatedBy: ", ")[1] as NSString
             
             let latitude:CLLocationDegrees =  lat1.doubleValue
             let longitude:CLLocationDegrees =  lng1.doubleValue
@@ -44,7 +46,8 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             ]
             let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "\(String(describing: titleLabel.text))"
+        
+        mapItem.name = "\(String(describing: titleLabel.text!))"
         mapItem.openInMaps(launchOptions: options)
         
     }
@@ -52,6 +55,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     @IBOutlet weak var contactInfoLabel: UILabel!
     
     let dbase: DatabaseHelper = DatabaseHelper()
+    let RoomsClass: Rooms = Rooms()
     let eventStore = EKEventStore()
     
     var categoryID: Int!
@@ -116,8 +120,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             locationNavButton.setTitle("Take me here", for: .normal)//Set name of the map button
             subscribeButton.isHidden = false
             
-            print("long in carddetail vc: \(LocationButtonText.components(separatedBy: ", ")[0])")
-            print("lat in carddetail vc: \(LocationButtonText.components(separatedBy: ", ")[1])")
+            print("Coordinates of room: \(RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText)))")
             print("Event ID")
         case 1:
             array = dbase.getRowByID(tableName: "Sustainability", id: Int(id)!)

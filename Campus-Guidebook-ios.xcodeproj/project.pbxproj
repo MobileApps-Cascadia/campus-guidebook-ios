@@ -20,6 +20,7 @@
 		3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */; };
 		3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */; };
 		3F3F50E5281B45750000F1DD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50E4281B45750000F1DD /* .gitignore */; };
+		3F63E7F4292BDEF0002DDB37 /* Rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E7F3292BDEF0002DDB37 /* Rooms.swift */; };
 		3F6A5EBC2835AEE60047DE45 /* DataBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */; };
 		3F6A5EC32835AF0B0047DE45 /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */; };
 		3FB329352904B6F80020852A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB329342904B6F80020852A /* MapKit.framework */; };
@@ -77,6 +78,7 @@
 		3F3F50DE2818DF020000F1DD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3F3F50E4281B45750000F1DD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3F63E7F3292BDEF0002DDB37 /* Rooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rooms.swift; sourceTree = "<group>"; };
 		3F6A5EB92835AEE60047DE45 /* DataBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseTests.swift; sourceTree = "<group>"; };
 		3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				DA1CFB1F281D99DB0060B255 /* Club.swift */,
 				DA1CFB21281D99E90060B255 /* Event.swift */,
 				DA1CFB23281D99FA0060B255 /* Sustainability.swift */,
+				3F63E7F3292BDEF0002DDB37 /* Rooms.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,
 				3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */,
 				DA1CFB20281D99DB0060B255 /* Club.swift in Sources */,
+				3F63E7F4292BDEF0002DDB37 /* Rooms.swift in Sources */,
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
 				DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */,
 				DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */,
