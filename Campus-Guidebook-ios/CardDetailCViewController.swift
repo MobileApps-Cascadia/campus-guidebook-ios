@@ -110,22 +110,21 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             dc.hour = Int(Date24EndTimeArray[0])
             dc.minute = Int(Date24EndTimeArray[1])
             eventDateAndEndTime = Calendar.current.date(byAdding: dc, to: eventEndDate)
-
             //GET DATE, START TIME, AND END TIME
-            
             contactInfoLabel.text = "Contact: \(((array[0][6]) as? String)!)"
-            
             LocationButtonText = (array[0][7]) as? String
             locationNavButton.setTitle("Take me here", for: .normal)//Set name of the map button
+            subscribeButton.isHidden = false
+            
             print("long in carddetail vc: \(LocationButtonText.components(separatedBy: ", ")[0])")
             print("lat in carddetail vc: \(LocationButtonText.components(separatedBy: ", ")[1])")
             print("Event ID")
         case 1:
             array = dbase.getRowByID(tableName: "Sustainability", id: Int(id)!)
-            startDateLabel.text = ""
-            startTimeLabel.text = ""
-            contactInfoLabel.text = ""
-            
+            startDateLabel.isHidden = true
+            startTimeLabel.isHidden = true
+            contactInfoLabel.isHidden = true
+            subscribeButton.isHidden = true
             print("Sus ID")
         case 2:
             array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
@@ -134,6 +133,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             contactInfoLabel.text = "Contact: \(((array[0][6]) as? String)!)"
             LocationButtonText = (array[0][7]) as? String
                         locationNavButton.setTitle("Take me here", for: .normal)
+            subscribeButton.isHidden = true
             print("Club ID")
         case 3:
                     array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
@@ -175,6 +175,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
         }
         
         func presentEventVC() {
+            
             let eventVC = EKEventEditViewController()
             eventVC.editViewDelegate = self
             eventVC.eventStore = EKEventStore()
@@ -184,13 +185,41 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             event.startDate = eventDateAndStartTime
             event.endDate = eventDateAndEndTime
             
-            eventVC.event = event
+            // set alarm 5 minutes before event
+            let alarm = EKAlarm(relativeOffset: TimeInterval(-2 * 86400))
+            event.addAlarm(alarm)
             
-            self.present(eventVC, animated: true, completion: nil)
+            if !checkEventExists(store: eventVC.eventStore, event: event) {
+                eventVC.event = event
+                self.present(eventVC, animated: true, completion: nil)
+            }
+            else {
+                // Create new Alert
+                 var dialogMessage = UIAlertController(title: "Confirm", message: "Event already exists.", preferredStyle: .alert)
+                 
+                 // Create OK button with action handler
+                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+//                     print("Ok button tapped")
+                  })
+                 
+                 //Add OK button to a dialog message
+                 dialogMessage.addAction(ok)
+                 // Present Alert to
+                 self.present(dialogMessage, animated: true, completion: nil)
+            }
+            
         }
     }
     
-    
+    func checkEventExists(store: EKEventStore, event eventToAdd: EKEvent) -> Bool {
+        let predicate = store.predicateForEvents(withStart: eventToAdd.startDate, end: eventToAdd.endDate, calendars: nil)
+        let existingEvents = eventStore.events(matching: predicate)
+
+        let exists = existingEvents.contains { (event) -> Bool in
+            return eventToAdd.title == event.title && event.startDate == eventToAdd.startDate && event.endDate == eventToAdd.endDate
+        }
+        return exists
+    }
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         controller.dismiss(animated: true, completion: nil)
