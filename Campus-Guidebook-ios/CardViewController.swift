@@ -54,8 +54,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cardTableView.dataSource = self
         filterBtn.isHidden = true
         
-        //remove tables and create them
-        //dbase.RemoveDBTables()
+        //Create DB tables if they don't exist
         dbase.CreateTable()
         
         //add sample data for clubs

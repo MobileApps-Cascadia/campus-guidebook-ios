@@ -61,31 +61,6 @@ class DatabaseHelper {
         }
         
     }
-//    func RemoveDBTables(){
-//        var ClubsTable: String = "DROP TABLE IF EXISTS Club;"
-//        var EventsTable: String = "DROP TABLE IF EXISTS Event;"
-//        var SustainabilityTable: String = "DROP TABLE IF EXISTS Sustainability;"
-//
-//        initTable(table: ClubsTable, name: "Club")
-//        initTable(table: EventsTable, name: "Event")
-//        initTable(table: SustainabilityTable, name: "Sustainability")
-//    }
-//    private func RemoveDB(table: String, name: String){
-//
-//        var statement: OpaquePointer? = nil
-//
-//        if sqlite3_prepare_v2(self.db, table, -1, &statement, nil) == SQLITE_OK{
-//            if sqlite3_step(statement) == SQLITE_DONE{
-//                print("\(name) table has been deleted successfuly")
-//
-//            }else{
-//                print("\(name) table delete fail")
-//            }
-//        }else{
-//            print("\(name) table delete prep fail \(SQLITE_ERROR)")
-//        }
-//
-//    }
     func getAllTableContents(tablename: String) -> [[String]]{
         var rArray = [[String]]()
         var subarray = [String]()
