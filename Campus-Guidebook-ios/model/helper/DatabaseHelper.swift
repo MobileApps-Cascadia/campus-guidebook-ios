@@ -61,15 +61,15 @@ class DatabaseHelper {
         }
         
     }
-    func RemoveDBTables(){
-        var ClubsTable: String = "DROP TABLE IF EXISTS Club;"
-        var EventsTable: String = "DROP TABLE IF EXISTS Event;"
-        var SustainabilityTable: String = "DROP TABLE IF EXISTS Sustainability;"
-        
-        initTable(table: ClubsTable, name: "Club")
-        initTable(table: EventsTable, name: "Event")
-        initTable(table: SustainabilityTable, name: "Sustainability")
-    }
+//    func RemoveDBTables(){
+//        var ClubsTable: String = "DROP TABLE IF EXISTS Club;"
+//        var EventsTable: String = "DROP TABLE IF EXISTS Event;"
+//        var SustainabilityTable: String = "DROP TABLE IF EXISTS Sustainability;"
+//
+//        initTable(table: ClubsTable, name: "Club")
+//        initTable(table: EventsTable, name: "Event")
+//        initTable(table: SustainabilityTable, name: "Sustainability")
+//    }
 //    private func RemoveDB(table: String, name: String){
 //
 //        var statement: OpaquePointer? = nil
