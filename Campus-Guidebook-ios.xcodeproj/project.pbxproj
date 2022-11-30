@@ -217,7 +217,6 @@
 				DA1CFB1F281D99DB0060B255 /* Club.swift */,
 				DA1CFB21281D99E90060B255 /* Event.swift */,
 				DA1CFB23281D99FA0060B255 /* Sustainability.swift */,
-				3F63E7F3292BDEF0002DDB37 /* Rooms.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -228,6 +227,7 @@
 				DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */,
 				DA1CFB28281D9A5A0060B255 /* SampleData.swift */,
 				3FC292EC283DA95E0021B469 /* DatabaseTests.swift */,
+				3F63E7F3292BDEF0002DDB37 /* Rooms.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";

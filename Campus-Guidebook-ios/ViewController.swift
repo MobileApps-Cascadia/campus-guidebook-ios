@@ -11,7 +11,7 @@ import Foundation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
   
-    let dbTest: DataBaseTests = DataBaseTests()
+    //let dbTest: DataBaseTests = DataBaseTests()
     let RoomsTest: Rooms = Rooms() //rooms test
     
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]
@@ -21,9 +21,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         //do tests of db
-        dbTest.removeTables()
-        dbTest.makeTables()
-        dbTest.makeTests()
+        //dbTest.removeTables()
+        //dbTest.makeTables()
+        //dbTest.makeTests()
         //do tests of Rooms
         
         let roomLocation = RoomsTest.getRoomCoordinatesByName(Room: "CC1-250")

@@ -94,6 +94,6 @@ class DataBaseTests {
     }
     
     func removeTables() {
-        dbase.RemoveDBTables()
+        //dbase.RemoveDBTables()
     }
 }
