@@ -192,13 +192,6 @@
 			path = "Campus-Guidebook-iosUITests";
 			sourceTree = "<group>";
 		};
-		3F63E801293E6EC6002DDB37 /* New Group1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
 		3F6A5EBA2835AEE60047DE45 /* DataBaseTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,7 +211,6 @@
 		DA1CFB1E281D99AE0060B255 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				3F63E801293E6EC6002DDB37 /* New Group1 */,
 				DA1CFB25281D9A1E0060B255 /* helper */,
 				DA1CFB1F281D99DB0060B255 /* Club.swift */,
 				DA1CFB21281D99E90060B255 /* Event.swift */,
