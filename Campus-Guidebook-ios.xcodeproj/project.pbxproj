@@ -28,9 +28,6 @@
 		3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */; };
 		3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B72821DB5000887B08 /* CardViewController.swift */; };
 		3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B92821DB9900887B08 /* CardCell.swift */; };
-		DA1CFB20281D99DB0060B255 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB1F281D99DB0060B255 /* Club.swift */; };
-		DA1CFB22281D99E90060B255 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB21281D99E90060B255 /* Event.swift */; };
-		DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB23281D99FA0060B255 /* Sustainability.swift */; };
 		DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */; };
 		DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB28281D9A5A0060B255 /* SampleData.swift */; };
 /* End PBXBuildFile section */
@@ -87,9 +84,6 @@
 		3FCB57B72821DB5000887B08 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		3FCB57B92821DB9900887B08 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		3FD7B8F728396B2300971237 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
-		DA1CFB1F281D99DB0060B255 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
-		DA1CFB21281D99E90060B255 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		DA1CFB23281D99FA0060B255 /* Sustainability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sustainability.swift; sourceTree = "<group>"; };
 		DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		DA1CFB28281D9A5A0060B255 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,9 +214,6 @@
 			children = (
 				3F63E802293E6F41002DDB37 /* DAOs */,
 				DA1CFB25281D9A1E0060B255 /* helper */,
-				DA1CFB1F281D99DB0060B255 /* Club.swift */,
-				DA1CFB21281D99E90060B255 /* Event.swift */,
-				DA1CFB23281D99FA0060B255 /* Sustainability.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -399,16 +390,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA1CFB22281D99E90060B255 /* Event.swift in Sources */,
 				3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */,
 				3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */,
 				3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */,
 				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,
-				DA1CFB20281D99DB0060B255 /* Club.swift in Sources */,
 				3F63E7F4292BDEF0002DDB37 /* Rooms.swift in Sources */,
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
 				DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */,
-				DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */,
 				3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */,
 				DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */,
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
