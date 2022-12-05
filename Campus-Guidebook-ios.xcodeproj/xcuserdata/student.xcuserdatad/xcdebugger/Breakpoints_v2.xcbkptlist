@@ -510,7 +510,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F1F18C6D-71AF-4CA1-BA21-AD3C84393083"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Campus-Guidebook-ios/CardViewController.swift"
