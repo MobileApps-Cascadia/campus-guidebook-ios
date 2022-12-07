@@ -23,7 +23,7 @@ class DatabaseHelper {
     }
     
     
-    private func CreateDB() -> OpaquePointer?{ //make a database file at this location. if it fails, print result
+    private func CreateDB() -> OpaquePointer?{ //Make a database file at this location. if it fails, print result.
         let FilePath = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathExtension(path)
         
         var db: OpaquePointer? = nil
@@ -38,9 +38,9 @@ class DatabaseHelper {
     }
     
     func CreateTable(){
-        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT, ContactURL TEXT);" //create the Clubs table
-        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT, ContactURL TEXT);" //create the Event table
-        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, Location TEXT);" //create the Sustainability table
+        let CreateClubTable: String = "CREATE TABLE IF NOT EXISTS Club (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT, ContactURL TEXT);" //Create the Clubs table
+        let CreateEventsTable: String = "CREATE TABLE IF NOT EXISTS Event (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, StartDate TEXT, StartTime TEXT, CreationDate TEXT, Location TEXT, ContactURL TEXT);" //Create the Event table
+        let CreateSustainabilityTable: String = "CREATE TABLE IF NOT EXISTS Sustainability (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, ImageURL TEXT, Location TEXT);" //Create the Sustainability table
         initTable(table: CreateClubTable, name: "Club")
         initTable(table: CreateEventsTable, name: "Event")
         initTable(table: CreateSustainabilityTable, name: "Sustainability")
@@ -100,7 +100,7 @@ class DatabaseHelper {
         }
     
     
-    func GetOpenDB() -> OpaquePointer{ //this method will return the activated database connection to use in objects
+    func GetOpenDB() -> OpaquePointer{ //This method will return the activated database connection to use in objects
         return db!
         
     }
@@ -116,8 +116,8 @@ class DatabaseHelper {
         
         if (Club != nil){
             let mClub: Club = Club!
-            let columnArray = [mClub.Name, mClub.Description, mClub.ImageURL, mClub.StartDate, mClub.StartTime, mClub.CreationDate, mClub.Location, mClub.ContactURL] //add new values here when you add another column to the table.
-            while (i < mClub.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+            let columnArray = [mClub.Name, mClub.Description, mClub.ImageURL, mClub.StartDate, mClub.StartTime, mClub.CreationDate, mClub.Location, mClub.ContactURL] //Add new values here when you add another column to the table.
+            while (i < mClub.InsertableValueCount){ //Auto-building the string of values based on the number of potental values in the spicific table.
                 if (i == 0){
                     valueString = "?"
                 }
@@ -161,8 +161,8 @@ class DatabaseHelper {
 
             if (Event != nil){
                 let mEvent: Event = Event!
-                let columnArray = [mEvent.Name, mEvent.Description, mEvent.ImageURL, mEvent.StartDate, mEvent.StartTime, mEvent.CreationDate, mEvent.Location, mEvent.ContactURL] //add new values here when you add another column to the table.
-                while (i < mEvent.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                let columnArray = [mEvent.Name, mEvent.Description, mEvent.ImageURL, mEvent.StartDate, mEvent.StartTime, mEvent.CreationDate, mEvent.Location, mEvent.ContactURL] //Add new values here when you add another column to the table.
+                while (i < mEvent.InsertableValueCount){ //Auto-building the string of values based on the number of potental values in the spicific table.
                     if (i == 0){
                         valueString = "?"
                     }
@@ -205,8 +205,8 @@ class DatabaseHelper {
         
             if (Sustainability != nil){
                 let mSustainability: Sustainability = Sustainability!
-                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.ImageURL, mSustainability.Location] //add new values here when you add another column to the table.
-                while (i < mSustainability.InsertableValueCount){ //autobuilding the string of values based on the number of potental values in the spicific table
+                let columnArray = [mSustainability.Name, mSustainability.Description, mSustainability.ImageURL, mSustainability.Location] //Add new values here when you add another column to the table.
+                while (i < mSustainability.InsertableValueCount){ //Auto-building the string of values based on the number of potental values in the spicific table.
                     if (i == 0){
                         valueString = "?"
                     }
