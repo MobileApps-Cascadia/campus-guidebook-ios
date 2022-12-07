@@ -26,7 +26,7 @@ class SampleData {
         "The purpose of this club is to provide a comfortable place for the students at Cascadia college to learn and experience Japanese culture together. In our club, we will share traditional Japanese culture such as Japanese calligraphy, origami, karate, etc. together."]
     let clubStartdates: [String] = ["11/11/2023", "08/23/2023", "05/12/2023", "04/07/2023"]
     let clubStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM"]
-    let clubLocations: [String] = ["ARC1-210", "ARC2-360", "ARC1-210", "ARC2-360"]
+    let clubLocations: [String] = ["CC2-380", "CC2-261", "CC1-351", "CC2-361"]
     let clubContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com"]
     
     // Sample Data for events

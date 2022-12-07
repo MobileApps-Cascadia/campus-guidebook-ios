@@ -218,7 +218,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             switch categoryID {
             case 0:
                 print(EventsArray[indexPath.row])
-                // if it is searching, use the filtered array, otherwise use the original array
                 if isFiltering  {
                     //checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
@@ -239,7 +238,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
             case 1:
-                // if it is searching, use the filtered array, otherwise use the original array
                 if isFiltering  {
                     //checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
@@ -258,7 +256,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
             case 2:
-                // if it is searching, use the filtered array, otherwise use the original array
                 if isFiltering  {
                     //checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
@@ -419,6 +416,8 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
 }
+
+// MARK: Extensions
 
 
 extension UIImage {

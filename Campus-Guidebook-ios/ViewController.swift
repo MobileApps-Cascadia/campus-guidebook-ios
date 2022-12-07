@@ -10,7 +10,7 @@ import SQLite3
 import Foundation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-  
+    
     //let dbTest: DataBaseTests = DataBaseTests()
     let RoomsTest: Rooms = Rooms() //rooms test
     
@@ -57,7 +57,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView,
-      didSelectItemAt indexPath: IndexPath) {
+                        didSelectItemAt indexPath: IndexPath) {
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
         
         
@@ -83,11 +83,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
             self.navigationController?.pushViewController(vc!, animated: true)
         }
-        
-        
-        
-      }
-
-
+    }
+    
+    
 }
 
