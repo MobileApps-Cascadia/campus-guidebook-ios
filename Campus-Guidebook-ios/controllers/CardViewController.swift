@@ -54,10 +54,10 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cardTableView.dataSource = self
         filterBtn.isHidden = true
         
-        //Create DB tables if they don't exist
+        // Create DB tables if they don't exist
         dbase.CreateTable()
         
-        //add sample data for clubs
+        // Add sample data for Clubs
         if (dbase.getAllTableContents(tablename: "Club").count != 0){
             print("Data already added to Club")
         } else{
@@ -69,7 +69,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        //add sample data for events
+        // Add sample data for Events
         if (dbase.getAllTableContents(tablename: "Event").count != 0){
             print("Data already added to Event")
         } else{
@@ -81,7 +81,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        //add sample data for sustainability
+        // Add sample data for Sustainability
         if (dbase.getAllTableContents(tablename: "Sustainability").count != 0){
             print("Data already added to Sustainability")
         } else{
@@ -89,11 +89,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             for i in 0..<sampleData.sustainabilityTitles.count {
                 //make the new database row
                 mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], imageURL: sampleData.sustainabilityPictures[i], location: "")
-                dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
+                dbase.addSustainabilityRow(Sustainability: mSustainability) // Add the database row to the table
             }
         }
         
-        //checks which category has been tapped on
+        // Checks which category has been tapped on
         switch categoryID {
         case 0:
             self.title = "Events"
@@ -109,7 +109,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             searchController.searchBar.placeholder = "Search " + self.title!
             print("sustainability")
         case 2:
-            self.title = "clubs"
+            self.title = "Clubs"
             filterBtn.isHidden = false
             navigationItem.searchController = searchController
             navigationItem.hidesSearchBarWhenScrolling = false
