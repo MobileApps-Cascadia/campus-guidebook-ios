@@ -4,7 +4,6 @@
 //
 //  Created by Student Account on 4/26/22.
 //
-
 import UIKit
 import SwiftUI
 
@@ -38,11 +37,11 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredObjects = [[Any]]()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -54,10 +53,10 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cardTableView.dataSource = self
         filterBtn.isHidden = true
         
-        //Create DB tables if they don't exist
+        // Create DB tables if they don't exist
         dbase.CreateTable()
         
-        //add sample data for clubs
+        // Add sample data for Clubs
         if (dbase.getAllTableContents(tablename: "Club").count != 0){
             print("Data already added to Club")
         } else{
@@ -69,7 +68,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        //add sample data for events
+        // Add sample data for Events
         if (dbase.getAllTableContents(tablename: "Event").count != 0){
             print("Data already added to Event")
         } else{
@@ -81,7 +80,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        //add sample data for sustainability
+        // Add sample data for Sustainability
         if (dbase.getAllTableContents(tablename: "Sustainability").count != 0){
             print("Data already added to Sustainability")
         } else{
@@ -89,33 +88,38 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             for i in 0..<sampleData.sustainabilityTitles.count {
                 //make the new database row
                 mSustainability = Sustainability(name: sampleData.sustainabilityTitles[i], description: sampleData.sustainabilityDescriptions[i], imageURL: sampleData.sustainabilityPictures[i], location: "")
-                dbase.addSustainabilityRow(Sustainability: mSustainability) //add the database row to the table
+                dbase.addSustainabilityRow(Sustainability: mSustainability) // Add the database row to the table
             }
         }
         
-        //checks which category has been tapped on
+        // Checks which category has been tapped on
         switch categoryID {
         case 0:
             self.title = "Events"
             filterBtn.isHidden = false
             navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
             searchController.searchBar.placeholder = "Search " + self.title!
             print("events")
         case 1:
             self.title = "Sustainability"
             navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
             searchController.searchBar.placeholder = "Search " + self.title!
             print("sustainability")
         case 2:
-            self.title = "clubs"
+            self.title = "Clubs"
             filterBtn.isHidden = false
             navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
             searchController.searchBar.placeholder = "Search " + self.title!
             print("clubs")
         default:
             print("default")
             navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
             searchController.searchBar.placeholder = "Search here"
+            
         }
         
         ClubsArray = dbase.getAllTableContents(tablename: "Club")//get all rows
@@ -174,14 +178,14 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     count = filteredObjects.count
                 } else {
                     count = sampleData.eventTitles.count }
-
+                
             case 1:
                 self.title = "Sustainability"
                 if isFiltering {
                     count = filteredObjects.count
                 } else {
                     count = sampleData.sustainabilityTitles.count }
-
+                
             case 2:
                 self.title = "Clubs"
                 if isFiltering {
@@ -212,10 +216,9 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             switch categoryID {
             case 0:
-                //checks if img is a url
                 print(EventsArray[indexPath.row])
                 if isFiltering  {
-                    // if it is searching, use the filtered array, otherwise use the original array
+                    // Checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
                     
                     cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
@@ -223,20 +226,19 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                    description: (filteredObjects[indexPath.row][2] as? String)!,
                                    picture: image)
                 } else {
-                image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
-                
-                cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
-                               title: (EventsArray[indexPath.row][1] as? String)!,
-                               description: (EventsArray[indexPath.row][2] as? String)!,
-                               picture: image,
-                               date: EventsArray[indexPath.row][4] as? String,
-                               location: EventsArray[indexPath.row][7] as? String)
+                    image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
+                    
+                    cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
+                                   title: (EventsArray[indexPath.row][1] as? String)!,
+                                   description: (EventsArray[indexPath.row][2] as? String)!,
+                                   picture: image,
+                                   date: EventsArray[indexPath.row][4] as? String,
+                                   location: EventsArray[indexPath.row][7] as? String)
                 }
                 
             case 1:
-                //checks if img is a url
                 if isFiltering  {
-                    // if it is searching, use the filtered array, otherwise use the original array
+                    // Checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
                     
                     cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
@@ -244,18 +246,17 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                    description: (filteredObjects[indexPath.row][2] as? String)!,
                                    picture: image)
                 } else {
-                image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
-                
-                cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
-                               title: (SustainabilityArray[indexPath.row][1] as? String)!,
-                               description: (SustainabilityArray[indexPath.row][2] as? String)!,
-                               picture: image)
+                    image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
+                    
+                    cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
+                                   title: (SustainabilityArray[indexPath.row][1] as? String)!,
+                                   description: (SustainabilityArray[indexPath.row][2] as? String)!,
+                                   picture: image)
                 }
                 
             case 2:
-                //checks if img is a url
                 if isFiltering  {
-                    // if it is searching, use the filtered array, otherwise use the original array
+                    //checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
                     
                     cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
@@ -263,7 +264,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                    description: (filteredObjects[indexPath.row][2] as? String)!,
                                    picture: image)
                 } else {
-                    
                     image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
                     
                     cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
@@ -275,10 +275,8 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("default")
             }
             
-            
             return cell
         }
-        
         
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -288,46 +286,46 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Navigation
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            if tableView == self.cardTableView {
-                if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
-                    
-                {
-                    vc.categoryID = categoryID
-                    
-                    switch categoryID {
-                    case 0:
-                        if isFiltering {
-                            vc.id = filteredObjects[indexPath.row][0] as? String
-                            print("id Event")
-                        } else {
-                            vc.id = EventsArray[indexPath.row][0] as? String
-                            print("id Event")
-                        }
-                        
-                    case 1:
-                        if isFiltering {
-                            vc.id = filteredObjects[indexPath.row][0] as? String
-                            print("id Sus")
-                        } else {
-                            vc.id = SustainabilityArray[indexPath.row][0] as? String
-                            print("id Sus")
-                        }
-                        
-                    case 2:
-                        if isFiltering {
-                            vc.id = filteredObjects[indexPath.row][0] as? String
-                            print("id Club")
-                        } else {
-                            vc.id = ClubsArray[indexPath.row][0] as? String
-                            print("id Club")
-                        }
-                    default:
-                        print("default")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == self.cardTableView {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "CardDetailsView") as? CardDetailViewController
+                
+            {
+                vc.categoryID = categoryID
+                
+                switch categoryID {
+                case 0:
+                    if isFiltering {
+                        vc.id = filteredObjects[indexPath.row][0] as? String
+                        print("id Event")
+                    } else {
+                        vc.id = EventsArray[indexPath.row][0] as? String
+                        print("id Event")
                     }
-                    navigationController?.pushViewController(vc, animated: true)
+                    
+                case 1:
+                    if isFiltering {
+                        vc.id = filteredObjects[indexPath.row][0] as? String
+                        print("id Sus")
+                    } else {
+                        vc.id = SustainabilityArray[indexPath.row][0] as? String
+                        print("id Sus")
+                    }
+                    
+                case 2:
+                    if isFiltering {
+                        vc.id = filteredObjects[indexPath.row][0] as? String
+                        print("id Club")
+                    } else {
+                        vc.id = ClubsArray[indexPath.row][0] as? String
+                        print("id Club")
+                    }
+                default:
+                    print("default")
                 }
+                navigationController?.pushViewController(vc, animated: true)
             }
+        }
         
         if tableView == self.dropDownTableView {
             selectedBtn.setTitle(dataSource[indexPath.row], for: .normal)
@@ -349,7 +347,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print("default")
                 }
             }
-            // filter by less recent
+            // Filter by less recent
             else {
                 switch categoryID {
                 case 0:
@@ -418,6 +416,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 }
 
+// MARK: Extensions
 
 extension UIImage {
     
@@ -448,7 +447,6 @@ extension CardsViewController: UISearchResultsUpdating {
         
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
-        //      ClubsArray.filter( $0[1].contains()
         print(text)
     }
 }
