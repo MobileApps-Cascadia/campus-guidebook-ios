@@ -21,17 +21,16 @@
 		3F3F50E1281A303D0000F1DD /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */; };
 		3F3F50E5281B45750000F1DD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3F3F50E4281B45750000F1DD /* .gitignore */; };
 		3F63E7F4292BDEF0002DDB37 /* Rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E7F3292BDEF0002DDB37 /* Rooms.swift */; };
+		3F63E80B293E7120002DDB37 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E809293E7120002DDB37 /* Club.swift */; };
+		3F63E80C293E7120002DDB37 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E80A293E7120002DDB37 /* Event.swift */; };
+		3F63E80E293E7138002DDB37 /* Sustainability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63E80D293E7138002DDB37 /* Sustainability.swift */; };
 		3F6A5EBC2835AEE60047DE45 /* DataBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */; };
 		3F6A5EC32835AF0B0047DE45 /* DatabaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */; };
 		3FB329352904B6F80020852A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB329342904B6F80020852A /* MapKit.framework */; };
 		3FB329372904B7AF0020852A /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB329362904B7AF0020852A /* mapViewController.swift */; };
-		3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC292EC283DA95E0021B469 /* DatabaseTests.swift */; };
 		3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */; };
 		3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B72821DB5000887B08 /* CardViewController.swift */; };
 		3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B92821DB9900887B08 /* CardCell.swift */; };
-		DA1CFB20281D99DB0060B255 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB1F281D99DB0060B255 /* Club.swift */; };
-		DA1CFB22281D99E90060B255 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB21281D99E90060B255 /* Event.swift */; };
-		DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB23281D99FA0060B255 /* Sustainability.swift */; };
 		DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */; };
 		DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB28281D9A5A0060B255 /* SampleData.swift */; };
 /* End PBXBuildFile section */
@@ -79,19 +78,18 @@
 		3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		3F3F50E4281B45750000F1DD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		3F63E7F3292BDEF0002DDB37 /* Rooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rooms.swift; sourceTree = "<group>"; };
+		3F63E809293E7120002DDB37 /* Club.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
+		3F63E80A293E7120002DDB37 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3F63E80D293E7138002DDB37 /* Sustainability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sustainability.swift; sourceTree = "<group>"; };
 		3F6A5EB92835AEE60047DE45 /* DataBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6A5EBB2835AEE60047DE45 /* DataBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseTests.swift; sourceTree = "<group>"; };
 		3F6A5EC22835AF0B0047DE45 /* DatabaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTest.swift; sourceTree = "<group>"; };
 		3FB329342904B6F80020852A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3FB329362904B7AF0020852A /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
-		3FC292EC283DA95E0021B469 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
 		3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailCViewController.swift; sourceTree = "<group>"; };
 		3FCB57B72821DB5000887B08 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		3FCB57B92821DB9900887B08 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		3FD7B8F728396B2300971237 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
-		DA1CFB1F281D99DB0060B255 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
-		DA1CFB21281D99E90060B255 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		DA1CFB23281D99FA0060B255 /* Sustainability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sustainability.swift; sourceTree = "<group>"; };
 		DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		DA1CFB28281D9A5A0060B255 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +192,16 @@
 			path = "Campus-Guidebook-iosUITests";
 			sourceTree = "<group>";
 		};
+		3F63E802293E6F41002DDB37 /* DAOs */ = {
+			isa = PBXGroup;
+			children = (
+				3F63E809293E7120002DDB37 /* Club.swift */,
+				3F63E80A293E7120002DDB37 /* Event.swift */,
+				3F63E80D293E7138002DDB37 /* Sustainability.swift */,
+			);
+			path = DAOs;
+			sourceTree = "<group>";
+		};
 		3F6A5EBA2835AEE60047DE45 /* DataBaseTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,10 +221,8 @@
 		DA1CFB1E281D99AE0060B255 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3F63E802293E6F41002DDB37 /* DAOs */,
 				DA1CFB25281D9A1E0060B255 /* helper */,
-				DA1CFB1F281D99DB0060B255 /* Club.swift */,
-				DA1CFB21281D99E90060B255 /* Event.swift */,
-				DA1CFB23281D99FA0060B255 /* Sustainability.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -226,7 +232,6 @@
 			children = (
 				DA1CFB26281D9A420060B255 /* DatabaseHelper.swift */,
 				DA1CFB28281D9A5A0060B255 /* SampleData.swift */,
-				3FC292EC283DA95E0021B469 /* DatabaseTests.swift */,
 				3F63E7F3292BDEF0002DDB37 /* Rooms.swift */,
 			);
 			path = helper;
@@ -394,17 +399,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA1CFB22281D99E90060B255 /* Event.swift in Sources */,
 				3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */,
 				3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */,
 				3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */,
+				3F63E80B293E7120002DDB37 /* Club.swift in Sources */,
+				3F63E80E293E7138002DDB37 /* Sustainability.swift in Sources */,
+				3F63E80C293E7120002DDB37 /* Event.swift in Sources */,
 				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,
-				3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */,
-				DA1CFB20281D99DB0060B255 /* Club.swift in Sources */,
 				3F63E7F4292BDEF0002DDB37 /* Rooms.swift in Sources */,
 				3F3F50AC281896E00000F1DD /* AppDelegate.swift in Sources */,
 				DA1CFB27281D9A420060B255 /* DatabaseHelper.swift in Sources */,
-				DA1CFB24281D99FA0060B255 /* Sustainability.swift in Sources */,
 				3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */,
 				DA1CFB29281D9A5A0060B255 /* SampleData.swift in Sources */,
 				3F3F50AE281896E00000F1DD /* SceneDelegate.swift in Sources */,
