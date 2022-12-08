@@ -26,7 +26,7 @@
 		3FB329352904B6F80020852A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB329342904B6F80020852A /* MapKit.framework */; };
 		3FB329372904B7AF0020852A /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB329362904B7AF0020852A /* mapViewController.swift */; };
 		3FC292ED283DA95E0021B469 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC292EC283DA95E0021B469 /* DatabaseTests.swift */; };
-		3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */; };
+		3FC700222846CFBF00C4D570 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC700212846CFBF00C4D570 /* CardDetailViewController.swift */; };
 		3FCB57B82821DB5000887B08 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B72821DB5000887B08 /* CardViewController.swift */; };
 		3FCB57BA2821DB9900887B08 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB57B92821DB9900887B08 /* CardCell.swift */; };
 		DA1CFB20281D99DB0060B255 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1CFB1F281D99DB0060B255 /* Club.swift */; };
@@ -85,7 +85,7 @@
 		3FB329342904B6F80020852A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3FB329362904B7AF0020852A /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
 		3FC292EC283DA95E0021B469 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
-		3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailCViewController.swift; sourceTree = "<group>"; };
+		3FC700212846CFBF00C4D570 /* CardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		3FCB57B72821DB5000887B08 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		3FCB57B92821DB9900887B08 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		3FD7B8F728396B2300971237 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				3FCB57B72821DB5000887B08 /* CardViewController.swift */,
-				3FC700212846CFBF00C4D570 /* CardDetailCViewController.swift */,
+				3FC700212846CFBF00C4D570 /* CardDetailViewController.swift */,
 				3F3F50E0281A303D0000F1DD /* DetailsViewController.swift */,
 				3FB329362904B7AF0020852A /* mapViewController.swift */,
 				3F3F50AF281896E00000F1DD /* ViewController.swift */,
@@ -403,7 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1CFB22281D99E90060B255 /* Event.swift in Sources */,
-				3FC700222846CFBF00C4D570 /* CardDetailCViewController.swift in Sources */,
+				3FC700222846CFBF00C4D570 /* CardDetailViewController.swift in Sources */,
 				3F3F50DF2818DF020000F1DD /* CollectionViewCell.swift in Sources */,
 				3F3F50B6281896E00000F1DD /* Campus_Guidebook_ios.xcdatamodeld in Sources */,
 				3F3F50B0281896E00000F1DD /* ViewController.swift in Sources */,

@@ -75,8 +75,5 @@ class mapViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDel
             renderer.lineWidth = 5
             return renderer
         }
-
-            
     }
-    
 }

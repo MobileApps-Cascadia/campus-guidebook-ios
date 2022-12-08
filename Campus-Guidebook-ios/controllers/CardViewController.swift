@@ -219,7 +219,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             case 0:
                 print(EventsArray[indexPath.row])
                 if isFiltering  {
-                    //checks if img is a url
+                    // Checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
                     
                     cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
@@ -239,7 +239,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
             case 1:
                 if isFiltering  {
-                    //checks if img is a url
+                    // Checks if img is a url
                     image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
                     
                     cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
@@ -348,7 +348,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print("default")
                 }
             }
-            // filter by less recent
+            // Filter by less recent
             else {
                 switch categoryID {
                 case 0:

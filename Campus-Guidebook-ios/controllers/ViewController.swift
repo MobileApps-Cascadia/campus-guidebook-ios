@@ -84,7 +84,5 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
-    
-    
 }
 

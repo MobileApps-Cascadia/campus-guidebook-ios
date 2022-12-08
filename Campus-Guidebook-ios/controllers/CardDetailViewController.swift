@@ -16,32 +16,32 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-     
+    
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var locationNavButton: UIButton!
     @IBOutlet weak var contactInfoLabel: UILabel!
-
-    @IBAction func nav(sender: UIButton) { //Segue trigger for navigating to imaps
+    
+    @IBAction func nav(sender: UIButton) { // Segue trigger for navigating to imaps
         
         let RoomCoordinates: String = RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText))
         
         let lat1 : NSString = RoomCoordinates.components(separatedBy: ", ")[0] as NSString
         let lng1 : NSString = RoomCoordinates.components(separatedBy: ",")[1] as NSString
-            
+        
         let latitude:CLLocationDegrees =  lat1.doubleValue
         let longitude:CLLocationDegrees =  lng1.doubleValue
-            
-            let regionDistance:CLLocationDistance = 10000
-            let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-            let options = [
-                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-                MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
-            ]
-            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
         
         mapItem.name = "\(String(describing: titleLabel.text!))"
         mapItem.openInMaps(launchOptions: options)
@@ -78,7 +78,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
             startTimeLabel.text = "Time: \(((array[0][5]) as? String)!)"
             
-            //GET DATE, START TIME, AND END TIME
+            // GET DATE, START TIME, AND END TIME
             eventDate = df.date(from: ((array[0][4]) as? String)!)
             eventEndDate = df.date(from: ((array[0][4]) as? String)!)
             
@@ -94,7 +94,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             
             let Date24 = df.string(from: date!)
             let Date24StartTimeArray = String(Date24).components(separatedBy: ":")
-
+            
             let Date24EndTime = df.string(from: date2!)
             let Date24EndTimeArray = String(Date24EndTime).components(separatedBy: ":")
             
@@ -185,17 +185,17 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             }
             else {
                 // Create new Alert
-                 var dialogMessage = UIAlertController(title: "Confirm", message: "Event already exists.", preferredStyle: .alert)
-                 
-                 // Create OK button with action handler
-                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-//                     print("Ok button tapped")
-                  })
-                 
-                 //Add OK button to a dialog message
-                 dialogMessage.addAction(ok)
-                 // Present Alert to
-                 self.present(dialogMessage, animated: true, completion: nil)
+                var dialogMessage = UIAlertController(title: "Confirm", message: "Event already exists.", preferredStyle: .alert)
+                
+                // Create OK button with action handler
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    //                     print("Ok button tapped")
+                })
+                
+                // Add OK button to a dialog message
+                dialogMessage.addAction(ok)
+                // Present Alert to
+                self.present(dialogMessage, animated: true, completion: nil)
             }
             
         }
@@ -204,7 +204,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     func checkEventExists(store: EKEventStore, event eventToAdd: EKEvent) -> Bool {
         let predicate = store.predicateForEvents(withStart: eventToAdd.startDate, end: eventToAdd.endDate, calendars: nil)
         let existingEvents = eventStore.events(matching: predicate)
-
+        
         let exists = existingEvents.contains { (event) -> Bool in
             return eventToAdd.title == event.title && event.startDate == eventToAdd.startDate && event.endDate == eventToAdd.endDate
         }
