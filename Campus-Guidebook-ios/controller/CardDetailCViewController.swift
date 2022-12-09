@@ -77,7 +77,7 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
             startTimeLabel.text = "Time: \(((array[0][5]) as? String)!)"
             
-            // GET DATE, START TIME, AND END TIME
+            // -- GET DATE, START TIME, AND END TIME --
             eventDate = df.date(from: ((array[0][4]) as? String)!)
             eventEndDate = df.date(from: ((array[0][4]) as? String)!)
             
@@ -104,7 +104,8 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             dc.hour = Int(Date24EndTimeArray[0])
             dc.minute = Int(Date24EndTimeArray[1])
             eventDateAndEndTime = Calendar.current.date(byAdding: dc, to: eventEndDate)
-            //GET DATE, START TIME, AND END TIME
+            // -- GET DATE, START TIME, AND END TIME --
+            
             contactInfoLabel.text = "Contact: \(((array[0][6]) as? String)!)"
             LocationButtonText = (array[0][7]) as? String
             locationNavButton.setTitle("Take me here", for: .normal)//Set name of the map button
@@ -112,13 +113,6 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             
             print("Coordinates of room: \(RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText)))")
             print("Event ID")
-        case 1:
-            array = dbase.getRowByID(tableName: "Sustainability", id: Int(id)!)
-            startDateLabel.isHidden = true
-            startTimeLabel.isHidden = true
-            contactInfoLabel.isHidden = true
-            subscribeButton.isHidden = true
-            print("Sus ID")
         case 2:
             array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
             startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
@@ -138,13 +132,11 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
         }
         
         print( "Category id is \(categoryID!)")
-        
-        print(array)
+        //            print(array)
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = "Description: \n\(((array[0][2]) as? String)!)"
         let image = getImg(urlString: array[0][3] as! String)
         imgView.image = image
-        
     }
     
     @IBAction func SubscribeToEvent(_ sender: Any) {
@@ -235,12 +227,3 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     //    }
     //}
 }
-
-//extension UIImage {
-//
-//    convenience init?(withContentsOfUrl url: URL) throws {
-//        let imageData = try Data(contentsOf: url)
-//
-//        self.init(data: imageData)
-//    }
-//}

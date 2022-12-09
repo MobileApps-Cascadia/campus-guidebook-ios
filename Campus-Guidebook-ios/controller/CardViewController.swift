@@ -293,17 +293,34 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             {
                 vc.categoryID = categoryID
                 
-                switch categoryID {
-                case 0:
-                    if isFiltering {
-                        vc.id = filteredObjects[indexPath.row][0] as? String
-                        print("id Event")
-                    } else {
-                        vc.id = EventsArray[indexPath.row][0] as? String
-                        print("id Event")
+                if categoryID == 0 || categoryID == 2 {
+                    switch categoryID {
+                    case 0:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Event")
+                        } else {
+                            vc.id = EventsArray[indexPath.row][0] as? String
+                            print("id Event")
+                        }
+                    case 2:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Club")
+                        } else {
+                            vc.id = ClubsArray[indexPath.row][0] as? String
+                            print("id Club")
+                        }
+                    default:
+                        print("default")
                     }
-                    
-                case 1:
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+            if categoryID == 1 {
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "SustainabilityCardView") as? SustainabilityCardViewController
+                {
                     if isFiltering {
                         vc.id = filteredObjects[indexPath.row][0] as? String
                         print("id Sus")
@@ -311,20 +328,41 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         vc.id = SustainabilityArray[indexPath.row][0] as? String
                         print("id Sus")
                     }
-                    
-                case 2:
-                    if isFiltering {
-                        vc.id = filteredObjects[indexPath.row][0] as? String
-                        print("id Club")
-                    } else {
-                        vc.id = ClubsArray[indexPath.row][0] as? String
-                        print("id Club")
-                    }
-                default:
-                    print("default")
+                    navigationController?.pushViewController(vc, animated: true)
                 }
-                navigationController?.pushViewController(vc, animated: true)
             }
+            
+            //                switch categoryID {
+            //                case 0:
+            //                    if isFiltering {
+            //                        vc.id = filteredObjects[indexPath.row][0] as? String
+            //                        print("id Event")
+            //                    } else {
+            //                        vc.id = EventsArray[indexPath.row][0] as? String
+            //                        print("id Event")
+            //                    }
+            //
+            //                case 1:
+            //                    if isFiltering {
+            //                        vc.id = filteredObjects[indexPath.row][0] as? String
+            //                        print("id Sus")
+            //                    } else {
+            //                        vc.id = SustainabilityArray[indexPath.row][0] as? String
+            //                        print("id Sus")
+            //                    }
+            //
+            //                case 2:
+            //                    if isFiltering {
+            //                        vc.id = filteredObjects[indexPath.row][0] as? String
+            //                        print("id Club")
+            //                    } else {
+            //                        vc.id = ClubsArray[indexPath.row][0] as? String
+            //                        print("id Club")
+            //                    }
+            //                default:
+            //                    print("default")
+            //                }
+            //                navigationController?.pushViewController(vc, animated: true)
         }
         
         if tableView == self.dropDownTableView {
