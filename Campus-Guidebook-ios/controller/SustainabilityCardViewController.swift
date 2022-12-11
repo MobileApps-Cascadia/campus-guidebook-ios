@@ -28,19 +28,41 @@ class SustainabilityCardViewController: UIViewController {
         
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = "Description: \n\(((array[0][2]) as? String)!)"
-        let image = getImg(urlString: array[0][3] as! String)
-        imgView.image = image
-        
+        getImg(urlString: array[0][3] as! String) { image in
+            self.imgView.image = image
+        }
     }
     
-    func getImg(urlString: String) -> UIImage {
+    func getImg(urlString: String, completion: @escaping (UIImage) -> Void) {
         let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
         if (imageUrlString.isValidURL) {
             let imageUrl = URL(string: imageUrlString)
-            return try! UIImage(withContentsOfUrl: imageUrl!)!
-        }
-        else {
-            return UIImage(named: imageUrlString)!
+            fetchAsyncImage(url: imageUrl!) { image in
+                // Return the image when it is ready
+                completion(image)
+            }
+        } else {
+            let image = UIImage(named: imageUrlString)!
+            completion(image)
         }
     }
+
+    func fetchAsyncImage(url: URL, completion: @escaping (UIImage) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                // do something with the data here
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
+            } else if let error = error {
+                // handle the error here
+                print("error fetching image error: \(error)")
+            }
+        }
+
+        task.resume()
+    }
+
 }
+
+

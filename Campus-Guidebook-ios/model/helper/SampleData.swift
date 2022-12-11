@@ -43,6 +43,7 @@ class SampleData {
     let eventStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM", "4:00 PM - 6:00 PM"]
     let eventLocation: [String] = ["CC1-250", "CC1-240", "CC2-360", "CC1-331", "CC1-302"]
     let eventContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com", "zyx@gmail.com"]
+    let eventSubscriptions: [String] = ["0", "0", "0", "0", "0"]
 
 
     // Sample Data for sustainability
