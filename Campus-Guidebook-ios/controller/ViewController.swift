@@ -79,14 +79,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         case 7:
             
             //Cascadia College location: 47.760106, -122.192030
+               
+                let latitude:CLLocationDegrees =  47.760106
+                let longitude:CLLocationDegrees =  -122.192030
                 
-                let lat1 : NSString = "47.760106" as NSString
-                let lng1 : NSString = "-122.192030" as NSString
-                
-                let latitude:CLLocationDegrees =  lat1.doubleValue
-                let longitude:CLLocationDegrees =  lng1.doubleValue
-                
-                let regionDistance:CLLocationDistance = 10000
+                let regionDistance:CLLocationDistance = 100
                 let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
                 let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
                 let options = [
@@ -96,7 +93,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
                 let mapItem = MKMapItem(placemark: placemark)
                 
-                mapItem.name = "\(String(describing: titleLabel.text!))"
+                mapItem.name = "Cascadia College"
                 mapItem.openInMaps(launchOptions: options)
                 
             
