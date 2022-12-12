@@ -7,6 +7,8 @@
 import UIKit
 import SQLite3
 import Foundation
+import MapKit
+import CoreLocation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -75,8 +77,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             vc?.categoryID = indexPath.row
             self.navigationController?.pushViewController(vc!, animated: true)
         case 7:
-            let vc1 = storyboard?.instantiateViewController(withIdentifier: "mapViewController") as? mapViewController
-            self.navigationController?.pushViewController(vc1!, animated: true)
+            
+            //Cascadia College location: 47.760106, -122.192030
+                
+                let lat1 : NSString = "47.760106" as NSString
+                let lng1 : NSString = "-122.192030" as NSString
+                
+                let latitude:CLLocationDegrees =  lat1.doubleValue
+                let longitude:CLLocationDegrees =  lng1.doubleValue
+                
+                let regionDistance:CLLocationDistance = 10000
+                let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                let options = [
+                    MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                    MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+                ]
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
+                
+                mapItem.name = "\(String(describing: titleLabel.text!))"
+                mapItem.openInMaps(launchOptions: options)
+                
+            
         default:
             let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
             vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
