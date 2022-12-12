@@ -10,7 +10,7 @@ import CoreLocation
 import EventKit
 import EventKitUI
 
-class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
+class CardDetailViewController: UIViewController, EKEventEditViewDelegate, EKEventViewDelegate {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,35 +21,15 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var locationNavButton: UIButton!
     @IBOutlet weak var contactInfoLabel: UILabel!
+    @IBOutlet weak var subscriberCount: UILabel!
     
-    @IBAction func nav(sender: UIButton) { // Segue trigger for navigating to imaps
-        
-        let RoomCoordinates: String = RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText))
-        
-        let lat1 : NSString = RoomCoordinates.components(separatedBy: ", ")[0] as NSString
-        let lng1 : NSString = RoomCoordinates.components(separatedBy: ",")[1] as NSString
-        
-        let latitude:CLLocationDegrees =  lat1.doubleValue
-        let longitude:CLLocationDegrees =  lng1.doubleValue
-        
-        let regionDistance:CLLocationDistance = 10000
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
-        ]
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
-        
-        mapItem.name = "\(String(describing: titleLabel.text!))"
-        mapItem.openInMaps(launchOptions: options)
-        
-    }
+    
     
     let dbase: DatabaseHelper = DatabaseHelper()
     let RoomsClass: Rooms = Rooms()
     let eventStore = EKEventStore()
+    let eventDeleteController = EKEventViewController()
+    //    eventDeleteController.delegate = self
     
     var categoryID: Int!
     var id: String!
@@ -68,16 +48,21 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        autoPopulateItems()
+    }
+    
+    func autoPopulateItems() {
         print("Card details View is loaded")
         df.dateFormat = "MM-dd-yyyy"
         
         switch categoryID {
         case 0:
             array = dbase.getRowByID(tableName: "Event", id: Int(id)!)
+            print(array)
             startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
             startTimeLabel.text = "Time: \(((array[0][5]) as? String)!)"
             
-            // GET DATE, START TIME, AND END TIME
+            // -- GET DATE, START TIME, AND END TIME --
             eventDate = df.date(from: ((array[0][4]) as? String)!)
             eventEndDate = df.date(from: ((array[0][4]) as? String)!)
             
@@ -104,21 +89,16 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
             dc.hour = Int(Date24EndTimeArray[0])
             dc.minute = Int(Date24EndTimeArray[1])
             eventDateAndEndTime = Calendar.current.date(byAdding: dc, to: eventEndDate)
-            //GET DATE, START TIME, AND END TIME
+            // -- GET DATE, START TIME, AND END TIME --
+            
             contactInfoLabel.text = "Contact: \(((array[0][6]) as? String)!)"
             LocationButtonText = (array[0][7]) as? String
             locationNavButton.setTitle("Take me here", for: .normal)//Set name of the map button
             subscribeButton.isHidden = false
+            subscriberCount.text = "Number of attendees: \(((array[0][9]) as? String)!)"
             
             print("Coordinates of room: \(RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText)))")
             print("Event ID")
-        case 1:
-            array = dbase.getRowByID(tableName: "Sustainability", id: Int(id)!)
-            startDateLabel.isHidden = true
-            startTimeLabel.isHidden = true
-            contactInfoLabel.isHidden = true
-            subscribeButton.isHidden = true
-            print("Sus ID")
         case 2:
             array = dbase.getRowByID(tableName: "Club", id: Int(id)!)
             startDateLabel.text = "Date: \(((array[0][4]) as? String)!)"
@@ -138,61 +118,102 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
         }
         
         print( "Category id is \(categoryID!)")
-        
-        print(array)
+        //            print(array)
         titleLabel.text = (array[0][1]) as? String
         descriptionLabel.text = "Description: \n\(((array[0][2]) as? String)!)"
-        let image = getImg(urlString: array[0][3] as! String)
-        imgView.image = image
+        getImg(urlString: array[0][3] as! String) { image in
+            DispatchQueue.main.async {
+                self.imgView.image = image
+            }
+        }
+    }
+    
+    @IBAction func nav(sender: UIButton) { // Segue trigger for navigating to imaps
+        
+        let RoomCoordinates: String = RoomsClass.getRoomCoordinatesByName(Room: String(LocationButtonText))
+        
+        let lat1 : NSString = RoomCoordinates.components(separatedBy: ", ")[0] as NSString
+        let lng1 : NSString = RoomCoordinates.components(separatedBy: ",")[1] as NSString
+        
+        let latitude:CLLocationDegrees =  lat1.doubleValue
+        let longitude:CLLocationDegrees =  lng1.doubleValue
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        
+        mapItem.name = "\(String(describing: titleLabel.text!))"
+        mapItem.openInMaps(launchOptions: options)
         
     }
     
     @IBAction func SubscribeToEvent(_ sender: Any) {
+        let eventVC = EKEventEditViewController()
+        eventVC.eventStore = eventStore
+        eventVC.editViewDelegate = self
+        
+        let event = EKEvent(eventStore: eventVC.eventStore)
+        event.title = self.titleLabel.text
+        event.startDate = self.eventDateAndStartTime
+        event.endDate = self.eventDateAndEndTime
+        event.location = "location"
+        
+        // set alarm 5 minutes before event
+        let alarm = EKAlarm(relativeOffset: TimeInterval(-2 * 86400))
+        event.addAlarm(alarm)
+        
         switch EKEventStore.authorizationStatus(for: .event) {
-        case .notDetermined:
+        case .notDetermined, .authorized:
             eventStore.requestAccess(to: .event) { granted, error in
                 if granted {
                     print("Authorized")
-                    presentEventVC()
+                    self.presentEventVC(eventStore: self.eventStore, event: event, eventVC: eventVC)
+                } else {
+                    print("Deauthorized")
                 }
             }
-        case .authorized:
-            print("Authorized")
-            presentEventVC()
         default:
             break
         }
-        
-        func presentEventVC() {
-            
-            let eventVC = EKEventEditViewController()
-            eventVC.editViewDelegate = self
-            eventVC.eventStore = EKEventStore()
-            
-            let event = EKEvent(eventStore: eventVC.eventStore)
-            event.title = titleLabel.text
-            event.startDate = eventDateAndStartTime
-            event.endDate = eventDateAndEndTime
-            
-            // set alarm 5 minutes before event
-            let alarm = EKAlarm(relativeOffset: TimeInterval(-2 * 86400))
-            event.addAlarm(alarm)
-            
-            if !checkEventExists(store: eventVC.eventStore, event: event) {
+    }
+    
+    func presentEventVC(eventStore: EKEventStore, event: EKEvent, eventVC: EKEventEditViewController) {
+        if !eventAlreadyExists(event: event) {
+            DispatchQueue.main.async {
                 eventVC.event = event
+                eventVC.eventStore = eventStore
                 self.present(eventVC, animated: true, completion: nil)
             }
-            else {
-                // Create new Alert
-                var dialogMessage = UIAlertController(title: "Confirm", message: "Event already exists.", preferredStyle: .alert)
+        }
+        else {
+            DispatchQueue.main.async {
                 
-                // Create OK button with action handler
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                    //                     print("Ok button tapped")
+                let dialogMessage = UIAlertController(title: "View Event", message: "You're already subscribed, would you like to view your event?", preferredStyle: .alert)
+                
+                // Create view button with action handler
+                let viewBtn = UIAlertAction(title: "View", style: .default, handler: { (action) -> Void in
+                    let eventViewController = EKEventViewController()
+                    eventViewController.delegate = self
+                    eventViewController.event = event
+                    let navigationcontroller = UINavigationController(rootViewController: eventViewController)
+                    self.present(navigationcontroller, animated: true)
                 })
                 
-                // Add OK button to a dialog message
-                dialogMessage.addAction(ok)
+                // Create cancel button with action handler
+                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { (action) -> Void in
+                    //                     print("cancel button tapped")
+                })
+                
+                // Add buttons to a dialog message
+                dialogMessage.addAction(viewBtn)
+                dialogMessage.addAction(cancel)
+                
                 // Present Alert to
                 self.present(dialogMessage, animated: true, completion: nil)
             }
@@ -200,29 +221,139 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
         }
     }
     
-    func checkEventExists(store: EKEventStore, event eventToAdd: EKEvent) -> Bool {
-        let predicate = store.predicateForEvents(withStart: eventToAdd.startDate, end: eventToAdd.endDate, calendars: nil)
+    private func eventAlreadyExists(event eventToAdd: EKEvent) -> Bool {
+        let predicate = eventStore.predicateForEvents(withStart: eventToAdd.startDate, end: eventToAdd.endDate, calendars: nil)
         let existingEvents = eventStore.events(matching: predicate)
         
-        let exists = existingEvents.contains { (event) -> Bool in
+        let eventAlreadyExists = existingEvents.contains { (event) -> Bool in
             return eventToAdd.title == event.title && event.startDate == eventToAdd.startDate && event.endDate == eventToAdd.endDate
         }
-        return exists
+        return eventAlreadyExists
+    }
+    
+    func manageSubscriber(isAdding: Bool) {
+        print("manage subscriber")
+        var count: Int
+        
+        if let id = Int(id) {
+            count = Int(dbase.getEventSubscriberCount(tableName: "Event", id: id))!
+            print(count)
+            if isAdding {
+                count += 1
+            } else {
+                count -= 1
+            }
+            print(count)
+            
+            self.dbase.manageSubscription(counter: String(count), id: id)
+            autoPopulateItems()
+        }
     }
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         controller.dismiss(animated: true, completion: nil)
+        
+        if action == .saved {
+            // The user has chosen to save the event
+            if let event = controller.event {
+                // The event property is not nil, so we can save the event to the calendar
+                do {
+                    // Set the event store for the event editor view controller
+                    controller.eventStore = self.eventStore
+                    
+                    // Save the event to the calendar
+                    try eventStore.save(event, span: .thisEvent, commit: true)
+                    
+                    // Increase the subscription counter
+                    manageSubscriber(isAdding: true)
+                    
+                    //present the event
+                    let eventVC = EKEventViewController()
+                    eventVC.event = controller.event
+                    eventVC.delegate = self
+                    eventVC.modalPresentationStyle = .pageSheet
+                    eventVC.preferredContentSize = CGSize(width: 0, height: 250)
+                    self.present(eventVC, animated: true)
+                } catch {
+                    // An error occurred while trying to save the event
+                    print("Error saving event: \(error)")
+                }
+            } else {
+                // The event property is nil, so we cannot save the event to the calendar
+                print("Error: event is nil, cannot save event to calendar")
+            }
+        }
     }
     
-    func getImg(urlString: String) -> UIImage {
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        
+        // Dismiss the event view controller
+        controller.dismiss(animated: true, completion: nil)
+        
+        // Check the value of the action parameter
+        if action == .deleted {
+            // The user has chosen to delete the event
+            if let event = controller.event {
+                // The event property is not nil, so we can delete the event from the calendar
+                do {
+                    print("deleted event")
+                    
+                    // Decrease the subscription counter
+                    manageSubscriber(isAdding: false)
+                    
+                    // match event with the one in event store
+                    let predicate = eventStore.predicateForEvents(withStart: event.startDate, end: event.endDate, calendars: nil)
+                    let existingEvents = eventStore.events(matching: predicate)
+        
+                    // Delete the event from the calendar
+                    try eventStore.remove(existingEvents[0], span: .thisEvent, commit: true)
+
+                    
+                } catch {
+                    // An error occurred while trying to delete the event
+                    print("Error deleting event: \(error)")
+                }
+            } else {
+                // The event property is nil, so we cannot delete the event from the calendar
+                print("Error: event is nil, cannot delete event from calendar")
+            }
+        }
+    }
+    
+    func eventViewControllerDidFinish(_ controller: EKEventViewController) {
+        // Dismiss the view controller
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func getImg(urlString: String, completion: @escaping (UIImage) -> Void) {
         let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
         if (imageUrlString.isValidURL) {
             let imageUrl = URL(string: imageUrlString)
-            return try! UIImage(withContentsOfUrl: imageUrl!)!
+            fetchAsyncImage(url: imageUrl!) { image in
+                // Return the image when it is ready
+                completion(image)
+            }
+        } else {
+            let image = UIImage(named: imageUrlString)!
+            completion(image)
         }
-        else {
-            return UIImage(named: imageUrlString)!
+    }
+
+    func fetchAsyncImage(url: URL, completion: @escaping (UIImage) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                // do something with the data here
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
+            } else if let error = error {
+                // handle the error here
+                print("error fetching image error: \(error)")
+            }
         }
+
+        task.resume()
     }
     
     // MARK: - Navigation to maps page
@@ -236,11 +367,6 @@ class CardDetailViewController: UIViewController, EKEventEditViewDelegate {
     //}
 }
 
-//extension UIImage {
-//
-//    convenience init?(withContentsOfUrl url: URL) throws {
-//        let imageData = try Data(contentsOf: url)
-//
-//        self.init(data: imageData)
-//    }
-//}
+
+
+

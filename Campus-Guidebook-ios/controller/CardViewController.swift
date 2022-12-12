@@ -6,6 +6,7 @@
 //
 import UIKit
 import SwiftUI
+import Longinus
 
 
 class CellClass: UITableViewCell {
@@ -75,7 +76,7 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("Adding data already added to Event")
             for i in 0..<sampleData.eventTitles.count {
                 //make the new database row
-                mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: sampleData.eventStartTimes[i], creationDate: "", location: sampleData.eventLocation[i], contactURL: sampleData.eventContacts[i])
+                mEvent = Event(name: sampleData.eventTitles[i], description: sampleData.eventDescriptions[i], imageURL: sampleData.eventPictures[i], startDate: sampleData.eventStartDate[i], startTime: sampleData.eventStartTimes[i], creationDate: "", location: sampleData.eventLocation[i], contactURL: sampleData.eventContacts[i], subscriptionsCounter: sampleData.eventSubscriptions[i])
                 dbase.addEventRow(Event: mEvent) //add the database row to the table
             }
         }
@@ -128,22 +129,27 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func addTransparentView(frame: CGRect) {
-        let window = UIApplication.shared.keyWindow
-        transparentView.frame = window?.frame ?? self.view.frame
-        self.view.addSubview(transparentView)
-        
-        dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: 0)
-        self.view.addSubview(dropDownTableView)
-        dropDownTableView.layer.cornerRadius = 5
-        
-        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        dropDownTableView.reloadData()
-        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
-        transparentView.addGestureRecognizer(tapgesture)
-        transparentView.alpha = 0
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            self.transparentView.alpha = 0.5
-            self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: CGFloat(self.dataSource.count * 45))
+//        let window: UIWindow? = UIApplication.shared.delegate?.window ?? UIWindow()
+
+        if let window = UIApplication.shared.delegate?.window ?? UIWindow() {
+            // Use the window here
+            let windowFrame = window.frame
+            transparentView.frame = windowFrame
+            self.view.addSubview(transparentView)
+            
+            dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: 0)
+            self.view.addSubview(dropDownTableView)
+            dropDownTableView.layer.cornerRadius = 5
+            
+            transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+            dropDownTableView.reloadData()
+            let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
+            transparentView.addGestureRecognizer(tapgesture)
+            transparentView.alpha = 0
+            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+                self.transparentView.alpha = 0.5
+                self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: CGFloat(self.dataSource.count * 45))
+            }
         }
     }
     
@@ -212,64 +218,64 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if tableView == self.cardTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! CardCell
-            var image: UIImage!
             
             switch categoryID {
             case 0:
                 print(EventsArray[indexPath.row])
                 if isFiltering  {
                     // Checks if img is a url
-                    image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
+                    getImg(urlString: filteredObjects[indexPath.row][3] as! String) { image in
+                        cell.configure(id: (self.filteredObjects[indexPath.row][0] as? String)!,
+                                       title: (self.filteredObjects[indexPath.row][1] as? String)!,
+                                       description: (self.filteredObjects[indexPath.row][2] as? String)!,
+                                       picture: image)
+                    }
                     
-                    cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
-                                   title: (filteredObjects[indexPath.row][1] as? String)!,
-                                   description: (filteredObjects[indexPath.row][2] as? String)!,
-                                   picture: image)
                 } else {
-                    image = getImg(urlString: EventsArray[indexPath.row][3] as! String)
-                    
-                    cell.configure(id: (EventsArray[indexPath.row][0] as? String)!,
-                                   title: (EventsArray[indexPath.row][1] as? String)!,
-                                   description: (EventsArray[indexPath.row][2] as? String)!,
-                                   picture: image,
-                                   date: EventsArray[indexPath.row][4] as? String,
-                                   location: EventsArray[indexPath.row][7] as? String)
+                    getImg(urlString: EventsArray[indexPath.row][3] as! String) { image in
+                        cell.configure(id: (self.EventsArray[indexPath.row][0] as? String)!,
+                                       title: (self.EventsArray[indexPath.row][1] as? String)!,
+                                       description: (self.EventsArray[indexPath.row][2] as? String)!,
+                                       picture: image,
+                                       date: self.EventsArray[indexPath.row][4] as? String,
+                                       location: self.EventsArray[indexPath.row][7] as? String)
+                    }
                 }
                 
             case 1:
                 if isFiltering  {
                     // Checks if img is a url
-                    image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
-                    
-                    cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
-                                   title: (filteredObjects[indexPath.row][1] as? String)!,
-                                   description: (filteredObjects[indexPath.row][2] as? String)!,
-                                   picture: image)
+                    getImg(urlString: filteredObjects[indexPath.row][3] as! String) { image in
+                        cell.configure(id: (self.filteredObjects[indexPath.row][0] as? String)!,
+                                       title: (self.filteredObjects[indexPath.row][1] as? String)!,
+                                       description: (self.filteredObjects[indexPath.row][2] as? String)!,
+                                       picture: image)
+                    }
                 } else {
-                    image = getImg(urlString: SustainabilityArray[indexPath.row][3] as! String)
-                    
-                    cell.configure(id: (SustainabilityArray[indexPath.row][0] as? String)!,
-                                   title: (SustainabilityArray[indexPath.row][1] as? String)!,
-                                   description: (SustainabilityArray[indexPath.row][2] as? String)!,
-                                   picture: image)
+                    getImg(urlString: SustainabilityArray[indexPath.row][3] as! String) { image in
+                        cell.configure(id: (self.SustainabilityArray[indexPath.row][0] as? String)!,
+                                       title: (self.SustainabilityArray[indexPath.row][1] as? String)!,
+                                       description: (self.SustainabilityArray[indexPath.row][2] as? String)!,
+                                       picture: image)
+                    }
                 }
                 
             case 2:
                 if isFiltering  {
                     //checks if img is a url
-                    image = getImg(urlString: filteredObjects[indexPath.row][3] as! String)
-                    
-                    cell.configure(id: (filteredObjects[indexPath.row][0] as? String)!,
-                                   title: (filteredObjects[indexPath.row][1] as? String)!,
-                                   description: (filteredObjects[indexPath.row][2] as? String)!,
-                                   picture: image)
+                    getImg(urlString: filteredObjects[indexPath.row][3] as! String) { image in
+                        cell.configure(id: (self.filteredObjects[indexPath.row][0] as? String)!,
+                                       title: (self.filteredObjects[indexPath.row][1] as? String)!,
+                                       description: (self.filteredObjects[indexPath.row][2] as? String)!,
+                                       picture: image)
+                    }
                 } else {
-                    image = getImg(urlString: ClubsArray[indexPath.row][3] as! String)
-                    
-                    cell.configure(id: (ClubsArray[indexPath.row][0] as? String)!,
-                                   title: (ClubsArray[indexPath.row][1] as? String)!,
-                                   description: (ClubsArray[indexPath.row][2] as? String)!,
-                                   picture: image)
+                    getImg(urlString: ClubsArray[indexPath.row][3] as! String) { image in
+                        cell.configure(id: (self.ClubsArray[indexPath.row][0] as? String)!,
+                                       title: (self.ClubsArray[indexPath.row][1] as? String)!,
+                                       description: (self.ClubsArray[indexPath.row][2] as? String)!,
+                                       picture: image)
+                    }
                 }
             default:
                 print("default")
@@ -293,17 +299,34 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             {
                 vc.categoryID = categoryID
                 
-                switch categoryID {
-                case 0:
-                    if isFiltering {
-                        vc.id = filteredObjects[indexPath.row][0] as? String
-                        print("id Event")
-                    } else {
-                        vc.id = EventsArray[indexPath.row][0] as? String
-                        print("id Event")
+                if categoryID == 0 || categoryID == 2 {
+                    switch categoryID {
+                    case 0:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Event")
+                        } else {
+                            vc.id = EventsArray[indexPath.row][0] as? String
+                            print("id Event")
+                        }
+                    case 2:
+                        if isFiltering {
+                            vc.id = filteredObjects[indexPath.row][0] as? String
+                            print("id Club")
+                        } else {
+                            vc.id = ClubsArray[indexPath.row][0] as? String
+                            print("id Club")
+                        }
+                    default:
+                        print("default")
                     }
-                    
-                case 1:
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+            if categoryID == 1 {
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "SustainabilityCardView") as? SustainabilityCardViewController
+                {
                     if isFiltering {
                         vc.id = filteredObjects[indexPath.row][0] as? String
                         print("id Sus")
@@ -311,20 +334,41 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         vc.id = SustainabilityArray[indexPath.row][0] as? String
                         print("id Sus")
                     }
-                    
-                case 2:
-                    if isFiltering {
-                        vc.id = filteredObjects[indexPath.row][0] as? String
-                        print("id Club")
-                    } else {
-                        vc.id = ClubsArray[indexPath.row][0] as? String
-                        print("id Club")
-                    }
-                default:
-                    print("default")
+                    navigationController?.pushViewController(vc, animated: true)
                 }
-                navigationController?.pushViewController(vc, animated: true)
             }
+            
+            //                switch categoryID {
+            //                case 0:
+            //                    if isFiltering {
+            //                        vc.id = filteredObjects[indexPath.row][0] as? String
+            //                        print("id Event")
+            //                    } else {
+            //                        vc.id = EventsArray[indexPath.row][0] as? String
+            //                        print("id Event")
+            //                    }
+            //
+            //                case 1:
+            //                    if isFiltering {
+            //                        vc.id = filteredObjects[indexPath.row][0] as? String
+            //                        print("id Sus")
+            //                    } else {
+            //                        vc.id = SustainabilityArray[indexPath.row][0] as? String
+            //                        print("id Sus")
+            //                    }
+            //
+            //                case 2:
+            //                    if isFiltering {
+            //                        vc.id = filteredObjects[indexPath.row][0] as? String
+            //                        print("id Club")
+            //                    } else {
+            //                        vc.id = ClubsArray[indexPath.row][0] as? String
+            //                        print("id Club")
+            //                    }
+            //                default:
+            //                    print("default")
+            //                }
+            //                navigationController?.pushViewController(vc, animated: true)
         }
         
         if tableView == self.dropDownTableView {
@@ -369,23 +413,13 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    func getImg(urlString: String) -> UIImage {
-        let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
-        if (imageUrlString.isValidURL) {
-            let imageUrl = URL(string: imageUrlString)
-            return try! UIImage(withContentsOfUrl: imageUrl!)!
-        }
-        else {
-            return UIImage(named: imageUrlString)!
-        }
-    }
-    
-    
     @IBAction func filterBtn_Onclick(_ sender: Any) {
         dataSource = ["Most Recent", "Less Recent"]
         selectedBtn = filterBtn
-        addTransparentView(frame: filterBtn.frame)
+        print(filterBtn.frame)
+        addTransparentView(frame: selectedBtn.frame)
     }
+    
     
     func filterContentForSearchText(_ searchText: String) {
         switch categoryID {
@@ -414,18 +448,39 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cardTableView.reloadData()
     }
     
-}
+    func getImg(urlString: String, completion: @escaping (UIImage) -> Void) {
+        let imageUrlString = urlString != "" ? urlString : "cascadia_mascot"
+        if (imageUrlString.isValidURL) {
+            let imageUrl = URL(string: imageUrlString)
+            fetchAsyncImage(url: imageUrl!) { image in
+                // Return the image when it is ready
+                completion(image)
+            }
+        } else {
+            let image = UIImage(named: imageUrlString)!
+            completion(image)
+        }
+    }
 
-// MARK: Extensions
+    func fetchAsyncImage(url: URL, completion: @escaping (UIImage) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                // do something with the data here
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
+            } else if let error = error {
+                // handle the error here
+                print("error fetching image error: \(error)")
+            }
+        }
 
-extension UIImage {
-    
-    convenience init?(withContentsOfUrl url: URL) throws {
-        let imageData = try Data(contentsOf: url)
-        
-        self.init(data: imageData)
+        task.resume()
     }
 }
+
+
+
 
 extension String {
     var isValidURL: Bool {
