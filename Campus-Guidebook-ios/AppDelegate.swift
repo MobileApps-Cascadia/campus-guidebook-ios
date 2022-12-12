@@ -15,6 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Initialize the window property
+           let window = UIWindow()
+
+           // Set the root view controller of the window
+           window.rootViewController = ViewController()
+
+           // Make the window visible
+           window.makeKeyAndVisible()
+        
         return true
     }
 

@@ -129,9 +129,12 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func addTransparentView(frame: CGRect) {
-        if let window = UIApplication.shared.delegate?.window {
+//        let window: UIWindow? = UIApplication.shared.delegate?.window ?? UIWindow()
+
+        if let window = UIApplication.shared.delegate?.window ?? UIWindow() {
             // Use the window here
-            transparentView.frame = window?.frame ?? self.view.frame
+            let windowFrame = window.frame
+            transparentView.frame = windowFrame
             self.view.addSubview(transparentView)
             
             dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: 0)
@@ -148,9 +151,6 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.dropDownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height + 5, width: frame.width, height: CGFloat(self.dataSource.count * 45))
             }
         }
-        
-        //        let window = UIApplication.shared.keyWindow
-        
     }
     
     @objc func removeTransparentView() {
@@ -416,8 +416,10 @@ class CardsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func filterBtn_Onclick(_ sender: Any) {
         dataSource = ["Most Recent", "Less Recent"]
         selectedBtn = filterBtn
-        addTransparentView(frame: filterBtn.frame)
+        print(filterBtn.frame)
+        addTransparentView(frame: selectedBtn.frame)
     }
+    
     
     func filterContentForSearchText(_ searchText: String) {
         switch categoryID {

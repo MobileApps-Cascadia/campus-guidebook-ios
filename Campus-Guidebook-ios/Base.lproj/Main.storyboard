@@ -103,9 +103,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="D3M-ys-bhX"/>
                     <connections>
-                        <segue destination="w4L-pD-G04" kind="show" id="OEn-Fp-77Q"/>
-                        <segue destination="VtX-SM-H7S" kind="show" id="8aQ-Oc-5dF"/>
-                        <segue destination="cTf-aT-ue6" kind="show" id="w9v-bk-XWD"/>
+                        <segue destination="w4L-pD-G04" kind="show" identifier="showDetailsViewController" id="OEn-Fp-77Q"/>
+                        <segue destination="VtX-SM-H7S" kind="show" identifier="showCardsViewController" id="8aQ-Oc-5dF"/>
+                        <segue destination="cTf-aT-ue6" kind="show" identifier="showMapsViewController" id="w9v-bk-XWD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -281,7 +281,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sort By"/>
                                 <connections>
-                                    <action selector="filterBtn_Onclick:" destination="VtX-SM-H7S" eventType="touchUpInside" id="0kz-yq-Z0k"/>
+                                    <action selector="filterBtn_Onclick:" destination="VtX-SM-H7S" eventType="touchUpInside" id="h08-Xy-dlH"/>
                                 </connections>
                             </button>
                         </subviews>
