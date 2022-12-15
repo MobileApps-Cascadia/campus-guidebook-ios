@@ -14,21 +14,33 @@ class CardCell: UITableViewCell {
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     var id: String!
     
     
     // MARK: Set up the cell
-    func configure(id: String, title: String, description: String, picture: UIImage)
+    func configure(id: String, title: String, description: String, picture: UIImage, date: String? = nil, location: String? = nil)
     {
-        self.id = id
-        pictureView.image = picture
-        titleLabel.text = title
-        descriptionLabel.text = description
         
-        cardView.layer.shadowColor = UIColor.gray.cgColor
-        cardView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        cardView.layer.shadowOpacity = 1.0
-        cardView.layer.masksToBounds = false
-        cardView.layer.cornerRadius = 2.0
+        DispatchQueue.main.async {
+            self.id = id
+            self.pictureView.image = picture
+            self.titleLabel.text = title
+            self.descriptionLabel.text = description
+            
+            if let d = date {
+                self.dateTimeLabel.text = "Date: \(d)"
+            }
+            if let l = location {
+                self.locationLabel.text = "Location: \(l)"
+            }
+            
+            self.cardView.layer.shadowColor = UIColor.gray.cgColor
+            self.cardView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+            self.cardView.layer.shadowOpacity = 1.0
+            self.cardView.layer.masksToBounds = false
+            self.cardView.layer.cornerRadius = 2.0
+        }
     }
 }

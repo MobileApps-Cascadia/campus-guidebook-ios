@@ -4,14 +4,16 @@
 //
 //  Created by Student Account on 4/26/22.
 //
-
 import UIKit
 import SQLite3
 import Foundation
+import MapKit
+import CoreLocation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-  
-    let dbTest: DataBaseTests = DataBaseTests()
+    
+    //let dbTest: DataBaseTests = DataBaseTests()
+    let RoomsTest: Rooms = Rooms() //rooms test
     
     let mainNavigationCardNames = ["Events", "Sustainability", "Student Clubs", "Arc", "Library", "Kodiac Corner", "Food Trucks", "Campus Map", ]
     
@@ -20,9 +22,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         //do tests of db
-        dbTest.removeTables()
-        dbTest.makeTables()
-        dbTest.makeTests()
+        //dbTest.removeTables()
+        //dbTest.makeTables()
+        //dbTest.makeTests()
+        //do tests of Rooms
+        
+        let roomLocation = RoomsTest.getRoomCoordinatesByName(Room: "CC1-250")
+        print("Get the location of the room CC1-250: \(roomLocation)")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,23 +58,49 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView,
-      didSelectItemAt indexPath: IndexPath) {
+                        didSelectItemAt indexPath: IndexPath) {
         print("Cell \(mainNavigationCardNames[indexPath.row]) - \(indexPath.row) clicked")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
         
-        if indexPath.row < 3 {
+        
+        let pathRow: Int = indexPath.row
+        switch pathRow {
+        case 0:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
             vc?.categoryID = indexPath.row
             self.navigationController?.pushViewController(vc!, animated: true)
-        }
-        else {
+        case 1:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        case 2:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardsViewController") as? CardsViewController
+            vc?.categoryID = indexPath.row
+            self.navigationController?.pushViewController(vc!, animated: true)
+        case 7:
+            
+            //Cascadia College location: 47.760106, -122.192030
+               
+                let latitude:CLLocationDegrees =  47.760106
+                let longitude:CLLocationDegrees =  -122.192030
+                
+                let regionDistance:CLLocationDistance = 100
+                let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                let options = [
+                    MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                    MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+                ]
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
+                
+                mapItem.name = "Cascadia College"
+                mapItem.openInMaps(launchOptions: options)
+                
+            
+        default:
             let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
             vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]
             self.navigationController?.pushViewController(vc!, animated: true)
-            
         }
-        
-      }
-
-
+    }
 }
-
