@@ -13,7 +13,7 @@ class Event: Codable{
     var InsertableValueCount: Int = 9 //change this when you add a new column //TODO: Check if this is required
     var Name: String
     var Description: String
-    var ImageURL: String// add stuff here when you add a new column
+    var ImageURL: String //Add variables here when you add a new column
     var StartDate: String
     var StartTime: String
     var CreationDate: String
@@ -30,7 +30,7 @@ class Event: Codable{
     init(name: String?, description: String?, imageURL: String?, startDate: String?, startTime: String?, creationDate: String?, location: String?, contactURL: String?, subscriptionsCounter: String?){ //optional values the have a default of blank //change this when you add a new column
         Name = name ?? ""
         Description = description ?? ""
-        ImageURL = imageURL ?? ""// add stuff here when you add a new column
+        ImageURL = imageURL ?? "" //Add variables here when you add a new column
         StartDate = startDate ?? ""
         StartTime = startTime ?? ""
         CreationDate = creationDate ?? ""

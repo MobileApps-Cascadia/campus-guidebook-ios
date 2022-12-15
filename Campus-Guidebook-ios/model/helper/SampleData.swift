@@ -18,16 +18,31 @@ class SampleData {
      "engineers_club",
      "japanese_culture_club"]
 
-    let clubTitles: [String] = ["Clubs at Cascadia", "DnD Club", "Engineers Club", "Japanese Culture Club"]
+    let clubTitles: [String] = ["Clubs at Cascadia",
+                                "DnD Club",
+                                "Engineers Club",
+                                "Japanese Culture Club"]
     let clubDescriptions: [String] = [
         "Roll the dice at EAB and CEB's annual Casino Night!",
         "Roll20 until you reach the lands of 5e",
         "The engineering club is open to any student who is interested in science, technology, engineering, and math (STEM). Through hands on activities, members of all skill levels will have the opportunity to design, build, and share engineered projects with other creative problem solvers. Get ready to strengthen your skills, create a collection of projects related to your career, and connect with your peers! Some of the club projects we've undertaken include designing 3d printing models, making a video game with python, and electronic prototyping with Arduino.",
         "The purpose of this club is to provide a comfortable place for the students at Cascadia college to learn and experience Japanese culture together. In our club, we will share traditional Japanese culture such as Japanese calligraphy, origami, karate, etc. together."]
-    let clubStartdates: [String] = ["11/11/2023", "08/23/2023", "05/12/2023", "04/07/2023"]
-    let clubStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM"]
-    let clubLocations: [String] = ["ARC1-210", "ARC2-360", "ARC1-210", "ARC2-360"]
-    let clubContacts: [String] = ["cascadiaengineers@gmail.com", "cascadiadg@gmail.com", "test@gmail.com", "xyz@gmail.com"]
+    let clubStartdates: [String] = ["11/11/2023",
+                                    "08/23/2023",
+                                    "05/12/2023",
+                                    "04/07/2023"]
+    let clubStartTimes: [String] = ["2:00 PM - 3:15 PM",
+                                    "2:00 PM - 3:30 PM",
+                                    "2:00 PM - 3:15 PM",
+                                    "2:00 PM - 4:00 PM"]
+    let clubLocations: [String] = ["ARC1-210",
+                                   "ARC2-360",
+                                   "ARC1-210",
+                                   "ARC2-360"]
+    let clubContacts: [String] = ["cascadiaengineers@gmail.com",
+                                  "cascadiadg@gmail.com",
+                                  "test@gmail.com",
+                                  "xyz@gmail.com"]
     
     // Sample Data for events
     let eventPictures: [String] =
@@ -36,8 +51,16 @@ class SampleData {
      "",
      "",
      ""]
-    let eventTitles: [String] = ["Events and Advocacy Board", "Engineering Club - Symposium", "Math Club - Weekly Meeting", "Math Club - Weekly Meeting", "Science Club - Weekly Meeting"]
-    let eventDescriptions: [String] = ["Roll the dice at EAB and CEB's annual Casino Night!", "The biggest Engineering event of the year", "Meets every other Tuesday at 3:30", "Meets every other Tuesday at 3:30", "Meets every other Tuesday at 3:30"]
+    let eventTitles: [String] = ["Events and Advocacy Board",
+                                 "Engineering Club - Symposium",
+                                 "Math Club - Weekly Meeting",
+                                 "Math Club - Weekly Meeting",
+                                 "Science Club - Weekly Meeting"]
+    let eventDescriptions: [String] = ["Roll the dice at EAB and CEB's annual Casino Night!",
+                                       "The biggest Engineering event of the year",
+                                       "Meets every other Tuesday at 3:30",
+                                       "Meets every other Tuesday at 3:30",
+                                       "Meets every other Tuesday at 3:30"]
     
     let eventStartDate: [String] = ["11/11/2023", "08/23/2023", "05/12/2023", "04/07/2023", "12/16/2023"]
     let eventStartTimes: [String] = ["2:00 PM - 3:15 PM", "2:00 PM - 3:30 PM", "2:00 PM - 3:15 PM", "2:00 PM - 4:00 PM", "4:00 PM - 6:00 PM"]
@@ -52,7 +75,10 @@ class SampleData {
      "sustainability_green_buidlings",
      "sustainability_campus_grounds",
      "sustainability_stormwater_management"]
-    let sustainabilityTitles: [String] = ["Wetlands", "Green Buildings", "Campus Grounds", "Stormwater Management"]
+    let sustainabilityTitles: [String] = ["Wetlands",
+                                          "Green Buildings",
+                                          "Campus Grounds",
+                                          "Stormwater Management"]
     let sustainabilityDescriptions: [String] = [
         "We protect and continue to restore a 58-acre wetland that is one of the biggest floodplain restoration projects completed in the Pacific Northwest in conjunction with UW Bothell. Cascadia classes use the wetland as a living laboratory to study water quality, botany, ecology and wildlife biology. Cascadia students have done wetland stormwater sampling!",
         "Our Global Learning and the Arts building (CC3) achieved Leadership in Energy and Environmental Design (LEED) Platinum  standard for environmental sustainability and we produce clean, renewable energy via solar panels located on our parking garages and rooftops.",

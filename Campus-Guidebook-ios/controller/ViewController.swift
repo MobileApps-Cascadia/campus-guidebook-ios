@@ -7,6 +7,8 @@
 import UIKit
 import SQLite3
 import Foundation
+import MapKit
+import CoreLocation
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -75,8 +77,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             vc?.categoryID = indexPath.row
             self.navigationController?.pushViewController(vc!, animated: true)
         case 7:
-            let vc1 = storyboard?.instantiateViewController(withIdentifier: "mapViewController") as? mapViewController
-            self.navigationController?.pushViewController(vc1!, animated: true)
+            
+            //Cascadia College location: 47.760106, -122.192030
+               
+                let latitude:CLLocationDegrees =  47.760106
+                let longitude:CLLocationDegrees =  -122.192030
+                
+                let regionDistance:CLLocationDistance = 100
+                let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+                let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                let options = [
+                    MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                    MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+                ]
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
+                
+                mapItem.name = "Cascadia College"
+                mapItem.openInMaps(launchOptions: options)
+                
+            
         default:
             let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
             vc?.mainNavigationCardName = mainNavigationCardNames[indexPath.row]

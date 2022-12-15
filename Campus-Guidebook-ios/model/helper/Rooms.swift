@@ -37,8 +37,8 @@ class Rooms {
         
     }
     func getRoomCoordinatesByName(Room: String) -> String{
-    var Building: String = String(Room.components(separatedBy: "-")[0])
-    var roomNumber: Int = Int(Room.components(separatedBy: "-")[1])!
+        let Building: String = String(Room.components(separatedBy: "-")[0])
+        let roomNumber: Int = Int(Room.components(separatedBy: "-")[1])!
         for room in rooms{
             if ("\(room[0])" == Building){
                 if(room[1] as! Int == roomNumber){
